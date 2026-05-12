@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica TEA</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Font Awesome para os ícones e algumas fontes para a página -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+</head>
+<body class="center">
+
+  <div class="decoration-box">
+
+    <div class="box-emprise">
+      <img src="Assets/Logo-Do-Login.png" alt="logo da clínica TEA"> <!-- aqui vai o logo da clinica TEA -->
+      <p>TEA</p> <!-- aqui vai o nome da clinica TEA -->
+    </div>
+
+    <h2>Cuidado, escuta e evolução para cada criança.</h2> 
+
+    <p>Acompanhe sessões, relatórios clínicos, pagamentos e suporte da família em um só lugar.</p>
+    <p id="benefits"><i class="fa-solid fa-circle-check" style="color: rgb(255, 255, 255);"></i> Relatórios clínicos detalhados</p> <!-- cada benefício tem um ícone de check para destacar as vantagens do sistema -->
+    <p id="benefits"><i class="fa-solid fa-circle-check" style="color: rgb(255, 255, 255);"></i> Acompanhamento por filho</p>
+    <p id="benefits"><i class="fa-solid fa-circle-check" style="color: rgb(255, 255, 255);"></i> Histórico financeiro transparente</p>
+    
+  </div>
+
+  <div class="login-box"> <!-- caixa de login, onde o usuário irá inserir suas credenciais para acessar o sistema -->
+    <h2>Bem-vindo de volta </h2>
+    <h5>Faça login para acessar o painel da família</h5>
+    
+      <div class="icon_input"> <!-- cada campo de input tem um ícone para facilitar a identificação do que deve ser inserido -->
+          <span class="icon"><i class="fa-solid fa-user"></i></span>
+          <input type="email" placeholder="E-mail">
+      </div>
+
+      <div class="icon_input"> <!-- cada campo de input tem um ícone para facilitar a identificação do que deve ser inserido -->
+          <span class="icon"><i class="fa-solid fa-lock"></i></span>
+          <input type="password" placeholder="Senha">
+      </div>
+
+      <div class="add-plus-box"> <!-- caixa para o checkbox de "lembrar senha" e o link de "esqueci minha senha", organizados lado a lado -->
+        <label class="checkbox-container">
+          <input type="checkbox">
+          <span class="checkmark"></span>
+          Lembrar senha
+        </label>
+        <a href="recuperar-senha.html" class="redefinir_Password">Esqueceu sua senha?</a>
+      </div>
+
+    
+    <button onclick="login()">Entrar</button>  <!-- botão de login, que chama a função "login()" definida no script.js para redirecionar o usuário para a dashboard após o login -->
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/script.js"></script>
+  </body></html>

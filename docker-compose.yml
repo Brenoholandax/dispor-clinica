@@ -1,0 +1,21 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    restart: always
+
+  # Exemplo para servir o frontend estático usando Nginx
+  frontend-pais:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend-pais:/usr/share/nginx/html
+    restart: always

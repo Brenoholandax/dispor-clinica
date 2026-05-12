@@ -1,0 +1,176 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body { /* algumas configurações básicas para o body, como fonte, cor de fundo e altura mínima */
+  background: radial-gradient(circle at top left, rgba(227, 255, 241, 0.8) 0%, rgba(87, 199, 133, 0.3) 50%, #f8fff9 100%);
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100dvh;
+  color: #333;
+}
+
+/* LAYOUT PRINCIPAL */
+.container { /* container principal que envolve a sidebar e o main, com display flex para organizar os elementos lado a lado */
+  display: flex;
+  min-height: 100dvh;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+
+/* ========== MAIN CONTENT ========== */
+main { /* main content, que ocupa o espaço restante ao lado da sidebar */
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.page { /* cada seção do main, como dashboard, relatórios, pagamentos e suporte, começa escondida e tem uma animação de fadeIn quando é ativada */
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.page.active { /* quando a seção é ativa, ela é exibida */
+  display: block;
+}
+
+@keyframes fadeIn { /* animação de fadeIn */
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== DASHBOARD ========== */
+#dashboard h1 { /* título do dashboard */
+  font-size: 32px;
+  font-weight: 700;
+  color: #53a587;
+  margin-bottom: 35px;
+  font-family: "Poppins", sans-serif;
+}
+
+.cards { /* container para os cards de resumo do dashboard, com display grid para organizar os cards em colunas e linhas */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.card { /* estilo para cada card de resumo do dashboard */
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(83, 165, 135, 0.15);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before { /* efeito de destaque no card */
+  content: ''; /* cria um elemento antes do conteúdo do card */
+  position: absolute; /* posiciona o elemento de forma absoluta dentro do card */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px; /* altura da barra de destaque */
+  background: linear-gradient(90deg, #53a587, #44a380); /* cor da barra de destaque, usando um gradiente linear */
+}
+
+.card:hover { /* efeito de hover para destacar o card */
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(83, 165, 135, 0.25);
+}
+
+.card span { /* estilo para o valor do card */
+  font-size: 28px;
+  font-weight: 800;
+  color: #53a587;
+  display: block;
+  margin-top: 8px;
+}
+.graficos { /* container para os gráficos do dashboard, com display flex para organizar os gráficos lado a lado e com gap entre eles */
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.graficos-centralizados{
+  display: flex;
+  justify-content: center;
+}
+#graficoLinha { /* primeiro grafico de linha do dashboard, com um estilo semelhante ao dos cards */
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 15px 50px rgba(83, 165, 135, 0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  max-height: 400px;
+  max-width: 570px;
+  width: 100%;
+}
+#graficoPizza{ /* segundo grafico de pizza do dashboard, com o mesmo estilo do primeiro grafico */
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 15px 50px rgba(83, 165, 135, 0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  max-height: 400px;
+  max-width: 570px;
+  width: 100%;
+}
+
+
+
+
+/* ========== RESPONSIVIDADE ========== */
+
+
+
+/* Responsividade Geral */
+@media (max-width: 480px) {
+
+  .cards { /* fazer com que no container principal dos cards(esse) os cards fiquem um abaixo do outro */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 40px;
+    width: 100%; /* quero que o container deles fique na tela toda para eles poderem preencher tambpem*/
+  }
+  .card{ /* cada card preenchendo tudo*/
+    width: 100%;
+  }
+  .graficos { /* fazer com que no container principal dos gráficos(esse) os gráficos fiquem um abaixo do outro */
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    height: 500px;  /*  Altura container */
+  }
+
+  #graficoLinha, #graficoPizza { /* aumentando o tamanho do grafico*/
+    flex: 1;        /*  Ocupa espaço disponível */
+    height: 100% !important;
+    max-height: 500px;
+    padding: 20px;
+  }
+  /*relatório.css*/
+  #relatorios input, select{ /* colocando uma margem embaixo para os input e o botão não ficarem grudados*/
+    margin-bottom: 10px;
+  }
+  /*Suporte.css*/
+  .toast-simple { /* colocando o toast mais pra cima pois ele tava mt embgaixo e estava cortando */
+    position: fixed;
+    top: 80%;
+    left: 50%;  
+    width: 90%;
+  }
+}
+@media (max-width: 570px) { /* media especifico para o relatorio, pois os input e o botão estavam ficando muito grudados, então coloquei uma margem embaixo deles */
+    #relatorios select {
+      margin-bottom: 10px;
+    }
+}
+
+

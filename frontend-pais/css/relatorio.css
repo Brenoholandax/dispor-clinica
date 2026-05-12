@@ -1,0 +1,52 @@
+/* ========== RELATÓRIOS ========== */
+#relatorios h1 { /* Estilo pro titulod a pagina de relatorios */
+  font-size: 32px;
+  color: #53a587;
+  margin-bottom: 30px;
+  font-family: "Poppins", sans-serif;
+}
+
+#relatorios select,
+#relatorios input[type="date"] { /* Estilo para os campos de seleção de data e o nome do filho, atenção: não muda o stilo do que será selecionado e sim o input em si */
+  padding: 12px 20px;
+  border: 2px solid #e3f5e9;
+  border-radius: 15px;
+  font-size: 16px;
+  margin-right: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+#relatorios select:focus,
+#relatorios input[type="date"]:focus { /* efeito de foco para destacar o campo ativo da página de relatórios */
+  outline: none;
+  border-color: #53a587;
+  box-shadow: 0 0 0 3px rgba(83, 165, 135, 0.1);
+}
+
+#relatorios button { /* estilo do botão de filtrar da pagina de relatório. */
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #53a587, #44a380);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#relatorios button:hover {  /* efeito de hover para destacar o botão de filtrar da página de relatórios */
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(83, 165, 135, 0.4);
+}
+
+#relatorioResultado { /* estilo para a parte do resultado, depois que o ususario clica em filtrar*/
+  margin-top: 30px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

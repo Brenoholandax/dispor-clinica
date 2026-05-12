@@ -90,10 +90,17 @@ if menu == "📝 Relatórios de Sessão":
                 }
                 
                 # Fazendo a requisição (POST) para o nosso backend FastAPI
-                url_api = "http://127.0.0.1:8000/registrar-saida"
+                # Em produção, isso deve apontar para o domínio da API
+                url_api = os.environ.get("API_BASE_URL", "http://127.0.0.1:8000") + "/registrar-saida"
+                api_key = os.environ.get("API_KEY_SECRET", "dev-secret-key-123")
+                
+                headers = {
+                    "X-API-Key": api_key,
+                    "Content-Type": "application/json"
+                }
                 
                 try:
-                    resposta = requests.post(url_api, json=payload)
+                    resposta = requests.post(url_api, json=payload, headers=headers)
                     
                     if resposta.status_code == 200:
                         st.success(f"✅ Relatório de {especialidade_selecionada} salvo!")

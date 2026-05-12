@@ -1,0 +1,113 @@
+/* ========== SIDEBAR ========== */
+.sidebar { /* estilo para a barra lateral do dashboard a side bar */
+  width: 260px;
+  background: linear-gradient(180deg, #53a587 0%, #44a380 100%);
+  color: white;
+  padding: 30px 20px;
+  box-shadow: 4px 0 20px rgba(83, 165, 135, 0.3);
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow-y: auto; /* permite rolagem vertical se o conteúdo da sidebar ultrapassar a altura da tela */
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* transição suave para a abertura e fechamento da sidebar */
+}
+.sidebar-closed{ /* estilo para a sidebar quando ela estiver fechada, com uma largura menor e escondendo o texto dos itens do menu */
+  width: 70px; /* Largura mínima */
+  padding: 30px 10px;
+  overflow: hidden;
+  #bars{ /* estilo para o ícone de menu (hamburger) quando a sidebar estiver fechada, centralizando o ícone e removendo o gap entre os itens do menu */
+    padding: 0px clamp(8px, 2vw, 12px) 0px 5px;
+  }
+}
+.sidebar.sidebar-closed p{ /* Escondendo o texto quando a side bar estiver fechada */
+  font-size: 0; /* Esconde o texto */
+  display: none;
+}
+.sidebar.sidebar-closed li{/* Escondendo o texto quando a side bar estiver fechada */
+  font-size: 0; /* Esconde o texto */
+  display: none;
+}
+.sidebar.sidebar-closed h3{/* Escondendo o texto quando a side bar estiver fechada */
+  font-size: 0; /* Esconde o texto */
+  display: none;
+}
+.sidebar.sidebar-closed li,
+.sidebar.sidebar-closed p,
+.sidebar.sidebar-closed .menu-title { /* Estilo para quando a side bar estiver fechada, centralizando os itens do menu e removendo o gap entre eles */
+  display: flex ;
+  align-items: center ;
+  justify-content: center ;
+  gap: 0 ;
+  padding: 16px 8px ;
+  margin: 6px 0 ;
+}
+
+.menu-title{ /*div que contem o titulo da sidebar e o botao hamburgurt*/
+  margin-bottom: 40px;
+  display: flex;
+  gap: 35px;
+}
+#bars{ /* tamanho das barras do hamburger menu*/
+  font-size: 25px;
+}
+.sidebar button{ /* estilo para o botão de menu (hamburger) da sidebar, com um estilo transparente e um efeito de hover para destacar o botão */
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 200ms ease-in;
+}
+.sidebar button:hover,
+.sidebar button.active {
+  transform: scale(1.2);
+}
+
+.sidebar h3 { /* estilo para o título da sidebar */
+  font-family: "Nunito", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(255,255,255,0.2);
+}
+
+.sidebar ul { /* removendo marcações da lista sidebar*/
+  list-style: none;
+}
+.sidebar p{ /* estilo para o nome do usuário na sidebar */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  bottom: 30px;
+  position: absolute;
+}
+.sidebar i{ /* tamanho da fonte dos icones da sidebar */
+  font-size: 18px;
+}
+#user_icon{ /* tamanho do icone de user la embaixo da sidebar */
+  font-size: 25px;
+}
+
+.sidebar li { /* estylo da lista da sidebar, transição, tamanho, padding tudo*/
+  margin: 18px 0;
+  padding: 14px 20px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+}
+
+.sidebar li:hover, /* efeito de hover para destacar os itens do menu da sidebar */
+.sidebar li.active {
+  background: rgba(255,255,255,0.2);
+  transform: translateX(8px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.sidebar li.active { /* estilo para o item do menu ativo da sidebar, com um destaque mais forte */
+  background: rgba(255,255,255,0.3);
+  font-weight: 700;
+}

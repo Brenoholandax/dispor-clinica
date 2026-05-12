@@ -1,0 +1,22 @@
+/* ========== PAGAMENTOS ========== */
+#pagamentos h1 { /* estilo do título da página de pagamentos */
+  font-size: 32px;
+  color: #53a587;
+  margin-bottom: 30px;
+  font-family: "Poppins", sans-serif;
+}
+
+.pagamento { /* estilo para cada cardzinho de pagamento que informa o valor etc*/
+  background: rgba(255,255,255,0.9);
+  padding: 25px;
+  margin: 20px 0;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  border-left: 5px solid #53a587;
+  transition: all 0.3s ease; /* transição suave para o efeito de hover */
+}
+
+.pagamento:hover { /* efeito de hover para destacar o cardzinho de pagamento */
+  transform: translateX(8px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+}

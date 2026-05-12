@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinica TEA</title>
+  <link rel="stylesheet" href="css/dashboard.css"> <!-- Estilos para o dashboard, aqui trago todos os css separados que deixei -->
+  <link rel="stylesheet" href="css/sidebar.css"> <!-- Estilos para a barra lateral -->
+  <link rel="stylesheet" href="css/relatorio.css"> <!-- Estilos para os relatórios -->
+  <link rel="stylesheet" href="css/suporte.css"> <!-- Estilos para o suporte -->
+  <link rel="stylesheet" href="css/pagamentos.css"> <!-- Estilos para os pagamentos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para os gráficos do dashboard -->
+</head>
+<body>
+
+<div class="container">
+
+  <!-- MENU -->
+  <aside class="sidebar"> <!-- barra lateral, onde ficam os links para as diferentes seções do dashboard, como dashboard, relatórios, pagamentos e suporte -->
+    <div class="menu-title"> <!-- título do menu, com o logo da clínica TEA e um botão para abrir/fechar a barra lateral em telas menores -->
+      <button onclick="close_bars()"><i id="bars" class="fa-solid fa-bars" style="color: rgb(255, 255, 255);"></i></button><h3>Clínica TEA</h3> 
+    </div>
+    <ul> <!-- lista de links para as diferentes seções do dashboard, cada link tem um ícone e um evento de clique para navegar para a seção correspondente -->
+      <li onclick="navigate('dashboard')"><i class="fa-solid fa-chart-pie" style="color: rgb(255, 255, 255);"></i>Dashboard</li>
+      <li onclick="navigate('relatorios')"><i class="fa-solid fa-chart-column" style="color: rgb(255, 255, 255);"></i>Relatórios</li>
+      <li onclick="navigate('pagamentos')"><i class="fa-solid fa-coins" style="color: rgb(255, 255, 255);"></i>Pagamentos</li>
+      <li onclick="navigate('suporte')"><i class="fa-solid fa-comments" style="color: rgb(255, 255, 255);"></i>Suporte</li>
+      <li onclick="logout()"><i class="fa-solid fa-arrow-right-from-bracket" style="color: rgb(255, 255, 255);"></i>Logout</li>
+    </ul>
+    <!-- ícone de usuário e nome do usuário logado, para personalizar a experiência do usuário e mostrar que ele está logado -->
+    <p><i id="user_icon" class="fa-solid fa-circle-user" style="color: rgb(255, 255, 255);"></i> Jonathas Rikelme</p> 
+  </aside>
+
+  <!-- CONTEÚDO -->
+  <main id="content">
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="page active"> <!-- seção do dashboard, que é a seção ativa por padrão -->
+      <h1>Dashboard</h1> <!-- título -->
+
+      <div class="cards"> <!-- cards para mostrar informações importantes de forma rápida, como o número total de sessões, a data da última sessão e o progresso do tratamento -->
+        <div class="card">Sessões: <span id="totalSessao"></span></div>
+        <div class="card">Última: <span id="ultimaSessao"></span></div>
+        <div class="card">Progresso: <span id="progresso"></span></div>
+      </div> 
+      <div class="graficos"><!-- gráficos para mostrar o progresso do tratamento ao longo do tempo, com um gráfico de linha e outro de orsquinha -->
+        <canvas id="graficoLinha"></canvas> <!--linha-->
+        <canvas id="graficoPizza"></canvas> <!--rosquinha visualmente, aqui no código é de pizza mas visualmente fica uma rosquinha-->
+      </div>
+    </section>
+
+    <!-- RELATÓRIOS -->
+    <section id="relatorios" class="page"> <!-- seção de relatórios, onde o usuário pode filtrar os relatórios por filho e por data, e ver os resultados dos relatórios filtrados em uma div abaixo dos filtros -->
+      <h1>Relatórios</h1>
+
+      <select id="filhoSelect"></select> <!-- dropdown para selecionar o filho -->
+      <input type="date" id="dataFiltro">
+
+      <button onclick="filtrarRelatorios()">Filtrar</button>
+
+      <div id="relatorioResultado"></div><!-- div para mostrar os resultados dos relatórios filtrados -->
+    </section>
+
+    <!-- PAGAMENTOS -->
+    <section id="pagamentos" class="page"> <!-- seção de pagamentos, onde o usuário pode visualizar os pagamentos realizados e seus detalhes -->
+      <h1>Pagamentos</h1>
+      <div id="listaPagamentos"></div> <!-- div para mostrar a lista de pagamentos realizados, com data valor e status -->
+    </section>
+
+    <!-- SUPORTE -->
+    <section id="suporte" class="page"> <!-- seção de suporte, onde o usuário pode enviar dúvidas ou problemas para a equipe de suporte-->
+      <h1>Suporte</h1>
+
+      <select> <!-- dropdown para selecionar o tipo de mensagem que o usuário quer enviar, como dúvida ou problema -->
+        <option>Dúvida</option>
+        <option>Problema</option>
+      </select>
+
+      <textarea placeholder="Digite sua mensagem"></textarea> <!-- campo de texto para o usuário digitar sua mensagem para a equipe de suporte -->
+
+      <button onclick="enviarSuporte()">Enviar</button> <!-- botão para enviar a mensagem para a equipe de suporte, que chama a função "enviarSuporte()" que ta no script.js -->
+    </section>
+
+  </main>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/script.js"></script>
+</body></html>

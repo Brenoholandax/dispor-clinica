@@ -1,0 +1,75 @@
+/* ========== SUPORTE ========== */
+#suporte h1 { /* estilo do título da página de suporte */
+  font-size: 32px;
+  color: #53a587;
+  margin-bottom: 30px;
+  font-family: "Poppins", sans-serif;
+}
+
+#suporte select,
+#suporte textarea { /* estilo para o campo de escrita da página de suporte com efeito de foco para destacar o campo ativo */
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e3f5e9;
+  border-radius: 15px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  background: rgba(255,255,255,0.9);
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+#suporte select:focus,
+#suporte textarea:focus { /* efeito de foco para destacar o campo ativo da página de suporte */
+  outline: none;
+  border-color: #53a587;
+  box-shadow: 0 0 0 3px rgba(83, 165, 135, 0.1);
+}
+
+#suporte textarea { /* estilo específico para o campo de texto da página de suporte, permitindo redimensionamento vertical */
+  resize: vertical;
+  min-height: 120px;
+}
+
+#suporte button { /* estilo para o botão de envio da página de suporte tem nem muito oque falar */
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #53a587, #44a380);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer; /* cursor de ponteiro para mostrar que é clicável */
+  transition: all 0.3s ease; /* transição suave para o efeito de hover */
+}
+
+#suporte button:hover { /* efeito de hover */
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(83, 165, 135, 0.4);
+}
+
+/*=========== Mensagem gourmetzada  ===========*/
+.toast-simple { /* estilo para a mensagem de toast, aqui você muda tudo nela */
+  position: fixed;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: linear-gradient(135deg, #e0fff3, #bfffe7);
+  color: rgb(0, 0, 0);
+  padding: 25px 40px;
+  border-radius: 20px;
+  border: 1px solid rgb(35, 136, 31);
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0 20px 60px rgba(83, 165, 135, 0.4);
+  z-index: 10000;
+  transition: all 0.3s ease;
+
+}
+.toast-simple i{ /* estilo do icone dentro do toast, aqui pode mudar o tamanho dele */
+    font-size: 25px;
+}
+.toast-simple.show { /* estilo para mostrar a mensagem de toast, com uma animação de fade-in e scale-up */
+  transform: translate(-50%, -50%) scale(1);
+}

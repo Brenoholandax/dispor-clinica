@@ -1,0 +1,209 @@
+* { /* reset geral para garantir que todos os elementos tenham as mesmas margens, preenchimentos e box-sizing */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: url('/Assets/Background-login.png') no-repeat center; /* imagem de fundo para a página de login, centralizada e sem repetição */
+  background-size: cover;
+  backdrop-filter: blur(3px); /* efeito de desfoque para a imagem de fundo, para dar mais destaque ao conteúdo da página */
+  font-family: "Plus Jakarta Sans", sans-serif; /* fonte principal para a página */
+  
+}
+.center { /* classe para centralizar o conteúdo da página */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/*======== DECORAÇÃO =========*/
+.logo-box{ /* caixa para o logo e nome da clínica */
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 15px;
+}
+.logo-box p{ /* estilo para o nome da clínica */
+  padding: 19px 0px 0px 0px;
+  color: #53a587;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+.logo-box img{ /* estilo para a imagem da caixa de decoração */
+  width: 25px;
+  height: 25px;
+}
+
+/*======== BOX PRINCIPAL ========= */
+.password-box { /* caixa principal do esqueci minha senha, onde o usuário irá inserir o email para a recuperação */
+  background: rgba(255, 255, 255, 0.308);
+  padding: 30px;
+  border-radius: 10px;
+  width: 500px;
+  height: 400px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(18px);
+  box-shadow: 15px 20px 45px rgba(0, 0, 0, 0.356);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.password-box h2{ /* estilo para o título da caixa principal */
+  font-size: 26px;
+  font-weight: 600;
+  color: #53a587;
+  font-family: 'Poppins', sans-serif;
+}
+.password-box h5{ /* estilo para o subtítulo da caixa principal */
+  font-weight: 400;
+  color: #4d4d4d;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 30px;
+}
+/*======== INPUTS =========*/
+.password-box input { /* estilo para o campo de input da caixa principal */
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 30px;
+  background-color: #d3d3d3;
+}
+#email{ /*Margin boton para o input*/
+  margin-bottom: 20px;
+}
+.icon_input {
+  position: relative;
+  margin: 2px 0; /*distanciamento dentro do input(entre o icone e o label) | coloca uma margem entre eles*/
+}
+
+.icon_input input {
+  width: 70%; /*tamanho do input + icone*/
+  padding: 10px 10px 10px 35px; /*espaço ao redor do ícone*/
+}
+.icon_input input:focus {
+  outline: none; /*remove a borda azul padrão do input quando ele é focado*/
+}
+
+.icon { /*Configurações do icone em si*/
+  position: absolute;
+  left: 77px; /*10 pixels mais longe da borda esquerda*/
+  top: 5px; /*33% afastado do topo, isso faz com que o icone fique mais baixo, masss não centralizado*/
+  transform: none;/*centralizo o icone corrigindo o posicionamento depois do top 50%*/
+  color: #5f5f5f;
+}
+/* Mensagem de feedback */
+.mensagem-feedback { /*Stylo para a mensagem que vai aparecer quando o usuário interagir com o campo email e o botão*/
+  display: none; /*Inicialmente ela começa escondida para aparecer somente quando o usuário interagir com o campo email e o botão*/
+  font-size: 13px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  min-height: 18px; /* mantém o espaço mesmo vazio */
+  transition: all 0.3s ease;
+  text-align: left;
+  padding-left: 17%;
+}
+/* Sucesso */
+.mensagem-sucesso { /*cor verde para a mensagem de sucesso*/
+  color: #2e8b57;
+}
+
+/* Erro */
+.mensagem-erro { /*Cor vermelha para a mensagem de erro*/
+  color: #d9534f;
+}
+/*========= BUTTON =========*/
+.password-box button { /* estilo para o botão, com cor, tamanho e efeitos de hover e active */
+  width: 70%;
+  padding: 10px;
+  background: linear-gradient(135deg, #53a587, #44a380);
+  color: white;
+  border-radius: 30px;
+  border: none;
+  box-shadow: 0px 4px 0px #53a587; /*sombra do botão, da a impressão de que ele é clicável*/
+  transition: all 0.5s ease;
+  margin-bottom: 30px;
+}
+button:hover{
+  background: linear-gradient(135deg, #44a380, #37a37c); /*cor do botão quando o mouse passa por cima*/
+  box-shadow: 0px 2px 0px #44a380; /*sombra do botão quando o mouse passa por cima, da a impressão de que ele é clicado*/
+}
+button:active {
+  transform: scale(0.95); /*efeito de clique, faz o botão diminuir um pouco quando clicado*/
+}
+/*========== estilo para o link de voltar ao login =============*/
+.password-box p{
+    font-size: 14px;
+}
+.voltar_login{ /* estilo para o link de "esqueci minha senha", com cor e estilo de texto */
+  color: #53a587;
+  text-decoration: none;
+  font-size: 14px;
+}
+.voltar_login:hover{ /* quando o mouse passa por cima, para dar um feedback visual ao usuário */
+  text-decoration: underline;
+}
+
+
+
+/*==========================RESPONSIVIDADE==========================*/
+
+/*==============TABLETS============*/
+@media (max-width: 870px){ /*quando a largura da tela for menor que 870px, o layout muda para se adaptar melhor a telas menores, como tablets*/
+  body{ /*garante que o corpo da página tenha uma altura mínima de 100% da viewport, para evitar problemas de layout em telas menores */
+    min-height: 100dvh;
+  }
+  /* titulo e subtitulo */
+  .password-box h2{
+    font-size: 25px;
+  }
+  .password-box h5{
+    font-size: 16px;
+  }
+  /*tamanho dos inputs*/
+  .icon_input input {
+    width: 80%;
+    font-size: 15px; 
+  }
+  /* icone */
+  .icon_input .icon {
+    left: 55px; 
+  }
+}
+
+
+
+/*=======Celular=======*/
+@media (max-width: 430px) { /*quando a largura da tela for menor que 430px, o layout muda para se adaptar melhor a telas menores, como celulares*/
+  body{ /*garante que o corpo da página tenha uma altura mínima de 100% da viewport, para evitar problemas de layout em telas menores */
+    min-height: 100dvh;
+  }
+ /*Box principal*/
+  .password-box {
+    width: 100%;
+    border-radius: 10px; /* remove o efeito de "lado direito" */
+  }
+  /* titulo e subtitulo */
+  .password-box h2{
+    font-size: 20px;
+  }
+  .password-box h5{
+    margin-bottom: 25px;
+  }
+  /*tamanho dos inputs*/
+  .icon_input input {
+    width: 90%; 
+  }
+  /* icone */
+  .icon_input .icon {
+    left: 23px; 
+    top: 5px;
+  }
+  .password-box button {
+    width: 90%;
+  }
+  .center {
+    padding: 20px;
+  }
+}

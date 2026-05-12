@@ -1,0 +1,315 @@
+* { /* reset geral para garantir que todos os elementos tenham as mesmas margens, preenchimentos e box-sizing */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url('/Assets/Background-login.png') no-repeat center; /* imagem de fundo para a página de login, centralizada e sem repetição */
+  background-size: cover;
+  font-family: "Plus Jakarta Sans", sans-serif; /* fonte principal para a página */
+}
+
+.center { /* classe para centralizar o conteúdo da página */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+/*======== DECORAÇÃO =========*/
+.decoration-box{ /* caixa de decoração do lado esquerdo da página, com informações sobre os benefícios do sistema */
+  padding: 5px 10px 0px 20px;
+  margin: 0px;
+  width: 350px;
+  height: 400px;
+  background-color: #53a587;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: "Nunito", sans-serif;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.356);
+}
+.box-emprise{ /* caixa para o logo e nome da clínica */
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 15px;
+}
+.box-emprise p{ /* estilo para o nome da clínica */
+  padding: 19px 0px 0px 0px;
+}
+.decoration-box h2{ /* estilo para o título da caixa de decoração, que mostra os beneficios */
+  margin-bottom: 0px;
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: 900;
+}
+#benefits{ /* estilo para os benefícios, só para zerar o margin-bottom */
+  margin-bottom: 0px;
+}
+.decoration-box p{ /* estilo para os parágrafos da caixa de decoração, que mostram os beneficios do sistema */
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.decoration-box img{ /* estilo para a imagem da caixa de decoração */
+  width: 25px;
+  height: 25px;
+}
+
+/*======== LOGIN ========= */
+.login-box { /* caixa principal do login, onde o usuário irá inserir suas credenciais para acessar o sistema */
+  background: rgba(255, 255, 255, 0.507);
+  padding: 30px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 500px;
+  height: 400px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(15px);
+  box-shadow: 10px 15px 40px rgba(0, 0, 0, 0.356);
+}
+.login-box h2{ /* estilo para o título da caixa de login */
+  font-weight: 600;
+  color: #53a587;
+  font-family: 'Poppins', sans-serif;
+}
+.login-box h5{ /* estilo para o subtítulo da caixa de login */
+  font-weight: 400;
+  color: #5f5f5f;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 40px;
+}
+/*======== INPUTS =========*/
+.login-box input { /* estilo para os campos de input da caixa de login */
+  width: 100%;
+  margin: 0px 0px 20px 0px;
+  padding: 10px;
+  border: none;
+  border-radius: 30px;
+  background-color: #dfdfdf;
+}
+.icon_input {
+  position: relative;
+  margin: 2px 0; /*distanciamento dentro do input(entre o icone e o label) | coloca uma margem entre eles*/
+}
+
+.icon_input input {
+  width: 70%; /*tamanho do input + icone*/
+  padding: 10px 10px 10px 35px; /*espaço ao redor do ícone*/
+}
+.icon_input input:focus {
+  outline: none; /*remove a borda azul padrão do input quando ele é focado*/
+}
+
+.icon_input .icon { /*Configurações do icone em si*/
+  position: absolute;
+  left: 77px; /*10 pixels mais longe da borda esquerda*/
+  top: 33%; /*33% afastado do topo, isso faz com que o icone fique mais baixo, masss não centralizado*/
+  transform: translateY(-50%);/*centralizo o icone corrigindo o posicionamento depois do top 50%*/
+  color: #5f5f5f;
+}
+
+/*============ Box do checkbox e do "esqueceu sua senha?" ============*/
+.add-plus-box{ /* caixa para o checkbox de "lembrar senha" e o link de "esqueci minha senha" ficarem lado a lado */
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 70px 0px 70px;
+  margin-bottom: 10px;
+}
+/* CONTAINER DA CHECKBOX */
+.checkbox-container { /* container para o checkbox personalizado de "lembrar senha", com estilo para o texto e o layout */
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+/* ESCONDE CHECKBOX PADRÃO */
+.checkbox-container input { /* esconde o checkbox padrão, para usar o estilo personalizado */
+  display: none;
+}
+
+/* CAIXA */
+.checkmark { /* estilo para a caixa personalizada do checkbox, que será preenchida quando marcado */
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  background: rgb(255, 255, 255);
+  border: 2px solid rgba(94, 94, 94, 0.719);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.checkbox-container:hover .checkmark {/* estilo para a caixa personalizada do checkbox quando o mouse passa por cima, para dar um feedback visual ao usuário */
+  border-color: rgb(51, 50, 50); 
+}
+
+/* CHECK */
+.checkmark::after { /* estilo para o "check" que aparece dentro da caixa personalizada do checkbox quando marcado */
+  content: ""; /* necessário para criar o elemento pseudo */
+  position: absolute;
+  width: 5px;
+  height: 10px;
+  border: solid rgb(255, 255, 255);
+  border-width: 0 2px 2px 0;
+  top: 1px;
+  left: 4px;
+  transform: rotate(45deg) scale(0);
+  transition: 0.2s ease;
+}
+
+/* QUANDO MARCADO */
+.checkbox-container input:checked + .checkmark { /* estilo para a caixa personalizada do checkbox quando marcado, preenchendo a caixa e mudando a cor da borda */
+  background: #53a587;
+  border-color: #53a587;
+}
+
+.checkbox-container input:checked + .checkmark::after { /* estilo para o "check" que aparece dentro da caixa personalizada do checkbox quando marcado, fazendo ele aparecer com uma animação de escala */
+  transform: rotate(45deg) scale(1);
+}
+.redefinir_Password{ /* estilo para o link de "esqueci minha senha", com cor e estilo de texto */
+  color: #53a587;
+  text-decoration: none;
+  font-size: 14px;
+}
+.redefinir_Password:hover{ /* quando o mouse passa por cima, para dar um feedback visual ao usuário */
+  text-decoration: underline;
+}
+
+/*========= BUTTON =========*/
+.login-box button { /* estilo para o botão de login, com cor, tamanho e efeitos de hover e active */
+  width: 70%;
+  padding: 10px;
+  background: linear-gradient(135deg, #53a587, #44a380);
+  color: white;
+  border-radius: 30px;
+  border: none;
+  box-shadow: 0px 4px 0px #53a587; /*sombra do botão, da a impressão de que ele é clicável*/
+  transition: all 0.5s ease;
+}
+button:hover{
+  background: linear-gradient(135deg, #44a380, #37a37c); /*cor do botão quando o mouse passa por cima*/
+  box-shadow: 0px 2px 0px #44a380; /*sombra do botão quando o mouse passa por cima, da a impressão de que ele é clicado*/
+}
+button:active {
+  transform: scale(0.95); /*efeito de clique, faz o botão diminuir um pouco quando clicado*/
+}
+
+
+/*==========================RESPONSIVIDADE==========================*/
+
+/*==============TABLETS============*/
+@media (max-width: 870px){ /*quando a largura da tela for menor que 870px, o layout muda para se adaptar melhor a telas menores, como tablets*/
+  body{ /*garante que o corpo da página tenha uma altura mínima de 100% da viewport, para evitar problemas de layout em telas menores */
+    min-height: 100dvh;
+  }
+  .decoration-box { /*tira a caixa de decoração do lado esquerdo da página, para dar mais espaço para a caixa de login em telas menores */
+    display: none;
+  }
+  /* titulo e subtitulo */
+  .login-box h2{
+    font-size: 25px;
+  }
+  .login-box h5{
+    font-size: 16px;
+  }
+  /*tamanho dos inputs*/
+  .icon_input input {
+    width: 80%;
+    font-size: 15px; 
+  }
+  /* icone */
+  .icon_input .icon {
+    left: 55px; 
+  }
+  .add-plus-box{ /*Box do checkbox e do "esqueceu sua senha?" */
+    padding-right: 40px;
+    padding-left: 50px;
+  }
+  .checkbox-container { /* mudnao somente o tamanho da fonte da checkbox, para se adaptar melhor a telas menores */
+    font-size: 15px;
+  }
+  .redefinir_Password{ /*tamanho da fonte para o "esqueci minha senha" */
+    font-size: 15px;
+  }
+}
+
+
+
+/*=======Celular=======*/
+@media (max-width: 430px) { /*quando a largura da tela for menor que 430px, o layout muda para se adaptar melhor a telas menores, como celulares*/
+  body{ /*garante que o corpo da página tenha uma altura mínima de 100% da viewport, para evitar problemas de layout em telas menores */
+    min-height: 100dvh;
+  }
+  .decoration-box { /*tira a caixa de decoração do lado esquerdo da página, para dar mais espaço para a caixa de login em telas menores */
+    display: none;
+  }
+ /*Box principal*/
+  .login-box {
+    width: 100%;
+    border-radius: 10px; /* remove o efeito de "lado direito" */
+  }
+  /* titulo e subtitulo */
+  .login-box h2{
+    font-size: 20px;
+  }
+  .login-box h5{
+    margin-bottom: 25px;
+  }
+  /*tamanho dos inputs*/
+  .icon_input input {
+    width: 90%; 
+  }
+  /* icone */
+  .icon_input .icon {
+    left: 23px; 
+    top: 31%;
+    transform: translateY(-50%);
+  }
+  /*Box do checkbox e do "esqueceu sua senha?" */
+  .add-plus-box{
+    font-size: 10px;
+    padding: 0px 10px 0px 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 315px;
+  }
+  /* CONTAINER SOMENTE DA CHECKBOX */
+  .checkbox-container {
+    gap: 5px;
+  }
+  /*botao*/
+  .login-box button {
+    width: 90%;
+  }
+
+  .center {
+    padding: 20px;
+  }
+}
+@media (max-width: 390px){ /*Jeitinho brasileiro pro media de celular ainda*/
+  .add-plus-box{ /*Box do checkbox e do "esqueceu sua senha?" */
+    justify-content: flex-start;
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  .checkbox-container { /* CONTAINER SOMENTE DA CHECKBOX */
+    display: none;
+  }
+  .redefinir_Password{ /* tamaanho da fonte para o "esqueci minha senha" */
+    font-size: 13px;
+  }
+  .login-box input { /* estilo para os campos de input da caixa de login, com uma margem menor para se adaptar melhor a telas menores */
+    margin: 0px 0px 20px 0px;
+  }
+
+}

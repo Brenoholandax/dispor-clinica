@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica TEA</title>
+  <link rel="stylesheet" href="css/recuperar-senha.css">
+  <!-- Font Awesome para os ícones e algumas fontes para a página -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+</head>
+<body class="center">
+
+
+  <div class="password-box"> <!-- caixa principal, que o usuario vai colocar o email para a redifinição de senha -->
+    <div class="logo-box">
+      <img src="Assets/Logo-Do-Esqueci-a-senha.png" alt="logo da clínica TEA"> <!-- aqui vai o logo da clinica TEA -->
+      <p>TEA</p> <!-- aqui vai o nome da clinica TEA -->
+    </div>
+      <h2>Esqueceu sua senha?</h2><!-- título da página -->
+      <h5>Informe seu e-mail e enviaremos um link para redefinir sua senha.</h5> <!-- subtítulo da página -->
+    
+      <div class="icon_input">
+        <span class="icon"><i class="fa-solid fa-user"></i></span> <!-- icone de usuário para o campo de email -->
+        <input type="email" id="email" placeholder="E-mail de recuperação"> <!-- input do e-mail -->
+      </div>
+
+    <p id="mensagem-feedback" class="mensagem-feedback"></p> <!-- p para exibir mensagens de feedback, como erros ou sucesso -->
+
+    <button onclick="enviarLinkRecuperacao()">Enviar link de recuperação</button> <!-- botão para enviar o link de recuperação, que chama a função "enviarLinkRecuperacao()" definida no script.js para simular o envio do link de recuperação para o email do usuário -->
+    <p>Lembrou da senha? <a href="index.html" class="voltar_login"> Voltar ao login</a></p> <!-- link para voltar para a página de login, caso o usuário lembre da senha ou queira tentar novamente -->
+  </div>
+  <script src="js/recuperar-senha.js"></script>
+</body>
+</html>
