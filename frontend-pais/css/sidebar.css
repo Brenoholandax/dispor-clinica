@@ -1,6 +1,6 @@
 /* ========== SIDEBAR ========== */
 .sidebar { /* estilo para a barra lateral do dashboard a side bar */
-  width: 260px;
+  width: clamp(220px, 16vw, 624px);
   background: linear-gradient(180deg, #53a587 0%, #44a380 100%);
   color: white;
   padding: 30px 20px;
@@ -12,11 +12,11 @@
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* transição suave para a abertura e fechamento da sidebar */
 }
 .sidebar-closed{ /* estilo para a sidebar quando ela estiver fechada, com uma largura menor e escondendo o texto dos itens do menu */
-  width: 70px; /* Largura mínima */
+  width: 70px;
   padding: 30px 10px;
   overflow: hidden;
   #bars{ /* estilo para o ícone de menu (hamburger) quando a sidebar estiver fechada, centralizando o ícone e removendo o gap entre os itens do menu */
-    padding: 0px clamp(8px, 2vw, 12px) 0px 5px;
+    padding: 8px;
   }
 }
 .sidebar.sidebar-closed p{ /* Escondendo o texto quando a side bar estiver fechada */
@@ -41,6 +41,12 @@
   padding: 16px 8px ;
   margin: 6px 0 ;
 }
+.sidebar-closed #user_icon {
+  position: absolute;
+  left: 12px;
+  font-size: 23px;
+  padding-right: 30px;
+}
 
 .menu-title{ /*div que contem o titulo da sidebar e o botao hamburgurt*/
   margin-bottom: 40px;
@@ -48,7 +54,7 @@
   gap: 35px;
 }
 #bars{ /* tamanho das barras do hamburger menu*/
-  font-size: 25px;
+  font-size: clamp(25px, 1.5vw, 60px);
 }
 .sidebar button{ /* estilo para o botão de menu (hamburger) da sidebar, com um estilo transparente e um efeito de hover para destacar o botão */
   background: none;
@@ -56,6 +62,7 @@
   color: white;
   cursor: pointer;
   transition: all 200ms ease-in;
+  padding-right: 8px;
 }
 .sidebar button:hover,
 .sidebar button.active {
@@ -64,7 +71,7 @@
 
 .sidebar h3 { /* estilo para o título da sidebar */
   font-family: "Nunito", sans-serif;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
   padding-bottom: 20px;
   border-bottom: 2px solid rgba(255,255,255,0.2);
@@ -79,13 +86,15 @@
   gap: 6px;
   bottom: 30px;
   position: absolute;
+  font-size: clamp(18px, 1.2vw, 40px);
 }
 .sidebar i{ /* tamanho da fonte dos icones da sidebar */
-  font-size: 18px;
+  font-size: 20px;
 }
 #user_icon{ /* tamanho do icone de user la embaixo da sidebar */
-  font-size: 25px;
+  font-size: 23px;
 }
+
 
 .sidebar li { /* estylo da lista da sidebar, transição, tamanho, padding tudo*/
   margin: 18px 0;
@@ -97,7 +106,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 15px;
+  font-size: clamp(18px, 1vw, 40px);
 }
 
 .sidebar li:hover, /* efeito de hover para destacar os itens do menu da sidebar */
@@ -110,4 +119,127 @@
 .sidebar li.active { /* estilo para o item do menu ativo da sidebar, com um destaque mais forte */
   background: rgba(255,255,255,0.3);
   font-weight: 700;
+}
+/* ========== RESPONSIVIDADE ========== */
+@media (min-width: 1600px) {
+  #bars {
+    font-size: 30px;
+  }
+  .sidebar h3{
+    font-size: 28px;
+  }
+  .sidebar li {
+    margin: 24px 0;
+    padding: 16px 24px;
+    gap: 14px;
+    font-size: 22px;
+  }
+  .sidebar.sidebar-closed li{
+    margin-bottom: 15px
+  }
+  .sidebar p {
+    font-size: 22px;
+    bottom: 35px;
+  }
+  .sidebar i {
+    font-size: 30px;
+  }
+  .sidebar-closed{ /* estilo para a sidebar quando ela estiver fechada, com uma largura menor e escondendo o texto dos itens do menu */
+    width: 84px;
+  }
+  #user_icon{
+    font-size: 30px;
+    padding-right: 30px;
+  }
+  .sidebar-closed #user_icon {
+    position: absolute;
+    left: 15px;
+    font-size: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (min-width: 2200px) {
+  #bars {
+    font-size: 45px;
+  }
+  .sidebar h3{
+    font-size: 38px;
+  }
+  .menu-title{
+    margin-bottom: 60px;
+  }
+  .sidebar li {
+    margin: 36px 0;
+    padding: 21px 30px;
+    gap: 18px;
+    font-size: 30px;
+  }
+  .sidebar.sidebar-closed li{
+    margin-bottom: 25px
+  }
+  .sidebar p{
+    gap: 9px;
+    bottom: 45px;
+    padding-left: 15px;
+    font-size: 30px;
+  }
+  .sidebar i {
+    font-size: 40px;
+  }
+  .sidebar-closed{ /* estilo para a sidebar quando ela estiver fechada, com uma largura menor e escondendo o texto dos itens do menu */
+    width: 105px;
+  }
+  #user_icon {
+    font-size: 40px;
+    padding-right: 20px;
+  }
+  .sidebar-closed #user_icon {
+    position: absolute;
+    left: 20px;
+    font-size: 40px;
+    padding-right: 30px;
+  }
+}
+@media (min-width: 3000px) {
+  #bars {
+    font-size: 60px;
+  }
+  .sidebar h3{
+    font-size: 57px;
+  }
+  .menu-title{ /*div que contem o titulo da sidebar e o botao hamburgurt*/
+    margin-bottom: 80px;
+  }
+  .sidebar li { /* estylo da lista da sidebar, transição, tamanho, padding tudo*/
+    margin: 54px 0;
+    padding: 28px 40px;
+    gap: 24px;
+    font-size: 43px;
+  }
+  .sidebar.sidebar-closed li{
+    margin: 50px 0px 20px 0px;
+  }
+  .sidebar p{ /* estilo para o nome do usuário na sidebar */
+    gap: 12px;
+    bottom: 60px;
+    padding-left: 20px;
+    font-size: 43px;
+  }
+  .sidebar i {
+    font-size: 50px;
+  }
+  .sidebar-closed{ /* estilo para a sidebar quando ela estiver fechada, com uma largura menor e escondendo o texto dos itens do menu */
+    width: 131px;
+  }
+  #user_icon {
+    font-size: 50px;
+    padding-right: 60px;
+  }
+  .sidebar-closed #user_icon {
+    position: absolute;
+    left: 25px;
+    font-size: 50px;
+    padding-right: 30px;
+  }
 }

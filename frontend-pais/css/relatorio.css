@@ -50,3 +50,63 @@
   flex-direction: column;
   gap: 10px;
 }
+@media (min-width: 1600px) { /*============FULL HD============*/
+  #relatorios h1 {
+    font-size: 38px;
+    margin-bottom: 36px;
+  }
+  #relatorios select,
+  #relatorios input[type="date"]{
+    padding: 16px 28px;
+    font-size: 26px;
+    margin-right: 20px;
+  }
+  #relatorios button {
+    padding: 16px 32px;
+    font-size: 26px;
+  }
+  #relatorioResultado {
+    padding: 30px;
+    gap: 15px;
+  }
+}
+@media (min-width: 2200px) {/*========2K===========*/
+  #relatorios h1 {
+    font-size: 51px;
+    margin-bottom: 48px;
+  }
+  #relatorios select,
+  #relatorios input[type="date"]{
+    padding: 20px 36px;
+    font-size: 30px;
+    margin-right: 28px;
+  }
+  #relatorios button {
+    padding: 20px 40px;
+    font-size: 30px;
+  }
+  #relatorioResultado {
+    padding: 38px;
+    gap: 20px;
+  }
+}
+@media (min-width: 3000px) {/*============4K============*/
+  #relatorios h1 {
+    font-size: 77px;
+    margin-bottom: 72px;
+  }
+  #relatorios select,
+  #relatorios input[type="date"]{
+    padding: 28px 48px;
+    font-size: 50px;
+    margin-right: 40px;
+  }
+  #relatorios button {
+    padding: 28px 56px;
+    font-size: 50px;
+  }
+  #relatorioResultado {
+    padding: 48px;
+    gap: 25px;
+  }
+}

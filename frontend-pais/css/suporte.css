@@ -11,12 +11,13 @@
   width: 100%;
   padding: 15px;
   border: 2px solid #e3f5e9;
-  border-radius: 15px;
+  border-radius: 12px;
   font-size: 16px;
   margin-bottom: 20px;
-  background: rgba(255,255,255,0.9);
+  background: white;
   font-family: inherit;
   transition: all 0.3s ease;
+  color: #333;
 }
 
 #suporte select:focus,
@@ -28,20 +29,20 @@
 
 #suporte textarea { /* estilo específico para o campo de texto da página de suporte, permitindo redimensionamento vertical */
   resize: vertical;
-  min-height: 120px;
+  min-height: 150px;
 }
 
-#suporte button { /* estilo para o botão de envio da página de suporte tem nem muito oque falar */
+#suporte button { /* estilo para o botão de envio da página de suporte */
   width: 100%;
   padding: 16px;
   background: linear-gradient(135deg, #53a587, #44a380);
   color: white;
   border: none;
-  border-radius: 15px;
+  border-radius: 12px;
   font-size: 16px;
   font-weight: 600;
-  cursor: pointer; /* cursor de ponteiro para mostrar que é clicável */
-  transition: all 0.3s ease; /* transição suave para o efeito de hover */
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 #suporte button:hover { /* efeito de hover */
@@ -50,7 +51,7 @@
 }
 
 /*=========== Mensagem gourmetzada  ===========*/
-.toast-simple { /* estilo para a mensagem de toast, aqui você muda tudo nela */
+.toast-simple { /* estilo para a mensagem de toast */
   position: fixed;
   top: 90%;
   left: 50%;
@@ -65,11 +66,130 @@
   box-shadow: 0 20px 60px rgba(83, 165, 135, 0.4);
   z-index: 10000;
   transition: all 0.3s ease;
-
 }
-.toast-simple i{ /* estilo do icone dentro do toast, aqui pode mudar o tamanho dele */
+
+.toast-simple i{
     font-size: 25px;
 }
-.toast-simple.show { /* estilo para mostrar a mensagem de toast, com uma animação de fade-in e scale-up */
+
+.toast-simple.show {
   transform: translate(-50%, -50%) scale(1);
+}
+
+@media (min-width: 1600px) { /*============FULL HD============*/
+  #suporte h1{
+    font-size: 38px;
+    margin-bottom: 36px;
+  }
+  .suporte-form-container {
+    max-width: 850px;
+    padding: 50px;
+    border-radius: 24px;
+  }
+  #suporte select,
+  #suporte textarea{
+    padding: 18px;
+    border-radius: 15px;
+    margin-bottom: 24px;
+    font-size: 26px;
+  }
+  #suporte button{
+    padding: 18px;
+    font-size: 26px;
+    border-radius: 15px;
+  }
+  .toast-simple{
+    padding: 30px 48px;
+    font-size: 22px;
+    border-radius: 24px;
+  }
+  .toast-simple i{
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 2200px) {/*========2K===========*/
+  #suporte h1{
+    font-size: 51px;
+    margin-bottom: 48px;
+  }
+  .suporte-form-container {
+    max-width: 1100px;
+    padding: 70px;
+    border-radius: 32px;
+  }
+  #suporte select,
+  #suporte textarea{
+    padding: 24px;
+    border-radius: 20px;
+    font-size: 30px;
+    margin-bottom: 32px;
+  }
+  #suporte button{
+    padding: 24px;
+    font-size: 30px;
+    border-radius: 20px;
+  }
+  .toast-simple{
+    padding: 40px 64px;
+    font-size: 29px;
+    border-radius: 32px;
+  }
+  .toast-simple i{
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 3000px) {/*============4K============*/
+  #suporte h1{
+    font-size: 77px;
+    margin-bottom: 72px;
+  }
+  .suporte-form-container {
+    max-width: 1500px;
+    padding: 100px;
+    border-radius: 48px;
+  }
+  #suporte select,
+  #suporte textarea{
+    padding: 36px;
+    border-radius: 30px;
+    font-size: 50px;
+    margin-bottom: 48px;
+  }
+  #suporte button{
+    padding: 36px;
+    font-size: 50px;
+    border-radius: 30px;
+  }
+  .toast-simple{
+    padding: 60px 96px;
+    font-size: 43px;
+    border-radius: 48px;
+  }
+  .toast-simple i{
+    font-size: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .suporte-form-container {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  #suporte h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  .suporte-form-container {
+    padding: 20px;
+    border-radius: 15px;
+  }
+  #suporte select,
+  #suporte textarea {
+    padding: 12px;
+    font-size: 15px;
+  }
 }

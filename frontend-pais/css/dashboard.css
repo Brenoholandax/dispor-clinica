@@ -43,7 +43,7 @@ main { /* main content, que ocupa o espaço restante ao lado da sidebar */
 
 /* ========== DASHBOARD ========== */
 #dashboard h1 { /* título do dashboard */
-  font-size: 32px;
+  font-size: clamp(32px, 2vw, 77px);
   font-weight: 700;
   color: #53a587;
   margin-bottom: 35px;
@@ -60,12 +60,13 @@ main { /* main content, que ocupa o espaço restante ao lado da sidebar */
 .card { /* estilo para cada card de resumo do dashboard */
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
-  padding: 30px;
+  padding: clamp(30px, 2vw, 72px);
   border-radius: 20px;
   box-shadow: 0 10px 40px rgba(83, 165, 135, 0.15);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  font-size: 18px;
 }
 
 .card::before { /* efeito de destaque no card */
@@ -125,8 +126,108 @@ main { /* main content, que ocupa o espaço restante ao lado da sidebar */
 
 
 
-/* ========== RESPONSIVIDADE ========== */
+/* ========== RESPONSIVIDADE EM TELAS MAIORES QUE HD ========== */
+@media (min-width: 1600px) { /*FULL HD*/
+  .container {
+    max-width: 2100px;
+  }
+  .page {
+    padding: 40px;
+  }
+  .cards {
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+  .card{
+    font-size: 29px;
+    border-radius: 24px;
+  }
+  .card span{
+    font-size: 34px;
+  }
+  .card::before {
+    height: 10px;
+  }
+  .graficos {
+    gap: 35px;
+  }
+  #graficoLinha { /* primeiro grafico de linha do dashboard, com um estilo semelhante ao dos cards */
+    max-width: 700px;
+  }
+  #graficoPizza{ /* segundo grafico de pizza do dashboard, com o mesmo estilo do primeiro grafico */
+    max-width: 700px;
+  }
+}
 
+@media (min-width: 2200px) {/*2K*/
+  .container {
+    max-width: 2600px;
+  }
+  .page {
+    padding: 45px;
+  }
+  .cards {
+    gap: 36px;
+    margin-bottom: 60px;
+  }
+  .card{
+    font-size: 38px;
+    border-radius: 28px;
+  }
+  .card span{
+    font-size: 45px;
+  }
+  .card::before {
+    height: 12px;
+  }
+  .graficos {
+    gap: 45px;
+  }
+  #graficoLinha { /* primeiro grafico de linha do dashboard, com um estilo semelhante ao dos cards */
+    max-height: 800px;
+    max-width: 900px;
+  }
+  #graficoPizza{ /* segundo grafico de pizza do dashboard, com o mesmo estilo do primeiro grafico */
+    max-height: 800px;
+    max-width: 900px;
+  }
+}
+@media (min-width: 3000px) {/*4K*/
+  .container {
+    max-width: 3900px;
+  }
+  .page{
+    padding: 60px;
+  }
+  .cards { /* container para os cards de resumo do dashboard, com display grid para organizar os cards em colunas e linhas */
+    gap: 48px;
+    margin-bottom: 80px;
+  }
+  .card{
+    border-radius: 40px;
+    font-size: 58px;
+  }
+  .card span{
+    font-size: 67px;
+  }
+  .card::before { /* efeito de destaque no card */
+    height: 18px; /* altura da barra de destaque */
+  }
+  .graficos { /* container para os gráficos do dashboard, com display flex para organizar os gráficos lado a lado e com gap entre eles */
+    height: 1500px;
+    gap: 90px;
+  }
+  #graficoLinha { /* primeiro grafico de linha do dashboard, com um estilo semelhante ao dos cards */
+    max-height: 1200px;
+    max-width: 1300px;
+    border-radius: 40px;
+  }
+  #graficoPizza{ /* segundo grafico de pizza do dashboard, com o mesmo estilo do primeiro grafico */
+    max-height: 1200px;
+    max-width: 1300px;
+    border-radius: 40px;
+  }
+}
 
 
 /* Responsividade Geral */

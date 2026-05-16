@@ -20,3 +20,51 @@
   transform: translateX(8px);
   box-shadow: 0 12px 35px rgba(0,0,0,0.12);
 }
+@media (min-width: 1600px) { /*============FULL HD============*/
+  #pagamentos h1 {
+    font-size: 38px;
+    margin-bottom: 36px;
+  }
+  .pagamento {
+    padding: 30px;
+    margin: 24px 0;
+    border-radius: 18px;
+    border-left: 6px solid #53a587;
+    font-size: 26px;
+  }
+  .pagamento:hover {
+    transform: translateX(10px);
+  }
+}
+@media (min-width: 2200px) {/*========2K===========*/
+  #pagamentos h1 {
+    font-size: 51px;
+    margin-bottom: 48px;
+  }
+  .pagamento {
+    padding: 38px;
+    margin: 30px 0;
+    border-radius: 22px;
+    border-left: 7px solid #53a587;
+    font-size: 30px;
+  }
+  .pagamento:hover {
+    transform: translateX(14px);
+  }
+}
+@media (min-width: 3000px) {/*============4K============*/
+  #pagamentos h1 {
+    font-size: 77px;
+    margin-bottom: 72px;
+  }
+  .pagamento {
+    padding: 55px;
+    margin: 40px 0;
+    border-radius: 30px;
+    border-left: 9px solid #53a587;
+    font-size: 50px;
+  }
+  .pagamento:hover {
+    transform: translateX(18px);
+  }
+}
