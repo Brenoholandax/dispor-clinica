@@ -1,0 +1,241 @@
+/* ========== GERENCIAMENTO DE CLÍNICAS ========== */
+* {
+    padding: 0; 
+    margin: 0; 
+    box-sizing: border-box; /* Inclui bordas e padding no cálculo da largura e altura */
+}
+
+body { 
+    background-color: #f1f5f9; 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+}
+
+#content { /* Container principal de conteúdo com espaçamento interno */
+    padding: 20px; /* Adiciona 20px de respiro ao redor do conteúdo */
+}
+
+.clinic-mangagement-container { 
+    animation: fadeIn 0.4s ease; /* Aplica efeito de surgimento suave ao carregar */
+}
+
+.header-actions { /* Organiza o título e o botão de ação no topo da página */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 30px; /* Adiciona espaçamento abaixo do cabeçalho de ações */
+}
+
+.header-actions h1 { /* Estiliza o título principal da lista de clínicas */
+    font-size: clamp(32px, 2vw, 48px); /* Ajusta o tamanho da fonte conforme a largura da tela */
+    font-weight: 700; 
+    color: #1e40af; 
+    font-family: "Poppins", sans-serif; 
+}
+
+.btn-add { /* Estiliza o botão de adicionar nova clínica */
+    background: #1e40af; 
+    color: white;
+    border: none; /* Remove borda padrão do navegador */
+    padding: 12px 24px; /* Define o tamanho interno do botão */
+    border-radius: 12px; 
+    font-weight: 600; 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; /* Espaçamento entre o ícone de '+' e o texto */
+    transition: all 0.3s ease; /* Suaviza as mudanças de estado (hover) */
+    box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3); 
+}
+
+.btn-add:hover { 
+    background: #3b82f6; 
+    transform: translateY(-2px); /* Move levemente o botão para cima */
+    box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4); 
+}
+
+/* Tabela de Clínicas */
+.table-container { /* Estiliza o container que envolve a tabela */
+    background: white; 
+    border-radius: 20px; 
+    padding: 24px; /* Adiciona preenchimento interno no container */
+    box-shadow: 0 10px 40px rgba(30, 64, 175, 0.08); 
+    overflow-x: auto; /* Adiciona barra de rolagem horizontal se necessário */
+}
+
+table { /* Configurações básicas para a estrutura da tabela */
+    width: 100%; 
+    border-collapse: collapse; /* Une as bordas das células */
+    text-align: left; /* Alinha os textos para a esquerda por padrão */
+}
+
+th { /* Estiliza os cabeçalhos das colunas */
+    padding: 16px; /* Adiciona preenchimento interno */
+    border-bottom: 2px solid #e2e8f0; /* Linha divisória inferior mais grossa */
+    color: #1e40af; 
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+}
+
+td { /* Estiliza as células de dados da tabela */
+    padding: 16px; /* Preenchimento interno das células */
+    border-bottom: 1px solid #e2e8f0; /* Linha divisória fina entre as clínicas */
+    vertical-align: middle; /* Centraliza o conteúdo verticalmente na célula */
+    font-family: "Poppins", sans-serif; 
+}
+
+.status-badge { /* Estiliza as etiquetas de status (Ativa/Inativa) */
+    padding: 6px 12px; /* Preenchimento interno para formato de pílula */
+    border-radius: 20px; 
+    font-size: 14px; /* Fonte levemente menor para as etiquetas */
+    font-weight: 600; 
+}
+
+.status-active { /* Estilo para clínica em estado Ativo */
+    background: #e3fff1; 
+    color: #2e7d32; 
+}
+
+.status-inactive { /* Estilo para clínica em estado Inativo */
+    background: #ffebee;
+    color: #c62828; 
+}
+
+.div-btns { /* Container para os botões de ação na tabela */
+    display: flex; /* Organiza os botões em linha */
+    gap: 10px; /* Espaçamento entre os botões */
+}
+
+.btn-details { /* Estiliza o botão de gerenciar/detalhes na tabela */
+    width: 40%; /* Define largura de 50% do espaço da célula */
+    border-radius: 10px;
+    background: #1e40af; 
+    border: none;
+    padding: 6px; /* Adiciona preenchimento interno */
+    font-size: 16px; /* Tamanho da fonte do botão */
+    cursor: pointer; 
+    color: #ffffff; 
+    transition: background 0.3s; /* Transição suave de cor no hover */
+    font-family: "Poppins", sans-serif;
+    font-weight: 600; 
+}
+
+.btn-details:hover { /* Efeito visual ao passar o mouse no botão detalhes */
+    background: #3b82f6; 
+}
+.btn-delete{ /* Estilo para a latinha de lixo para exlucir clinicas */
+    color: #000000b7;
+    border: none;
+    background: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: color 0.4s;
+}
+.btn-delete:hover { /* hover para a latinha de lixo */
+    color: #d42323;
+}
+
+/* Modal Estilizado */
+.modal { /* Camada de fundo escurecida para o popup */
+    display: none; /* Escondido por padrão, exibido via JavaScript */
+    position: fixed; /* Fixado na tela sobre todos os elementos */
+    z-index: 1000; /* Garante que fique no topo da pilha visual */
+    left: 0; 
+    top: 0; 
+    width: 100%; /* Cobre toda a largura */
+    height: 100%; /* Cobre toda a altura */
+    background-color: rgba(0,0,0,0.5); 
+    backdrop-filter: blur(5px); 
+}
+
+.modal-content { /* Caixa branca centralizada do modal */
+    background-color: white; 
+    margin: 5% auto; /* Centraliza horizontalmente e adiciona margem superior */
+    padding: 40px; /* Espaçamento interno generoso */
+    border-radius: 24px; 
+    width: 90%;
+    max-width: 500px; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
+    animation: slideDown 0.4s ease; /* Animação de descida ao aparecer */
+}
+
+@keyframes slideDown { /* Define a animação de deslizar para baixo */
+    from { transform: translateY(-50px); opacity: 0; } /* Inicia acima e invisível */
+    to { transform: translateY(0); opacity: 1; } /* Termina na posição final opaco */
+}
+
+.modal-header { /* Organiza o título e o botão fechar do modal */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 25px; /* Espaço abaixo do cabeçalho do modal */
+}
+
+.modal-header h2 { /* Estiliza o título do modal de cadastro */
+    color: #1e40af; 
+    font-weight: 700; 
+}
+
+.close-modal { /* Estiliza o ícone de fechar (X) no modal */
+    font-size: 24px; /* Tamanho grande para o ícone de fechar */
+    cursor: pointer;
+    color: #999;
+}
+
+form .form-group { /* Agrupamento de label e input no formulário */
+    margin-bottom: 20px; /* Espaçamento entre cada campo do formulário */
+}
+
+form label { /* Estiliza o rótulo dos campos de entrada */
+    display: block; 
+    margin-bottom: 8px; /* Espaço entre o label e o campo de input */
+    font-weight: 600; 
+    color: #555; 
+}
+
+form input, form select { /* Estiliza os campos de texto e seleção */
+    width: 100%; 
+    padding: 12px 16px; /* Adiciona preenchimento interno */
+    border: 2px solid #e2e8f0; 
+    border-radius: 12px; 
+    outline: none; /* Remove o contorno padrão do navegador ao focar */
+    transition: border-color 0.3s; 
+}
+
+form input:focus { /* Efeito visual ao clicar/focar no campo de entrada */
+    border-color: #1e40af; 
+}
+.btn-submit { /* Estiliza o botão de envio do formulário */
+    width: 100%; 
+    background: #1e40af; 
+    color: white; 
+    border: none; /* Remove bordas */
+    padding: 14px; /* Preenchimento vertical maior para destaque */
+    border-radius: 12px; 
+    font-weight: 700; 
+    font-size: 16px; /* Tamanho da fonte legível */
+    cursor: pointer; 
+    margin-top: 10px; /* Espaço acima do botão */
+    transition: background 0.3s; 
+}
+
+.btn-submit:hover { /* Efeito visual ao passar o mouse no botão cadastrar */
+    background: #3b82f6; 
+}
+
+/* Responsividade */
+@media (max-width: 768px) { /* Ajustes para telas menores (celulares e tablets) */
+    .header-actions { /* Ajusta o cabeçalho para dispositivos móveis */
+        flex-direction: column; /* Empilha o título e o botão verticalmente */
+        align-items: flex-start; /* Alinha ambos à esquerda */
+        gap: 15px; /* Adiciona espaço entre os elementos empilhados */
+    }
+    
+    .table-container { /* Reduz o preenchimento da tabela em telas pequenas */
+        padding: 15px;
+    }
+    
+    td, th { /* Reduz o tamanho das células e fontes para mobile */
+        padding: 10px;
+        font-size: 14px;
+    }
+}

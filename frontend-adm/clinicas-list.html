@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de Clínicas - Clínica TEA</title>
+  <link rel="stylesheet" href="/dispor-clinica/frontend-adm/clinicas-list.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;600;700&family=Nunito:wght@400;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Container Principal -->
+    <div class="container">
+        <!-- CONTEÚDO -->
+        <main id="content">
+            <div class="clinic-management-container"> <!-- Container para o gerenciamento de clínicas -->
+                <div class="header-actions">
+                    <h1>Gerenciar Clínicas</h1>
+                    <button class="btn-add" onclick="openModal()"> <!-- Botão para abrir o modal de adicionar clínica -->
+                        <i class="fa-solid fa-plus"></i> Nova Clínica <!-- Ícone de adição e texto -->
+                    </button>
+                </div>
+
+                <div class="table-container"> <!-- Container para a tabela de clínicas -->
+                    <table>
+                        <thead>
+                            <tr> <!-- Cabeçalho da tabela com colunas para nome, CNPJ, status e ações -->
+                                <th>Nome da Clínica</th>
+                                <th>CNPJ</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clinicasTableBody"> <!-- Corpo da tabela preenchido via JavaScript -->
+                            <!-- Preenchido via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- MODAL PARA ADICIONAR CLÍNICA -->
+    <div id="clinicModal" class="modal"> <!-- Modal oculto por padrão, exibido ao clicar em "Nova Clínica" -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Adicionar Clínica</h2>
+                <span class="close-modal" onclick="closeModal()">&times;</span> <!-- Botão para fechar o modal -->
+            </div>
+            <form id="clinicForm" onsubmit="salvarClinica(event)"> <!-- Formulário para adicionar nova clínica, com função de salvar ao enviar -->
+                <div class="form-group">
+                    <label for="nomeClinica">Nome da Clínica</label> <!-- Campo para o nome da clínica -->
+                    <input type="text" id="nomeClinica" placeholder="Ex: Clínica Esperança" required> <!-- Campo obrigatório -->
+                </div>
+                <div class="form-group">
+                    <label for="cnpjClinica">CNPJ</label> <!-- Campo para o CNPJ da clínica -->
+                    <input type="text" id="cnpjClinica" placeholder="00.000.000/0000-00" required> <!-- Campo obrigatório -->
+                </div>
+                <div class="form-group"> 
+                    <label for="statusClinica">Status Inicial</label> <!-- Campo para selecionar o status inicial da clínica -->
+                    <select id="statusClinica">
+                        <option value="Ativa">Ativa</option> <!-- Opção para status ativo -->
+                        <option value="Inativa">Inativa</option> <!-- Opção para status inativo -->
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Cadastrar Clínica</button> <!-- Botão para enviar o formulário e cadastrar a clínica -->
+            </form>
+        </div>
+    </div>
+
+    <script src="/dispor-clinica/frontend-adm/clinicas-list.js"></script>
+    </body>
+</html>
