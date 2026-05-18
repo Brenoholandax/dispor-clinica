@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Disciplina - TEA</title>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Estilos Personalizados -->
+    <link rel="stylesheet" href="css/detalhe-disciplina.css">
+</head>
+<body>
+
+    <a href="Insc-Disciplinas.html" class="btn-voltar"> <!-- link que vira um bo~tao para voltar para a pagina de disciplinas -->
+        <i class="fa-solid fa-arrow-left"></i> Voltar
+    </a>
+
+    <div class="container"> <!-- container geral da pagina -->
+        <header>
+            <h1 id="nomeDisciplina">Carregando...</h1> <!-- nome da disciplina, que será carregado pelo javscript -->
+        </header>
+
+        <section class="perfil-profissional"> <!-- seção que mostra o perfil do profissional responsável pela disciplina -->
+            <div class="foto-perfil"> <!-- div que envolve a foto do profissional -->
+                <!-- Espaço para imagem -->
+                <img id="fotoProfissional" src="" alt="" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: none;"> <!-- imagem do profissional que vai vim via javascript-->
+            </div>
+            <h2 class="nome-profissional" id="nomeProfissional">---</h2> <!-- nome do profissional que vai vim via javascript -->
+            <p class="especialidade" id="especialidadeProfissional">---</p> <!-- especialidade do profissional que vai vim via javascript -->
+            
+            <button class="btn-inscrever" onclick="irParaFormulario()">Inscrever-se</button> <!-- botão para se inscrever na disciplina, que quando clicado vai para o formulario embaixo da tela -->
+        </section>
+
+        <section class="form-section" id="inscricaoForm"> <!-- seção do forms -->
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeK7eN-p8hc4qPoCoL8WUZNJbLJgPhiGNEgF2Epj5PQGToHEg/viewform?embedded=true" width="640" height="1000" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+        </section> <!-- o forms ai em cima ó -->
+    </div>
+
+    <!-- Script de Dados e Lógica -->
+    <script src="js/insc-dados.js"></script>
+    <script src="js/Detalhe-Disciplina.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+/* ESTILO PARA A LISTA DE DISCIPLINAS - FOCO MOBILE FIRST */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {/* Estilos para o corpo da página */
+    background: radial-gradient(circle at top left, rgba(210, 250, 230, 0.8) 0%, rgba(71, 163, 110, 0.3) 50%, #ecfcee 100%);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    min-height: 100dvh;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container { /* Container centralizado para o conteúdo */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* HEADER */
+header { /* Estilos para o cabeçalho */
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 20px;
+}
+
+header h1 { /* Estilos para o título do cabeçalho */
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(24px, 8vw, 42px); /* Tamanho responsivo do título */
+    color: #53a587;
+    font-weight: 700;
+}
+
+header p { /* Estilos para o parágrafo do cabeçalho */
+    font-size: 16px;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* GRID DE DISCIPLINAS */
+.disciplinas-grid { /* estilos para a grade de disciplinas */
+    display: grid; /* configura o layout como grid */
+    grid-template-columns: 1fr; /* mobile First: 1 coluna */
+    gap: 20px; /* Espaçamento entre os itens da grade */
+}
+
+/* CARDS */
+.card-disciplina { /* estilos para os cards de disciplina */
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(83, 165, 135, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden; /* para o efeito de borda animada */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* transições para o hover */
+}
+
+.card-disciplina::before { /* é aquele bagui verde atras do card basicamnte */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #53a587, #44a380);
+}
+
+.card-disciplina h2 { /* titulo do card */
+    font-size: 22px;
+    color: #53a587;
+    margin-bottom: 12px;
+    font-family: "Poppins", sans-serif;
+}
+
+.card-disciplina p { /* descrição do card */
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.btn-detalhes { /* botao do card */
+    display: inline-block; /* para que o padding funcione */
+    background: #53a587;
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.3s ease; /* transição para o hover */
+    width: 100%;
+    text-align: center;
+}
+
+/* =====================RESPONSIVIDADE PARA DESKTOP============== */
+
+@media (min-width: 768px) {
+    .disciplinas-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas para tablets */
+    }
+    .btn-detalhes {
+        width: auto; /* para que o botão volte a ter largura automática */
+    }
+}
+
+@media (min-width: 1200px) { /* full hd */
+    .disciplinas-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 colunas para desktops */
+        gap: 30px;
+    }
+    .container {
+        padding: 40px;
+    }
+    .card-disciplina:hover {
+        transform: translateY(-10px); /* efeito de elevação */
+        box-shadow: 0 20px 40px rgba(83, 165, 135, 0.2);
+    }
+}
+
+@media (min-width: 1920px) { /* 2k */
+    .container { /* para centralizar melhor o conteúdo em telas muito grandes */
+        max-width: 1800px;
+        padding-top: 80px;
+    }
+    header h1 { /* aumentar o titulo */
+        font-size: 60px;
+        margin-bottom: 20px;
+    }
+    header p{ /* aumentar o subtitulo */
+        font-size: 34px;
+        margin-bottom: 20px;
+    }
+    .card-disciplina h2 { /* aumentar o titulo do card */
+        font-size: 40px;
+    }
+    .card-disciplina p { /* aumentar a descrição do card */
+        font-size: 26px;
+    }
+    .btn-detalhes { /* aumentar o botão do card */
+        font-size: 25px;
+        padding: 15px 35px;
+    }
+}
+
+@media (min-width: 3000px) { /* 4k */
+    .container { /* para centralizar melhor o conteúdo em telas muito grandes */
+        max-width: 2800px;
+        padding-top: 160px;
+    }
+    header h1 { /* aumentar o titulo */
+        font-size: 90px;
+        margin-bottom: 20px;
+    }
+    header p{ /* aumentar o subtitulo */
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+    .disciplinas-grid { /* aumentar o espaçamento entre os cards */
+        gap: 60px;
+    }
+    .card-disciplina { /* aumentar o padding do card e o border radius*/
+        padding: 60px;
+        border-radius: 40px;
+    }
+    .card-disciplina h2 { /* aumentar o titulo do card */
+        font-size: 55px;
+    }
+    .card-disciplina p { /* aumentar a descrição do card */
+        font-size: 40px;
+    }
+    .btn-detalhes { /* aumentar o botão do card */
+        font-size: 35px;
+        border-radius: 20px;
+    }
+}

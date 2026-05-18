@@ -1,0 +1,190 @@
+/* ESTILO PARA OS DETALHES DA DISCIPLINA - FOCO MOBILE FIRST */
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body { /* define algumas regrasd para tudo dentro do body */
+    background: radial-gradient(circle at top left, rgba(227, 255, 241, 0.8) 0%, rgba(87, 199, 133, 0.3) 50%, #f8fff9 100%);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    min-height: 100dvh;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container { /* conteiner geral da pagina */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* HEADER */
+header { /* header da pagina alinhando no centro */
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 40px;
+}
+
+header h1 {  /* estilo do titulo da pag*/
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(24px, 8vw, 42px);
+    color: #53a587;
+    font-weight: 700;
+}
+
+/* PAGINA DE DETALHES */
+.perfil-profissional { /* card do perfil do profissional */
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 15px 40px rgba(83, 165, 135, 0.1);
+}
+
+.foto-perfil { /* estilo para a foto do profissional */
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #ddd; /* Placeholder */
+    margin: 0 auto 20px;
+    border: 5px solid #53a587;
+    overflow: hidden;
+}
+
+.nome-profissional { /* estilo para o nome do profissional */
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+}
+
+.especialidade { /* estilo para a especialidade do profissional */
+    font-size: 18px;
+    color: #53a587;
+    margin-bottom: 25px;
+}
+
+.btn-inscrever { /* estilo para o botão de inscrição */
+    background: #53a587;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(83, 165, 135, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.btn-inscrever:active { /* efeito de clique no botão */
+    transform: scale(0.95);
+}
+
+/* IFRAME SECTION */
+.form-section { /* a seção que encobre o forms do google */
+    margin-top: 60px;
+    padding: 20px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.form-section iframe { /* estilo para o forms do google */
+    width: 100%;
+    max-width: 640px;
+    border: none;
+}
+
+.btn-voltar { /* estilo para o botão de voltar posicionando ele sempre no canto superior direito */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: #53a587;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ==================RESPONSIVIDADE PARA DESKTOP ================*/
+
+@media (min-width: 1200px) { /* a partir de 1200px, o container tem um padding maior */
+    .container {
+        padding: 40px;
+    }
+}
+
+@media (min-width: 1920px) { /* FULL HD */
+    .container { /* aumenta o max-width do container para 1800px */
+        max-width: 1800px;
+    }
+    header h1 { /* aumenta o tamanho do titulo da pagina */
+        font-size: 60px;
+    }
+    .btn-voltar{ /* aumenta o tamanho do botão de voltar e posiciona ele mais para o centro */
+        top: 50px;
+        left: 50px;
+        font-size: 35px;
+        gap: 20px;
+    }
+    .foto-perfil { /* aumenta o tamanho da foto do profissional */
+        width: 200px;
+        height: 200px;
+    }
+    .nome-profissional { /* aumenta o tamanho do nome do profissional */
+        font-size: 45px;
+    }
+    .especialidade { /* aumenta o tamanho da especialidade do profissional */
+        font-size: 30px;
+    }
+    .btn-inscrever { /* aumenta o tamanho do botão de inscrição */
+        font-size: 27px;
+        padding: 15px 60px;
+        border-radius: 30px;
+    }
+
+    .form-section iframe {
+        zoom: 1.5; /*SOLUÇÃO TEMPORARIA!!!! O FORMS PARA DE FUNCIONAR QUANDO EU DOU ZOOM COM O "zoom" OU O SCALE!!*/
+    }
+}
+
+@media (min-width: 3000px) { /* 4K */
+    .container { /* aumenta o max-width do container para 2800px */
+        max-width: 2800px;
+    }
+    header h1 { /* aumenta o tamanho do titulo da pagina */
+        font-size: 90px;
+        margin-bottom: 50px;
+    }
+    .btn-voltar{ /* aumenta o tamanho do botão de voltar e posiciona ele mais corretamente */
+        top: 70px;
+        left: 70px;
+        font-size: 50px;
+        gap: 20px;
+    }
+    .foto-perfil { /* aumenta o tamanho da foto do profissional */
+        width: 350px;
+        height: 350px;
+        border-width: 10px;
+    }
+    .nome-profissional { /* aumenta o tamanho do nome do profissional */
+        font-size: 55px;
+    }
+    .especialidade { /* aumenta o tamanho da especialidade do profissional */
+        font-size: 40px;
+    }
+    .btn-inscrever { /* aumenta o tamanho do botão de inscrição */
+        font-size: 35px;
+        padding: 30px 80px;
+        border-radius: 60px;
+    }
+
+    .form-section iframe {
+        zoom: 2.0; /*SOLUÇÃO TEMPORARIA!!!! O FORMS PARA DE FUNCIONAR QUANDO EU DOU ZOOM COM O "zoom" OU O SCALE!!*/
+    }
+}
