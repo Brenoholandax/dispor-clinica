@@ -88,7 +88,7 @@ body { /* Configurações básicas para o corpo da página, como cor de fundo e 
     font-size: 25px; /* Define o tamanho do ícone */
 }
 
-.card-info h3 { /* Estiliza o rótulo da estatística (ex: 'Acessos') */
+.card-info h3 { /* O titulo "acessos "e "alunos" */
     font-size: 19px; /* Define o tamanho do texto do rótulo */
     color: #777; /* Define a cor em cinza claro para menor destaque */
     font-weight: 600; 
@@ -102,7 +102,7 @@ body { /* Configurações básicas para o corpo da página, como cor de fundo e 
 }
 
 /* ========== BANNER DE COBRANÇA ========== */
-.billing-info-banner { /* Estiliza o banner informativo de próxima cobrança */
+.billing-info-banner { /* Estiliza o banner de próxima cobrança */
     width: 40%; /* Define a largura do banner como 40% do container */
     display: flex; 
     justify-content: center; 
@@ -132,12 +132,13 @@ body { /* Configurações básicas para o corpo da página, como cor de fundo e 
     margin-bottom: 5px; /* Espaço entre o título e a data de renovação */
 }
 
-.banner-content p { /* Estiliza o parágrafo informativo do banner */
+.banner-content p { /* Estiliza o parágrafo do banner */
     font-size: 15px; /* Tamanho da fonte do texto explicativo */
     opacity: 0.95; /* Quase totalmente opaco para boa leitura */
 }
 
 /* ========== SEÇÃO DE BOLETOS ========== */
+
 .boletos-container { /* Container que envolve o título e a tabela de boletos */
     text-align: left; /* Alinha o texto da seção para a esquerda */
     animation: fadeInUp 0.8s ease; /* Animação de entrada vinda de baixo */
@@ -232,4 +233,164 @@ td { /* Estiliza as células comuns da tabela */
 @media (max-width: 768px) { /* Ajustes de estilo para telas de tablets e celulares */
     .banner-content { flex-direction: column; text-align: center; } /* Empilha conteúdo do banner verticalmente em telas menores */
     .header-gerenciamento { flex-direction: column; align-items: flex-start; } /* Alinha o cabeçalho verticalmente em celulares */
+}
+@media (min-width: 1600px) { /* full hd */
+    .btn-back{
+        padding: 12px 24px; /* Aumenta o tamanho do botão em telas maiores */
+        font-size: 20px; /* Aumenta o tamanho da fonte do botão */
+    }
+    .header-gerenciamento h1{ /* Aumenta o tamanho do título principal em telas maiores */
+        font-size: 46px;
+    }
+    .card-icon { /* só auemtna o icone */
+        font-size: 30px; 
+    }
+    .card-info h3 { /* O titulo "acessos" e "alunos" */
+        font-size: 23px; 
+        margin-bottom: 10px; 
+    }
+    .card-info p { /* Numero da quantidade */
+        font-size: 30px; /* aumenta o tamanho */
+    }
+    .banner-content i { /* Estiliza o ícone dentro do banner */
+        font-size: 35px; /* aumenta o tamanho do ícone */
+    }
+    .banner-content h3 { /* Estiliza o título dentro do banner */
+        font-size: 23px; /* aujmenta o título */
+    }
+    .banner-content p { /* Estiliza o parágrafo do banner */
+        font-size: 17px; /* aumenta o tamanho da fonte */
+    }
+    .titulo-secao-boletos { 
+        font-size: 30px; /* aumenta o titulo "boletos e faturas" */
+        margin-bottom: 25px; /* Distanciamento entre o título e a tabela */
+    }
+    th { /* Estiliza os cabeçalhos da tabela */
+        font-size: 23px; /*aumenta os cabeçalhos da tabela*/
+    }
+    td { /* Estiliza as células comuns da tabela */
+        font-size: 18px; /*aumenta o tamanho do conteudo*/
+    }
+    .status-badge { /* Estiliza as etiquetas de status (Pago/Pendente) */
+        font-size: 18px; /* Fonte menor para a etiqueta */
+    }
+    .btn-view { /* Estiliza o botão de abrir boleto na tabela */
+        font-size: 16px;/* Aumenta o tamanho do texto do botão */
+    }
+}
+
+@media (min-width: 2200px) { /* 2k */
+    .btn-back{
+        font-size: 25px; /* Aumenta o tamanho da fonte do botão */
+    }
+    .header-gerenciamento h1{ /* Aumenta o tamanho do título principal em telas maiores */
+        font-size: 50px;
+    }
+    .card-icon { /* só auemtna o icone */
+        width: 70px; 
+        height: 70px; 
+        font-size: 35px; 
+    }
+    .card-info h3 { /* O titulo "acessos" e "alunos" */
+        font-size: 26px; 
+        margin-bottom: 10px; 
+    }
+    .card-info p { /* Numero da quantidade */
+        font-size: 35px; /* aumenta o tamanho */
+    }
+    .billing-info-banner { /* Estiliza o banner de próxima cobrança */
+        width: 50%; 
+    }
+    .banner-content i { /* Estiliza o ícone dentro do banner */
+        font-size: 40px; /* aumenta o tamanho do ícone */
+    }
+    .banner-content h3 { /* Estiliza o título dentro do banner */
+        font-size: 28px; /* aujmenta o título */
+    }
+    .banner-content p { /* Estiliza o parágrafo do banner */
+        font-size: 22px; /* aumenta o tamanho da fonte */
+    }
+    .titulo-secao-boletos { 
+        font-size: 35px; /* aumenta o titulo "boletos e faturas" */
+        margin-bottom: 35px; /* Distanciamento entre o título e a tabela */
+    }
+    th { /* Estiliza os cabeçalhos da tabela */
+        font-size: 28px; /*aumenta os cabeçalhos da tabela*/
+    }
+    td { /* Estiliza as células comuns da tabela */
+        font-size: 22px; /*aumenta o tamanho do conteudo*/
+    }
+    .status-badge { /* Estiliza as etiquetas de status (Pago/Pendente) */
+        font-size: 22px; /* Fonte menor para a etiqueta */
+    }
+    .btn-view { /* Estiliza o botão de abrir boleto na tabela */
+        font-size: 18px;/* Aumenta o tamanho do texto do botão */
+    }
+}
+
+@media (min-width: 3000px) { /* 4k */
+    .container{
+        margin: 0px 1200px 0px 900px;
+    }
+    #content{
+        width: 2000px;
+        height: 2000px;
+    }
+    .header-gerenciamento{
+        width: 1300px;
+        gap: 70px;
+    }
+    .btn-back{
+        font-size: 40px; /* Aumenta o tamanho da fonte do botão */
+    }
+    .header-gerenciamento h1{ /* Aumenta o tamanho do título principal em telas maiores */
+        font-size: 70px;
+    }
+    .stats-grid{
+        margin-bottom: 70px;
+    }
+    .card-icon { /* só auemtna o icone */
+        width: 90px; 
+        height: 90px; 
+        font-size: 45px; 
+    }
+    .card-info h3 { /* O titulo "acessos" e "alunos" */
+        font-size: 35px; 
+        margin-bottom: 10px; 
+    }
+    .card-info p { /* Numero da quantidade */
+        font-size: 45px; /* aumenta o tamanho */
+    }
+    .billing-info-banner { /* Estiliza o banner de próxima cobrança */
+        width: 50%;
+        margin-bottom: 70px;
+    }
+    .banner-content i { /* Estiliza o ícone dentro do banner */
+        font-size: 60px; /* aumenta o tamanho do ícone */
+    }
+    .banner-content h3 { /* Estiliza o título dentro do banner */
+        font-size: 40px; /* aujmenta o título */
+    }
+    .banner-content p { /* Estiliza o parágrafo do banner */
+        font-size: 35px; /* aumenta o tamanho da fonte */
+    }
+    .titulo-secao-boletos { 
+        font-size: 45px; /* aumenta o titulo "boletos e faturas" */
+        margin-bottom: 50px; /* Distanciamento entre o título e a tabela */
+    }
+    th { /* Estiliza os cabeçalhos da tabela */
+        font-size: 40px; /*aumenta os cabeçalhos da tabela*/
+    }
+    td { /* Estiliza as células comuns da tabela */
+        font-size: 33px; /*aumenta o tamanho do conteudo*/
+    }
+    .status-badge { /* Estiliza as etiquetas de status (Pago/Pendente) */
+        font-size: 33px; /* Fonte menor para a etiqueta */
+    }
+    .btn-view { /* Estiliza o botão de abrir boleto na tabela */
+        padding: 16px 32px;
+        border-radius: 25px;
+        font-size: 26px;/* Aumenta o tamanho do texto do botão */
+    }
+
 }

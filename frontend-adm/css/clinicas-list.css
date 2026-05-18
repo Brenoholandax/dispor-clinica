@@ -239,3 +239,155 @@ form input:focus { /* Efeito visual ao clicar/focar no campo de entrada */
         font-size: 14px;
     }
 }
+
+/* ========== RESPONSIVIDADE EM TELAS GRANDES ========== */
+@media (min-width: 1600px) { /* FULL HD */
+    #content { /* Aumenta o padding do container principal em telas maiores */
+        padding: 40px;
+    }
+    .header-actions h1 { /* Aumenta o tamanho do título principal */
+        font-size: 56px;
+    }
+    .btn-add { /* Aumenta o tamanho do botão de adicionar nova clínica */
+        padding: 16px 32px;
+        font-size: 20px;
+        border-radius: 16px;
+    }
+    .table-container { /* Aumenta o padding e o border-radius do container da tabela */
+        padding: 36px;
+        border-radius: 28px;
+    }
+    th, td { /* Aumenta o padding e o tamanho da fonte dos textoxzinhos da tabela */
+        padding: 24px;
+        font-size: 20px;
+    }
+    .status-badge { /* Aumenta o padding e o tamanho da fonte dos bagui de status(pago ou não pago) */
+        padding: 8px 16px;
+        font-size: 18px;
+    }
+    .btn-details { /* Aumenta o tamanho do botão de detalhes/gerenciar */
+        padding: 10px;
+        font-size: 20px;
+        border-radius: 12px;
+    }
+    .btn-delete { /* aumenta o tamanho do lixinho para deletar clinicas */
+        font-size: 24px;
+    }
+    .modal-content { /* Aumenta o padding, max-width e border-radius da mensagem que aparece deposi de adicionar uma clinica */
+        padding: 50px;
+        max-width: 650px;
+        border-radius: 32px;
+    }
+    .modal-header h2 { /* Aumenta o tamanho do título do da mensagem de adicionar clinica */
+        font-size: 32px;
+    }
+    form label { /* Aumenta o tamanho da fonte dos rótulos dos campos do formulário */
+        font-size: 20px;
+    }
+    form input, form select, .btn-submit { /* Aplica esses filtro ai para os campos de entrada e do botão de envio do formulário */
+        padding: 16px 20px;
+        font-size: 20px;
+        border-radius: 16px;
+    }
+}
+ /* a cara daqui pra frente é a mesma coisa dai de cima só vai mudar os valores, então ta bem entendivel, me ajude tbm */
+
+@media (min-width: 2200px) { /* 2K */
+    #content { /* boz principal */
+        padding: 60px;
+    }
+    .header-actions h1 { /*titulo */
+        font-size: 72px;
+    }
+    .btn-add { /* botaõ de adicionar nova clínica */
+        padding: 20px 40px;
+        font-size: 26px;
+        border-radius: 20px;
+    }
+    .table-container { /* container da tabela */
+        padding: 48px;
+        border-radius: 36px;
+    }
+    th, td { /* células da tabela */
+        padding: 32px;
+        font-size: 26px;
+    }
+    .status-badge { /* O status de pago e não pago ali na coluna de status */
+        padding: 10px 20px;
+        font-size: 22px;
+    }
+    .btn-details { /* botão de detalhes/gerenciar */
+        padding: 14px;
+        font-size: 24px;
+        border-radius: 16px;
+    }
+    .btn-delete { /* aumenta o tamanho do lixinho para deletar clinicas */
+        font-size: 30px;
+    }
+    .modal-content { /* Aumenta a mensagem que aparece de adicionar uma clinica */
+        padding: 70px;
+        max-width: 850px;
+        border-radius: 44px;
+    }
+    .modal-header h2 { /* Aumenta o título da mensagem de adicionar clinica */
+        font-size: 42px;
+    }
+    form label {
+        font-size: 26px;
+    }
+    form input, form select, .btn-submit {
+        padding: 20px 28px;
+        font-size: 24px;
+        border-radius: 20px;
+    }
+}
+
+@media (min-width: 3000px) { /* 4K */
+    #content { /* Box principal */
+        padding: 80px;
+    }
+    .header-actions h1 { /* tituloi */
+        font-size: 96px;
+    }
+    .btn-add { /* botao de adicioonar clinica */
+        padding: 28px 56px; 
+        font-size: 36px;
+        border-radius: 28px;
+    }
+    .table-container { /* container da tabela */
+        padding: 64px;
+        border-radius: 48px;
+    }
+    th, td { /* tamanho do cnteúido da tabela */
+        padding: 40px;
+        font-size: 40px;
+    }
+    .status-badge { /* tamanho do nomezinho de pago ou não */
+        padding: 14px 28px;
+        font-size: 30px;
+    }
+    .btn-details { /* botao de detalhes */
+        padding: 20px;
+        font-size: 35px;
+        border-radius: 35px;
+    }
+    .btn-delete { /* lixinho de deletar */
+        font-size: 44px;
+    }
+    .modal-content { /* menagem de "clinica adicionada" */
+        padding: 100px;
+        max-width: 1200px;
+        border-radius: 60px;
+    }
+    .modal-header h2 { /* tamanhog do titulo da mensagem */
+        font-size: 56px;
+    }
+    form label {
+        font-size: 36px;
+    }
+    form input, form select, .btn-submit {
+        padding: 28px 40px;
+        font-size: 34px;
+        border-radius: 28px;
+    }
+}
