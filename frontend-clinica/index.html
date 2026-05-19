@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica TEA - Portal Administrativo</title>
+    <link rel="stylesheet" href="../frontend-pais/css/sidebar.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+</head>
+<body>
+
+<div class="container">
+    <aside class="sidebar">
+        <div class="menu-title">
+            <button onclick="toggleSidebar()"><i id="bars" class="fa-solid fa-bars"></i></button>
+            <h3>Portal Clínica</h3>
+        </div>
+        <ul>
+            <li onclick="navigate('home', event)" class="active"><i class="fa-solid fa-house"></i>Dashboard</li>
+            <li onclick="navigate('agenda', event)"><i class="fa-solid fa-calendar-days"></i>Cronograma Geral</li>
+            <li onclick="navigate('pacientes', event)"><i class="fa-solid fa-users"></i>Pacientes</li>
+            <li onclick="navigate('profissionais', event)"><i class="fa-solid fa-user-doctor"></i>Profissionais</li>
+            <li onclick="navigate('financeiro', event)"><i class="fa-solid fa-dollar-sign"></i>Financeiro</li>
+            <li onclick="navigate('evolucao', event)"><i class="fa-solid fa-file-medical"></i>Registrar Evolução</li>
+            <li onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i>Sair</li>
+        </ul>
+        <div class="user-info">
+            <p><i class="fa-solid fa-circle-user"></i> Adm Clínica</p>
+        </div>
+    </aside>
+
+    <main id="content">
+        <!-- HOME -->
+        <section id="home" class="page active">
+            <h1>Dashboard Administrativo</h1>
+            <div class="cards">
+                <div class="card"><span class="card-label">Pacientes Ativos</span><span id="totalPacientes" class="card-value">--</span></div>
+                <div class="card"><span class="card-label">Sessões Hoje</span><span id="sessoesHoje" class="card-value">--</span></div>
+                <!-- REMOVIDO RECEITA ESTIMADA -->
+            </div>
+            <div class="recent-activity">
+                <h2>Próximas Sessões</h2>
+                <div class="table-container">
+                    <table id="tabelaAtendimentos">
+                        <thead><tr><th>Paciente</th><th>Terapeuta</th><th>Especialidade</th><th>Horário</th></tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- CRONOGRAMA GERAL -->
+        <section id="agenda" class="page">
+            <h1>Cronograma Geral</h1>
+            <div class="calendar-card">
+                <div id='calendar-geral'></div>
+            </div>
+        </section>
+
+        <!-- PACIENTES -->
+        <section id="pacientes" class="page">
+            <div class="section-header">
+                <h1>Gestão de Pacientes</h1>
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar paciente...">
+                </div>
+            </div>
+            <div class="table-container">
+                <table id="tabelaPacientes">
+                    <thead><tr><th>Paciente</th><th>Próxima Sessão</th><th>Disciplinas</th><th>Financeiro</th><th>Responsáveis</th><th>Ações</th></tr></thead>
+                    <tbody id="listaPacientesCorpo"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- PROFISSIONAIS -->
+        <section id="profissionais" class="page">
+            <div class="section-header">
+                <h1>Profissionais</h1>
+                <select id="filtroEspecialidade" class="modern-select" onchange="filtrarProfissionais()">
+                    <option value="todos">Todas Especialidades</option>
+                    <option value="ABA">ABA</option>
+                    <option value="Fono">Fonoaudiologia</option>
+                    <option value="T.O">Terapia Ocupacional</option>
+                </select>
+            </div>
+            <div class="profissionais-grid" id="gridProfissionais">
+                <!-- Inserido via JS -->
+            </div>
+        </section>
+
+        <!-- FINANCEIRO -->
+        <section id="financeiro" class="page">
+            <h1>Gestão Financeira</h1>
+            <div class="financeiro-stats">
+                <div class="card mini">Total Matriculados: <strong>42</strong></div>
+                <div class="card mini">Aderência de Pagamento: <strong>92%</strong></div>
+            </div>
+            <div class="filter-bar">
+                <button class="btn-filter active" onclick="filtrarFinanceiro('todos', event)">Todos</button>
+                <button class="btn-filter" onclick="filtrarFinanceiro('ativo', event)">Ativo</button>
+                <button class="btn-filter" onclick="filtrarFinanceiro('pendente', event)">Pendente</button>
+            </div>
+            <div class="table-container">
+                <table id="tabelaFinanceiro">
+                    <thead><tr><th>Paciente</th><th>Plano</th><th>Valor</th><th>Vencimento</th><th>Status</th></tr></thead>
+                    <tbody id="listaFinanceiroCorpo"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- REGISTRAR EVOLUÇÃO -->
+        <section id="evolucao" class="page">
+            <div class="section-header">
+                <h1>Registrar Evolução Clínica</h1>
+                <p>Selecione sua especialidade para iniciar o registro da sessão.</p>
+            </div>
+
+            <div class="disciplinas-grid" id="gridEvolucaoEspecialidades">
+                <div class="card-disciplina" onclick="abrirFormularioEvolucao('Relatório ABA')">
+                    <div class="card-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+                    <h2>Relatório ABA</h2>
+                    <p>Análise do Comportamento Aplicada e planos de ensino.</p>
+                    <button class="btn-detalhes">Iniciar Registro</button>
+                </div>
+                <div class="card-disciplina" onclick="abrirFormularioEvolucao('Fonoaudiologia')">
+                    <div class="card-icon"><i class="fa-solid fa-comment-dots"></i></div>
+                    <h2>Fonoaudiologia</h2>
+                    <p>Comunicação verbal, não-verbal e motricidade orofacial.</p>
+                    <button class="btn-detalhes">Iniciar Registro</button>
+                </div>
+                <div class="card-disciplina" onclick="abrirFormularioEvolucao('Terapia Ocupacional')">
+                    <div class="card-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                    <h2>Terapia Ocupacional</h2>
+                    <p>Integração sensorial e atividades de vida diária (AVD).</p>
+                    <button class="btn-detalhes">Iniciar Registro</button>
+                </div>
+                <div class="card-disciplina" onclick="abrirFormularioEvolucao('Psicopedagogia')">
+                    <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h2>Psicopedagogia</h2>
+                    <p>Dificuldades de aprendizagem e processos cognitivos.</p>
+                    <button class="btn-detalhes">Iniciar Registro</button>
+                </div>
+            </div>
+
+            <div id="containerFormEvolucao" class="form-tea-container" style="display: none;">
+                <div class="form-header-actions">
+                    <button onclick="voltarParaGrid()" class="btn-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+                    <h2 id="tituloFormEvolucao">--</h2>
+                </div>
+                <form id="formEvolucaoTecnica" class="admin-form-modern">
+                    <div class="form-grid-top">
+                        <div class="form-group"><label>Paciente:</label><select id="evolucaoPaciente" required></select></div>
+                        <div class="form-group"><label>Data/Hora:</label><input type="datetime-local" id="evolucaoData"></div>
+                    </div>
+                    <div class="form-section">
+                        <h3><i class="fa-solid fa-brain"></i> Registro Comportamental</h3>
+                        <div class="form-group">
+                            <label>Nível de Engajamento:</label>
+                            <div class="range-labels-top"><span>Baixo</span><span>Excelente</span></div>
+                            <input type="range" min="1" max="5" class="slider" id="teaEngajamento">
+                        </div>
+                        <div class="form-group"><label>Antecedentes:</label><textarea id="teaAntecedentes" placeholder="Descreva os comportamentos..."></textarea></div>
+                    </div>
+                    <div class="form-section">
+                        <h3><i class="fa-solid fa-list-check"></i> Objetivos e Metas</h3>
+                        <div class="form-group"><label>Nível de Ajuda:</label><select id="teaNivelAjuda"><option>Independente</option><option>Ajuda Verbal</option><option>Ajuda Física</option></select></div>
+                        <div class="form-group"><label>Atividades:</label><textarea id="teaAtividades" rows="4"></textarea></div>
+                    </div>
+                    <button type="submit" class="btn-finalizar-sessao">Finalizar Registro</button>
+                </form>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- MODAL PACIENTE 360º -->
+<div id="modalPaciente" class="modal">
+    <div class="modal-content" style="max-width: 1100px;">
+        <span class="close-modal" onclick="fecharModal()">&times;</span>
+        <div id="detalhesPacienteConteudo"></div>
+    </div>
+</div>
+
+<!-- MODAL PROFISSIONAL -->
+<div id="modalProfissional" class="modal">
+    <div class="modal-content" style="max-width: 1000px;">
+        <span class="close-modal" onclick="fecharModalProf()">&times;</span>
+        <h2 id="nomeProfissionalModal">Agenda</h2>
+        <div id="calendar-profissional" style="height: 500px; margin-top: 20px;"></div>
+    </div>
+</div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
