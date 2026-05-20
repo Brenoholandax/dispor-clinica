@@ -271,20 +271,8 @@ window.onload = () => {
 
 const ctxPizza = document.getElementById('graficoPizza');
 
-/**
- * Enviar Suporte: Exibe uma notificação (toast) de sucesso.
- */
 function enviarSuporte() {
-  const oldToast = document.querySelector('.toast-simple');
-  if (oldToast) oldToast.remove();
-  
-  const toast = document.createElement('div');
-  toast.className = 'toast-simple';
-  toast.innerHTML = '<i class="fa-solid fa-square-check" style="color: rgb(83, 165, 135);"></i> Mensagem enviada com sucesso!';
-  document.body.appendChild(toast);
-  
-  setTimeout(() => toast.classList.add('show'), 100);
-  setTimeout(() => toast.remove(), 2500);
+  mostrarToast('Mensagem enviada com sucesso!');
 }
 
 // ============================================================

@@ -7,14 +7,14 @@ let colunaOrdenacao = 'nome';
 let ordemAscendente = true;
 
 // Mock de dados das clínicas
-const clinicas = [ // lista de clínicas fictícias para exibição
-    { id: 1, nome: "Clínica TEA ", cnpj: "12.345.678/0001-90", status: "Ativa"},
-    { id: 2, nome: "Centro de Apoio Azul", cnpj: "98.765.432/0001-10", status: "Ativa"},
-    { id: 3, nome: "Espaço Estimular", cnpj: "45.678.901/0001-22", status: "Inativa"},
-    { id: 3, nome: "Jhon TEA", cnpj: "47.878.211/06701-22", status: "Ativa"},
-    { id: 3, nome: "Breno TEA", cnpj: "90.753.981/6111-42", status: "Ativa"},
-    { id: 3, nome: "Huoc TEA", cnpj: "24.123.874/4301-66", status: "Inativa"},
-    { id: 3, nome: "Central Azul", cnpj: "23.834.965/4413-99", status: "Inativa"},
+const clinicas = [
+    { id: 1, nome: "Clínica TEA", cnpj: "12.345.678/0001-90", status: "Ativa" },
+    { id: 2, nome: "Centro de Apoio Azul", cnpj: "98.765.432/0001-10", status: "Ativa" },
+    { id: 3, nome: "Espaço Estimular", cnpj: "45.678.901/0001-22", status: "Inativa" },
+    { id: 4, nome: "Jhon TEA", cnpj: "47.878.211/0001-22", status: "Ativa" },
+    { id: 5, nome: "Breno TEA", cnpj: "90.753.981/0001-42", status: "Ativa" },
+    { id: 6, nome: "Huoc TEA", cnpj: "24.123.874/0001-66", status: "Inativa" },
+    { id: 7, nome: "Central Azul", cnpj: "23.834.965/0001-99", status: "Inativa" },
 ];
 
 // Inicia ao carregar a página
@@ -223,7 +223,7 @@ function salvarClinica(event) { // função para adicionar uma clinica nova na t
     document.getElementById('clinicForm').reset();
 
     // Toast de sucesso
-    mostrarToast("Clínica adicionada com sucesso!"); // exibe uma mensagem de sucesso
+    mostrarToast("Clínica adicionada com sucesso!", 'azul');
 }
 
 //função para excluir uma clinica da tabela, chamada pelo botão de lixo
@@ -233,43 +233,8 @@ function excluirClinica(id) {
         clinicas.splice(index, 1); // remove a clínica do array
         carregarClinicas(); // atualiza a tabela na tela
         atualizarContadores(); // atualiza os números dos cards
-        mostrarToast("Clínica removida."); // exibe mensagem de remoção
+        mostrarToast("Clínica removida.", 'azul');
     }
 }
 
-function mostrarToast(mensagem) {
-    const oldToast = document.querySelector('.toast-simple'); // busca por um toast já existente
-    if (oldToast) oldToast.remove(); // remove o toast antigo para não bugar
-    
-    const toast = document.createElement('div'); // cria o elemento do toast
-    toast.className = 'toast-simple'; // define a classe CSS do toast
-    toast.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: white;
-        padding: 15px 25px;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(30, 64, 175, 0.1);
-        border-left: 5px solid #1e40af;
-        z-index: 2000;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        animation: slideInRight 0.3s ease;
-    `; // aplica estilos diretamente via JS para garantir o visual do toast
-    toast.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #1e40af;"></i> ${mensagem}`; // insere o ícone e a mensagem
-    document.body.appendChild(toast); // adiciona o toast ao corpo da página
-    
-    setTimeout(() => toast.remove(), 3000); // define que o toast sumirá após 3 segundos
-}
-
-// CSS adicional para o Toast, poderia estar no .css mas coloquei aqui para facilitar
-const style = document.createElement('style'); // cria um elemento de estilo
-style.innerHTML = `
-    @keyframes slideInRight {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-`; // define a animação de entrada do toast
-document.head.appendChild(style); // adiciona o estilo ao cabeçalho do documento
+// mostrarToast vem de ../shared/js/toast.js — use mostrarToast(msg, 'azul')
