@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/relatorio.css"> <!-- Estilos para os relatórios -->
   <link rel="stylesheet" href="css/suporte.css"> <!-- Estilos para o suporte -->
   <link rel="stylesheet" href="css/pagamentos.css"> <!-- Estilos para os pagamentos -->
+  <link rel="stylesheet" href="css/Insc-disciplinas.css"> <!-- Estilos para a inscrição em disciplinas -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para os gráficos do dashboard -->
 </head>
@@ -24,6 +25,7 @@
     <ul> <!-- lista de links para as diferentes seções do dashboard, cada link tem um ícone e um evento de clique para navegar para a seção correspondente -->
       <li onclick="navigate('dashboard')"><i class="fa-solid fa-chart-pie" style="color: rgb(255, 255, 255);"></i>Dashboard</li>
       <li onclick="navigate('relatorios')"><i class="fa-solid fa-chart-column" style="color: rgb(255, 255, 255);"></i>Relatórios</li>
+      <li onclick="navigate('inscricao')"><i class="fa-solid fa-book-open" style="color: rgb(255, 255, 255);"></i>Inscrição</li>
       <li onclick="navigate('pagamentos')"><i class="fa-solid fa-coins" style="color: rgb(255, 255, 255);"></i>Pagamentos</li>
       <li onclick="navigate('suporte')"><i class="fa-solid fa-comments" style="color: rgb(255, 255, 255);"></i>Suporte</li>
       <li onclick="logout()"><i class="fa-solid fa-arrow-right-from-bracket" style="color: rgb(255, 255, 255);"></i>Logout</li>
@@ -81,10 +83,21 @@
         <button onclick="enviarSuporte()">Enviar</button> <!-- botão para enviar a mensagem para a equipe de suporte, que chama a função "enviarSuporte()" que ta no script.js -->
     </section>
 
+    <!-- INSCRIÇÃO EM DISCIPLINAS -->
+    <section id="inscricao" class="page">
+      <h1>Inscrição em Disciplinas</h1>
+      <p style="margin-bottom: 20px; color: #666;">Selecione a disciplina desejada para ver mais detalhes e inscrever seu filho.</p>
+      
+      <div class="disciplinas-grid" id="disciplinasGrid">
+          <!-- Os cards serão carregados via JavaScript -->
+      </div>
+    </section>
+
   </main>
 
 </div>
 
 <script src="js/script.js"></script>
+<script src="js/insc-dados.js"></script>
 </body>
 </html>

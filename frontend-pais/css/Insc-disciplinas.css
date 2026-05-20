@@ -1,46 +1,21 @@
 /* ESTILO PARA A LISTA DE DISCIPLINAS - FOCO MOBILE FIRST */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {/* Estilos para o corpo da página */
-    background: radial-gradient(circle at top left, rgba(210, 250, 230, 0.8) 0%, rgba(71, 163, 110, 0.3) 50%, #ecfcee 100%);
-    font-family: "Plus Jakarta Sans", sans-serif;
-    min-height: 100dvh;
-    color: #333;
-    line-height: 1.6;
-}
-
-.container { /* Container centralizado para o conteúdo */
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* HEADER */
-header { /* Estilos para o cabeçalho */
+#inscricao h1 {
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(24px, 8vw, 42px);
+    color: #53a587;
+    font-weight: 700;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     padding-top: 20px;
 }
 
-header h1 { /* Estilos para o título do cabeçalho */
-    font-family: "Poppins", sans-serif;
-    font-size: clamp(24px, 8vw, 42px); /* Tamanho responsivo do título */
-    color: #53a587;
-    font-weight: 700;
-}
-
-header p { /* Estilos para o parágrafo do cabeçalho */
+#inscricao p {
+    text-align: center;
     font-size: 16px;
     color: #666;
-    margin-top: 10px;
+    margin-bottom: 30px;
 }
 
-/* GRID DE DISCIPLINAS */
 .disciplinas-grid { /* estilos para a grade de disciplinas */
     display: grid; /* configura o layout como grid */
     grid-template-columns: 1fr; /* mobile First: 1 coluna */
@@ -108,30 +83,20 @@ header p { /* Estilos para o parágrafo do cabeçalho */
     }
 }
 
-@media (min-width: 1200px) { /* full hd */
+@media (min-width: 1600px) { /* full hd (alinhado com dashboard.css) */
     .disciplinas-grid {
         grid-template-columns: repeat(3, 1fr); /* 3 colunas para desktops */
         gap: 30px;
-    }
-    .container {
-        padding: 40px;
     }
     .card-disciplina:hover {
         transform: translateY(-10px); /* efeito de elevação */
         box-shadow: 0 20px 40px rgba(83, 165, 135, 0.2);
     }
-}
-
-@media (min-width: 1920px) { /* 2k */
-    .container { /* para centralizar melhor o conteúdo em telas muito grandes */
-        max-width: 1800px;
-        padding-top: 80px;
-    }
-    header h1 { /* aumentar o titulo */
+    #inscricao h1 { /* aumentar o titulo */
         font-size: 60px;
         margin-bottom: 20px;
     }
-    header p{ /* aumentar o subtitulo */
+    #inscricao p{ /* aumentar o subtitulo */
         font-size: 34px;
         margin-bottom: 20px;
     }
@@ -147,16 +112,36 @@ header p { /* Estilos para o parágrafo do cabeçalho */
     }
 }
 
-@media (min-width: 3000px) { /* 4k */
-    .container { /* para centralizar melhor o conteúdo em telas muito grandes */
-        max-width: 2800px;
-        padding-top: 160px;
+@media (min-width: 2200px) { /* 2k (alinhado com dashboard.css) */
+    .disciplinas-grid {
+        gap: 45px;
     }
-    header h1 { /* aumentar o titulo */
+    #inscricao h1 { /* aumentar o titulo */
+        font-size: 75px;
+        margin-bottom: 30px;
+    }
+    #inscricao p{ /* aumentar o subtitulo */
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+    .card-disciplina h2 { /* aumentar o titulo do card */
+        font-size: 50px;
+    }
+    .card-disciplina p { /* aumentar a descrição do card */
+        font-size: 32px;
+    }
+    .btn-detalhes { /* aumentar o botão do card */
+        font-size: 30px;
+        padding: 20px 45px;
+    }
+}
+
+@media (min-width: 3000px) { /* 4k (alinhado com dashboard.css) */
+    #inscricao h1 { /* aumentar o titulo */
         font-size: 90px;
-        margin-bottom: 20px;
+        margin-bottom: 50px;
     }
-    header p{ /* aumentar o subtitulo */
+    #inscricao p{ /* aumentar o subtitulo */
         font-size: 40px;
         margin-bottom: 30px;
     }

@@ -66,5 +66,5 @@ function renderizarDisciplinas() {
     });
 }
 
-window.onload = renderizarDisciplinas; // quando a pagina carregar, chama a função renderizarDisciplinas para mostrar os cards na tela
+// window.onload = renderizarDisciplinas; // Comentado para evitar conflito com dashboard.js
 

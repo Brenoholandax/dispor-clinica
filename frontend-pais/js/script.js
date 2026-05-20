@@ -44,7 +44,7 @@ function login() {
   if (currentTab === 'pais') {
     window.location.href = "dashboard.html"; // Vai para a dashboard dos Pais
   } else if (currentTab === 'clinica') {
-    window.location.href = "../frontend-clinica/Insc-Disciplinas.html"; // Vai para o portal Clínico
+    window.location.href = "../frontend-clinica/home-clinica.html"; // Vai para o portal Clínico
   } else if (currentTab === 'adm') {
     window.location.href = "../frontend-adm/clinicas-list.html"; // Vai para o portal Administrativo
   }
@@ -256,6 +256,16 @@ window.onload = () => {
     // Carrega dados iniciais da dashboard
     carregarFilhos();
     carregarPagamentos();
+    if (typeof renderizarDisciplinas === 'function') {
+      renderizarDisciplinas();
+    }
+
+    // Lógica para abrir seção específica via URL (ex: ?section=inscricao)
+    const urlParams = new URLSearchParams(window.location.search);
+    const section = urlParams.get('section');
+    if (section) {
+      navigate(section);
+    }
   }
 };
 
