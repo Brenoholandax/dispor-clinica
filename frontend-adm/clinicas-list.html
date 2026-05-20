@@ -21,13 +21,44 @@
                     </button>
                 </div>
 
+                <!-- CARDS DE ESTATÍSTICAS -->
+                <div class="stats-cards">
+                    <div class="stat-card" onclick="filtrarPorStatus('todas', event)">
+                        <div class="stat-icon total"><i class="fa-solid fa-hospital"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Total de Clínicas</span>
+                            <span class="stat-value" id="totalCount">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card" onclick="filtrarPorStatus('Ativa', event)">
+                        <div class="stat-icon active"><i class="fa-solid fa-circle-check"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Clínicas Ativas</span>
+                            <span class="stat-value" id="activeCount">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card" onclick="filtrarPorStatus('Inativa', event)">
+                        <div class="stat-icon inactive"><i class="fa-solid fa-circle-xmark"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-label">Clínicas Inativas</span>
+                            <span class="stat-value" id="inactiveCount">0</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="table-container"> <!-- Container para a tabela de clínicas -->
+                    <div class="table-header">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="searchInput" placeholder="Pesquisar clínica ou CNPJ..." onkeyup="buscarClinicas()">
+                        </div>
+                    </div>
                     <table>
                         <thead>
                             <tr> <!-- Cabeçalho da tabela com colunas para nome, CNPJ, status e ações -->
-                                <th>Nome da Clínica</th>
-                                <th>CNPJ</th>
-                                <th>Status</th>
+                                <th onclick="ordenarTabela('nome')" style="cursor: pointer;">Nome da Clínica <i class="fa-solid fa-sort"></i></th>
+                                <th onclick="ordenarTabela('cnpj')" style="cursor: pointer;">CNPJ <i class="fa-solid fa-sort"></i></th>
+                                <th onclick="ordenarTabela('status')" style="cursor: pointer;">Status <i class="fa-solid fa-sort"></i></th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -35,6 +66,13 @@
                             <!-- Preenchido via JS -->
                         </tbody>
                     </table>
+
+                    <!-- PAGINAÇÃO -->
+                    <div class="pagination-container">
+                        <button class="btn-pagination" id="prevPage" onclick="mudarPagina(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                        <span id="pageInfo">Página 1 de 1</span>
+                        <button class="btn-pagination" id="nextPage" onclick="mudarPagina(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
                 </div>
             </div>
         </main>
