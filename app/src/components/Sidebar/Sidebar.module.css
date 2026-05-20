@@ -1,0 +1,80 @@
+.sidebar {
+  width: clamp(220px, 16vw, 280px);
+  color: white;
+  padding: 30px 20px;
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow-y: auto;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex-shrink: 0;
+}
+
+.verde { background: linear-gradient(180deg, #53a587 0%, #44a380 100%); box-shadow: 4px 0 20px rgba(83,165,135,0.25); }
+.azul  { background: linear-gradient(180deg, #1e40af 0%, #1e3a8a 100%); box-shadow: 4px 0 20px rgba(30,64,175,0.25); }
+
+.collapsed { width: 70px; padding: 30px 10px; }
+
+.menuTitle {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.menuTitle button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 22px;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.menuTitle button:hover { transform: scale(1.15); }
+
+.menuTitle h3 {
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sidebar ul { list-style: none; flex: 1; }
+
+.sidebar li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  margin: 6px 0;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.sidebar li:hover { background: rgba(255,255,255,0.18); transform: translateX(4px); }
+.active { background: rgba(255,255,255,0.28) !important; font-weight: 700; }
+
+.sidebar li i { font-size: 18px; flex-shrink: 0; }
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  opacity: 0.85;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin-top: auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.userInfo i { font-size: 20px; flex-shrink: 0; }

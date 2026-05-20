@@ -1,0 +1,27 @@
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: white;
+  padding: 14px 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  z-index: 9999;
+  animation: slideInRight 0.3s ease;
+}
+
+.verde { border-left: 5px solid #53a587; color: #1e293b; }
+.verde i { color: #53a587; }
+
+.azul { border-left: 5px solid #1e40af; color: #1e293b; }
+.azul i { color: #1e40af; }
+
+@keyframes slideInRight {
+  from { transform: translateX(110%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}

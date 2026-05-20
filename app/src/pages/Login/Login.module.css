@@ -1,0 +1,122 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.5s ease;
+  padding: 20px;
+}
+
+.pais, .clinica {
+  background: radial-gradient(ellipse at 0% 0%, rgba(83,165,135,0.3) 0, transparent 60%),
+              radial-gradient(ellipse at 100% 100%, rgba(68,163,128,0.2) 0, transparent 60%),
+              #f0fdf4;
+}
+.adm {
+  background: radial-gradient(ellipse at 0% 0%, rgba(30,64,175,0.2) 0, transparent 60%),
+              radial-gradient(ellipse at 100% 100%, rgba(59,130,246,0.15) 0, transparent 60%),
+              #eff6ff;
+}
+
+.card {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 44px 40px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.6);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 28px;
+  color: #1e293b;
+}
+.brand i { font-size: 26px; color: #53a587; }
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 28px;
+}
+
+.tab {
+  flex: 1;
+  padding: 9px 6px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.tabActive {
+  background: white;
+  color: #1e293b;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.form { display: flex; flex-direction: column; gap: 14px; }
+
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.field i {
+  position: absolute;
+  left: 16px;
+  color: #94a3b8;
+  font-size: 16px;
+}
+.field input {
+  width: 100%;
+  padding: 14px 16px 14px 46px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 15px;
+  transition: border-color 0.2s;
+}
+.field input:focus { border-color: #53a587; outline: none; box-shadow: 0 0 0 4px rgba(83,165,135,0.1); }
+
+.btnLogin {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-top: 4px;
+}
+.btnGreen { background: #53a587; color: white; }
+.btnGreen:hover { background: #44a380; transform: translateY(-1px); }
+.btnAdm { background: #1e40af; color: white; }
+.btnAdm:hover { background: #1e3a8a; transform: translateY(-1px); }
+
+.forgot {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #64748b;
+  text-decoration: none;
+}
+.forgot:hover { color: #1e293b; }

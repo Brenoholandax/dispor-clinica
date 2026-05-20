@@ -1,0 +1,9 @@
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+.card { background: white; border-radius: 16px; padding: 28px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); cursor: pointer; display: flex; flex-direction: column; gap: 10px; transition: all 0.25s; border: 2px solid transparent; }
+.card:hover { transform: translateY(-4px); border-color: #53a587; }
+.icon { width: 52px; height: 52px; border-radius: 14px; background: #e8f5f0; color: #53a587; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.card h3 { font-size: 17px; font-weight: 700; }
+.card p { font-size: 14px; color: #64748b; flex: 1; }
+.formHeader { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+.formHeader h1 { font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 700; }
+.formCard { max-width: 800px; }
