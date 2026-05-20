@@ -1,177 +1,251 @@
-// função unica e exclusiva da pag de LOGIN!!!
+/**
+ * SCRIPT PRINCIPAL DO PORTAL DA FAMÍLIA
+ * Gerencia a troca de abas no login, navegação na dashboard e renderização de gráficos.
+ */
+
+// Variável global para controlar qual portal está selecionado (pais, clinica ou adm)
+let currentTab = 'pais';
+
+// Configurações dinâmicas de conteúdo exibidas na decoration-box (painel lateral colorido)
+const tabContent = {
+  pais: {
+    title: "Cuidado, escuta e evolução para cada criança.",
+    description: "Acompanhe sessões, relatórios clínicos, pagamentos e suporte da família em um só lugar.",
+    benefits: [
+      "Relatórios clínicos detalhados",
+      "Acompanhamento por filho",
+      "Histórico financeiro transparente"
+    ]
+  },
+  clinica: {
+    title: "Gestão completa para sua unidade de saúde.",
+    description: "Otimize o atendimento da sua clínica com ferramentas especializadas para terapeutas.",
+    benefits: [
+      "Controle de disciplinas e horários",
+      "Evolução detalhada de pacientes",
+      "Escala dinâmica de terapeutas"
+    ]
+  },
+  adm: {
+    title: "Painel de Controle Central Administrativo.",
+    description: "Gestão estratégica e global de todas as unidades da sua rede em tempo real.",
+    benefits: [
+      "Gestão global de clínicas",
+      "Relatórios de faturamento consolidados",
+      "Métricas de desempenho da rede"
+    ]
+  }
+};
+
+/**
+ * Função de Login: Redireciona o usuário para o portal correspondente à aba ativa.
+ */
 function login() {
-  window.location.href = "dashboard.html"; // redireciona para a dashboard (página principal) após o login
+  if (currentTab === 'pais') {
+    window.location.href = "dashboard.html"; // Vai para a dashboard dos Pais
+  } else if (currentTab === 'clinica') {
+    window.location.href = "../frontend-clinica/Insc-Disciplinas.html"; // Vai para o portal Clínico
+  } else if (currentTab === 'adm') {
+    window.location.href = "../frontend-adm/clinicas-list.html"; // Vai para o portal Administrativo
+  }
 }
 
+/**
+ * Função switchTab: Gerencia a troca visual e lógica entre Pais, Clínica e ADM.
+ * @param {string} type - O tipo da aba ('pais', 'clinica' ou 'adm').
+ */
+function switchTab(type) {
+  const oldTab = currentTab;
+  currentTab = type;
+  
+  // Seleção de elementos do DOM
+  const mainWrapper = document.querySelector('.main-wrapper');
+  const cardWrapper = document.getElementById('card-wrapper');
+  const decorationBox = document.getElementById('decoration-box');
+  const isMobile = window.innerWidth <= 870;
+  
+  // 1. ATUALIZA ESTADO VISUAL DAS ABAS (Botões superiores)
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(`tab-${type}`).classList.add('active');
+  
+  // 2. LÓGICA DE ANIMAÇÃO NO DESKTOP (Efeito Pop ao entrar no ADM)
+  if (!isMobile) {
+    cardWrapper.classList.remove('anim-pop');
+    if (type === 'adm' || oldTab === 'adm') {
+      void cardWrapper.offsetWidth; // Truque para reiniciar a animação CSS
+      cardWrapper.classList.add('anim-pop');
+    }
+  }
+
+  // 3. ALTERNA FORMULÁRIOS COM FADE (Opacidade controlada por Timeout)
+  const forms = document.querySelectorAll('.login-form');
+  forms.forEach(f => {
+    f.style.opacity = '0';
+    setTimeout(() => {
+      f.style.display = 'none';
+      if (f.id === `login-${type}`) {
+        f.style.display = 'block';
+        setTimeout(() => f.style.opacity = '1', 50);
+      }
+    }, 200);
+  });
+  
+  // 4. ATUALIZA TEXTOS E BENEFÍCIOS NA DECORATION-BOX
+  const content = tabContent[type];
+  document.getElementById('decoration-title').innerText = content.title;
+  document.getElementById('decoration-description').innerText = content.description;
+  
+  const benefitsContainer = document.getElementById('benefits-container');
+  benefitsContainer.innerHTML = ''; // Limpa os benefícios anteriores
+  content.benefits.forEach(benefit => {
+    benefitsContainer.innerHTML += `
+      <p class="benefit-item">
+        <i class="fa-solid fa-circle-check" style="color: rgb(255, 255, 255);"></i>
+        ${benefit}
+      </p>
+    `;
+  });
+
+  // 5. GERENCIAMENTO DE TEMAS E INVERSÃO DE LAYOUT
+  if (type === 'pais') {
+    // Volta ao estado original (Verde / Normal)
+    cardWrapper.classList.remove('reverse');
+    mainWrapper.classList.remove('reverse');
+    mainWrapper.classList.remove('theme-adm');
+    decorationBox.classList.remove('theme-adm');
+    document.body.classList.remove('theme-adm'); // Restaura fundo padrão
+  } else {
+    // Ativa inversão de lado para Clínica e ADM
+    if (!isMobile) {
+      cardWrapper.classList.add('reverse');
+      mainWrapper.classList.add('reverse');
+    }
+    
+    // Aplica ou remove o tema ADM (Azul)
+    if (type === 'adm') {
+      mainWrapper.classList.add('theme-adm');
+      decorationBox.classList.add('theme-adm');
+      document.body.classList.add('theme-adm'); // Muda fundo para ADM
+    } else {
+      mainWrapper.classList.remove('theme-adm');
+      decorationBox.classList.remove('theme-adm');
+      document.body.classList.remove('theme-adm'); // Clínica usa fundo verde, mas layout reverse
+    }
+  }
+}
+
+/**
+ * Funções da Sidebar (Abre/Fecha)
+ */
 function close_bars() {
-  const graficos = document.querySelector(".graficos"); // seleciona a div pai dos graficos
-  const sidebar = document.querySelector(".sidebar"); // seleciona a side bar
-  sidebar.classList.toggle("sidebar-closed"); // adiciona ou remove a classe "sidebar-closed" para fechar ou abrir a sidebar
-  graficos.classList.toggle("graficos-centralizados"); // adiciona ou remove a classe "graficos-centralizados" para os graficos centralizaerm quando fehcar a sidebar
+  const graficos = document.querySelector(".graficos");
+  const sidebar = document.querySelector(".sidebar");
+  sidebar.classList.toggle("sidebar-closed"); // Alterna fechamento
+  graficos.classList.toggle("graficos-centralizados"); // Ajusta gráficos ao espaço disponível
 }
 
 function logout() {
-  window.location.href = "index.html"; // redireciona para a página de login (index.html) ao clicar em logout
+  window.location.href = "index.html"; // Sai do sistema
 }
 
-// NAVEGAÇÃO
+/**
+ * Navegação Interna da Dashboard (Tabs de conteúdo)
+ */
 function navigate(page) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active")); // remove a classe "active" de todas as páginas para esconder o conteúdo
-  document.getElementById(page).classList.add("active"); // adiciona a classe "active" apenas para a página selecionada, mostrando seu conteúdo
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(page).classList.add("active");
 }
 
 
-// DASHBOARD
-window.onload = () => { // assim que carrega a pág ele executa uma aero function
+/* ============================================================
+   LÓGICA DE CARREGAMENTO DA PÁGINA (DASHBOARD E GRÁFICOS)
+   ============================================================ */
 
-  if (window.innerWidth <= 768) { // se a largura da tela for menor ou igual a 768px
-    document.querySelector('.sidebar').classList.add('sidebar-closed'); // vai colocar a classe "sidebar closed" na sidebar para ela começar fechada
+window.onload = () => {
+  // Inicialização da Sidebar em dispositivos móveis
+  if (window.innerWidth <= 768) {
+    document.querySelector('.sidebar').classList.add('sidebar-closed');
   }
 
-  window.addEventListener('resize', () => { // adiciona um listener para o evento de redimensionamento da janela, para ajustar a sidebar dinamicamente
-    const sidebar = document.querySelector('.sidebar'); // pego a sidebar apara adicionar e remover a classe
+  // Monitora redimensionamento da janela para ajustar a Sidebar
+  window.addEventListener('resize', () => {
+    const sidebar = document.querySelector('.sidebar');
     if (window.innerWidth <= 768) { 
-      sidebar.classList.add('sidebar-closed'); // aqui é para fechar a sidebar quando for apertado o botão
+      sidebar.classList.add('sidebar-closed');
     } else {
-      sidebar.classList.remove('sidebar-closed'); // aqui é para abrir a sidebar quando for apertado o botão
+      sidebar.classList.remove('sidebar-closed');
     }
   });
 
+  // Renderização de Gráficos (Chart.js)
   if (document.getElementById("graficoLinha")) { 
+    // Popula cards informativos
+    document.getElementById("totalSessao").innerText = "12";
+    document.getElementById("ultimaSessao").innerText = "20/04";
+    document.getElementById("progresso").innerText = "75%";
 
-    document.getElementById("totalSessao").innerText = "12"; // escrita dos dados dos card
-    document.getElementById("ultimaSessao").innerText = "20/04"; // escrita dos dados dos card
-    document.getElementById("progresso").innerText = "75%"; // escrita dos dados dos card
-
+    // GRÁFICO DE LINHA: Histórico de Sessões
     const lineChart = new Chart(document.getElementById("graficoLinha"), {
-      type: 'line', // tipo do grafico
+      type: 'line',
       data: {
-        labels: ['Jan', 'Fev', 'Mar', 'Abr'], // mese do grafico
+        labels: ['Jan', 'Fev', 'Mar', 'Abr'],
         datasets: [{
-          data: [10, 15, 8, 20], // datas mockados ou dados
+          data: [10, 15, 8, 20],
           borderColor: '#53a587',
           backgroundColor: 'rgba(83, 165, 135, 0.2)',
-          tension: 0.2 // deixa a linha mais suave (curvada)
+          tension: 0.2
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          title: {
-            display: true, //ativa o titulo
-            text: 'Tipos das sessões', // o texto do titulo
-            color: '#000', // a cor do titulo (preto)
-            font: { // fonte(auto-explicativa)
-              size: 18,
-              weight: '400'
-            },
-            padding: { // espaçamento do titulo
-              bottom: 20
-            }
-          },
-          legend: {
-            display: false // esconde a legenda, pois nesse grafico de linha não tem mais de uma linha, então não é necessário
-          },
+          title: { display: true, text: 'Evolução de Atendimentos', color: '#000', font: { size: 18, weight: '400' } },
+          legend: { display: false }
         }
       }
     });
+
+    // GRÁFICO DE ROSCA: Distribuição por Tipo de Terapia
     const pieChart = new Chart(ctxPizza, {
-      type: 'doughnut', // Tipo do gráfico
+      type: 'doughnut',
       data: {
-        labels: ['ABA', 'TEACCH', 'Fonoaudiologia', 'Psicologia', 'Outros'], // Nomes dos dados do grafico
+        labels: ['ABA', 'TEACCH', 'Fonoaudiologia', 'Psicologia', 'Outros'],
         datasets: [{
-          data: [60, 25, 15, 10, 5], // dados mockados
-          backgroundColor: [
-            '#2e7d32',    // Verde principal (ABA)
-            '#1565c0',    // Azul petroleo (TEACCH)
-            '#f9a825',    // Amarelo suave (Fono)
-            '#ef6c00',    // Laranja suave (Psico)
-            '#9E9E9E'     // Cinza (Outros)
-          ],
-          borderWidth: 0 //espaçamento entre os dados do grafico
+          data: [60, 25, 15, 10, 5],
+          backgroundColor: ['#2e7d32', '#1565c0', '#f9a825', '#ef6c00', '#9E9E9E'],
+          borderWidth: 0
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { // configurações externas do grafico
-          // TÍTULO "Tipos das sessões"
-          title: {
-            display: true, //ativa o titulo
-            text: 'Tipos das sessões', // o texto do titulo
-            color: '#000', // a cor do titulo (preto)
-            font: { // fonte(auto-explicativa)
-              size: 18,
-              weight: '400'
-            },
-            padding: { // espaçamento do titulo
-              bottom: 20
-            }
-          },
-
-          // LEGENDAS (labels do lado do grafico)
-          legend: {
-            position: 'right', // posição das legendas (lado direito) mas pode ser top, left, bottom...
-            labels: {
-              color: '#000', // cor do texto das legendas (preto)
-              font: { // fonte (também auto-explicativa)
-                size: 14,
-                weight: '400'
-              },
-              padding: 15 // espaçamento entre as legendas
-            }
-          }
+        plugins: {
+          title: { display: true, text: 'Tipos das sessões', color: '#000', font: { size: 18, weight: '400' } },
+          legend: { position: 'right', labels: { color: '#000', font: { size: 14 } } }
         },
-
-        // define o tamanho do "buraco" do grafico, ou seja, a parte central que fica vazia
         cutout: '50%'
       }
     });
 
-    // RESPONSIVIDADE DOS GRÁFICOS
+    /**
+     * Ajusta tamanhos dos gráficos para telas Full HD, 2K e 4K.
+     */
     function ajustarGraficos() {
-
       const largura = window.innerWidth;
-
       let linhaBorderWidth = 3;
       let tituloFontSize = 18;
       let legendaFontSize = 14;
 
-      // FULL HD
-      if (largura >= 1920 && largura < 2560) {
-        linhaBorderWidth = 5;
-        tituloFontSize = 22;
-        legendaFontSize = 16;
-      }
+      if (largura >= 1920 && largura < 2560) { linhaBorderWidth = 5; tituloFontSize = 22; legendaFontSize = 16; }
+      else if (largura >= 2560 && largura < 3840) { linhaBorderWidth = 7; tituloFontSize = 26; legendaFontSize = 18; }
+      else if (largura >= 3840) { linhaBorderWidth = 10; tituloFontSize = 50; legendaFontSize = 35; }
 
-      // 2K
-      else if (largura >= 2560 && largura < 3840) {
-        linhaBorderWidth = 7;
-        tituloFontSize = 26;
-        legendaFontSize = 18;
-      }
-
-      // 4K
-      else if (largura >= 3840) {
-        linhaBorderWidth = 10;
-        tituloFontSize = 50;
-        legendaFontSize = 35;
-      }
-
-      // APLICAR NO GRÁFICO DE LINHA
-      lineChart.data.datasets.forEach(dataset => {
-        dataset.borderWidth = linhaBorderWidth;
-      });
-
+      lineChart.data.datasets.forEach(dataset => dataset.borderWidth = linhaBorderWidth);
       lineChart.options.plugins.title.font.size = tituloFontSize;
-
-      // APLICAR NO GRÁFICO DE PIZZA
       pieChart.options.plugins.title.font.size = tituloFontSize;
-
       pieChart.options.plugins.legend.labels.font.size = legendaFontSize;
 
-      // ATUALIZA OS GRÁFICOS
       lineChart.update();
       pieChart.update();
     }
@@ -179,104 +253,69 @@ window.onload = () => { // assim que carrega a pág ele executa uma aero functio
     ajustarGraficos();
     window.addEventListener("resize", ajustarGraficos);
 
-    carregarFilhos(); //AQUI EU AINDA CARREGO ALGUNS DADOS MOCKADOS PARA TESTE, MAS DEVERÁ VIR DA API
+    // Carrega dados iniciais da dashboard
+    carregarFilhos();
     carregarPagamentos();
   }
 };
 
-const ctxPizza = document.getElementById('graficoPizza'); // pegando o elemento do grafico de pizza (canvas) para criar o grafico em cima dele
+const ctxPizza = document.getElementById('graficoPizza');
 
-
-
-// MENSAGEM DE SUPORTE
+/**
+ * Enviar Suporte: Exibe uma notificação (toast) de sucesso.
+ */
 function enviarSuporte() {
-  // Remove toast anterior
   const oldToast = document.querySelector('.toast-simple');
-  if (oldToast) oldToast.remove(); // remove o toast anterior para evitar acumulo de mensagens caso o usuário clique várias vezes no botão de suporte
+  if (oldToast) oldToast.remove();
   
-  // Cria novo toast
-  const toast = document.createElement('div'); // cria um elemento div para o toast
+  const toast = document.createElement('div');
   toast.className = 'toast-simple';
-  toast.innerHTML = '<i class="fa-solid fa-square-check" style="color: rgb(83, 165, 135);"></i> Mensagem enviada com sucesso! Em breve entraremos em contato.'; // conteúdo do toast, com um ícone de check e a mensagem de sucesso
-  document.body.appendChild(toast); // adiciona o toast ao corpo do documento para que ele apareça na tela
+  toast.innerHTML = '<i class="fa-solid fa-square-check" style="color: rgb(83, 165, 135);"></i> Mensagem enviada com sucesso!';
+  document.body.appendChild(toast);
   
-  // Animação
-  setTimeout(() => toast.classList.add('show'), 100); // pequena pausa para garantir que o toast seja adicionado ao DOM antes de iniciar a animação
-  setTimeout(() => toast.remove(), 2000); // 2.5s depois, remove o toast da tela para limpar a interface
+  setTimeout(() => toast.classList.add('show'), 100);
+  setTimeout(() => toast.remove(), 2500);
 }
 
+// ============================================================
+// DADOS MOCKADOS (SIMULAÇÃO DE API)
+// ============================================================
 
-//================================ A APRTIR DAQUI É APENAS DADOS MOCKADOS PARA TESTE ====================================
-// MOCK DATA
 const filhos = ["João", "Maria"];
 
 const relatorios = [
-  {
-    filho: "João",
-    data: "2026-04-20",
-    objetivo: "Coordenação motora",
-    instrumento: "Brinquedos sensoriais",
-    obs: "Boa evolução"
-  },
-  {
-    filho: "João",
-    data: "2026-04-20",
-    objetivo: "Coordenação motora 2",
-    instrumento: "Brinquedos sensoriais 2",
-    obs: "Boa evolução !"
-  },
-  {
-    filho: "João",
-    data: "2026-04-15",
-    objetivo: "Fala",
-    instrumento: "Jogos de imitação",
-    obs: "Precisa de mais estímulos"
-  },
-  {
-    filho: "Maria",
-    data: "2026-04-18",
-    objetivo: "Fala",
-    instrumento: "Jogos de imitação",
-    obs: "Precisa de mais estímulos"
-  }
+  { filho: "João", data: "2026-04-20", objetivo: "Coordenação motora", instrumento: "Brinquedos sensoriais", obs: "Boa evolução" },
+  { filho: "Maria", data: "2026-04-18", objetivo: "Fala", instrumento: "Jogos de imitação", obs: "Precisa de mais estímulos" }
 ];
 
 const pagamentos = [
   { data: "10/04", valor: "R$ 200", status: "Pago" },
-  { data: "20/04", valor: "R$ 200", status: "Pendente" },
-  { data: "30/04", valor: "R$ 200", status: "Pendente" }
+  { data: "20/04", valor: "R$ 200", status: "Pendente" }
 ];
 
-
-
-// FILHOS
+/**
+ * Popula o select de filhos na dashboard.
+ */
 function carregarFilhos() {
   const select = document.getElementById("filhoSelect");
-
+  if (!select) return;
   filhos.forEach(f => {
     const opt = document.createElement("option");
-    opt.value = f;
-    opt.textContent = f;
+    opt.value = f; opt.textContent = f;
     select.appendChild(opt);
   });
 }
 
-// RELATÓRIOS
+/**
+ * Filtra relatórios clínicos por filho e data.
+ */
 function filtrarRelatorios() {
   const filho = document.getElementById("filhoSelect").value;
   const data = document.getElementById("dataFiltro").value;
-
-  const resultado = relatorios.filter(r =>
-    r.filho === filho && (!data || r.data === data)
-  );
+  const resultado = relatorios.filter(r => r.filho === filho && (!data || r.data === data));
 
   const div = document.getElementById("relatorioResultado");
-  div.innerHTML = "";
-
-  if (resultado.length === 0) {
-    div.innerHTML = "Não há dados";
-    return;
-  }
+  div.innerHTML = resultado.length === 0 ? "Não há dados" : "";
 
   resultado.forEach(r => {
     div.innerHTML += `
@@ -289,10 +328,12 @@ function filtrarRelatorios() {
   });
 }
 
-// PAGAMENTOS
+/**
+ * Renderiza a lista de pagamentos na dashboard.
+ */
 function carregarPagamentos() {
   const div = document.getElementById("listaPagamentos");
-
+  if (!div) return;
   pagamentos.forEach(p => {
     div.innerHTML += `
       <div class="pagamento">
@@ -301,4 +342,3 @@ function carregarPagamentos() {
     `;
   });
 }
-

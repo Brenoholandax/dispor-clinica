@@ -1,129 +1,312 @@
-* { /* reset geral para garantir que todos os elementos tenham as mesmas margens, preenchimentos e box-sizing */
+/* ============================================================
+   RESET E CONFIGURAÇÕES GERAIS
+   ============================================================ */
+
+* { 
+  /* Garante que margens e preenchimentos sejam consistentes em todos os navegadores */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  background: url('/dispor-clinica/frontend-pais/Assets/Background-login.png') no-repeat center; /* imagem de fundo para a página de login, centralizada e sem repetição */
+  /* Imagem de fundo padrão (Pais/Clínica) */
+  background: url('/dispor-clinica/frontend-pais/Assets/Background-login.png') no-repeat center;
   background-size: cover;
-  font-family: "Plus Jakarta Sans", sans-serif; /* fonte principal para a página */
+  font-family: "Plus Jakarta Sans", sans-serif;
+  transition: background 0.5s ease; /* Transição suave ao mudar de fundo */
 }
 
-.center { /* classe para centralizar o conteúdo da página */
+/* Estilo aplicado quando o tema Administrativo está ativo */
+body.theme-adm {
+  background: url('/dispor-clinica/frontend-pais/Assets/Background-login-adm.webp') no-repeat center;
+  background-size: cover;
+}
+
+.center { 
+  /* Centraliza o card de login no meio da tela */
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden;
 }
-/*======== DECORAÇÃO =========*/
-.decoration-box{ /* caixa de decoração do lado esquerdo da página, com informações sobre os benefícios do sistema */
+
+/* ============================================================
+   WRAPPERS E SISTEMA DE ABAS
+   ============================================================ */
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s ease-in-out;
+  position: relative;
+}
+
+.tabs-container {
+  display: flex;
+  gap: 0;
+  margin-bottom: -1px; /* Sobrepõe a borda do card para efeito de continuidade */
+  z-index: 10;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  width: fit-content;
+}
+
+.tab {
+  padding: 10px 25px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  background: transparent; 
+  color: #ffffff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px); /* Efeito de vidro nas abas */
+  opacity: 1; 
+}
+
+.tab.active {
+  background: #53a587; /* Cor de destaque (Verde) */
+  border-color: #53a587;
+  color: white;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+} 
+
+.tab:not(.active):hover {
+  /* Efeito visual ao passar o mouse em abas não selecionadas */
+  background: linear-gradient(135deg, #44a380, #37a37c);
+}
+
+/* ============================================================
+   TEMA ADM (ADMINISTRATIVO)
+   Sobrescreve as cores padrão para o tom Azul.
+   ============================================================ */
+
+.main-wrapper.theme-adm .tab.active {
+  background-color: #1e40af;
+  border-color: #1e40af;
+}
+
+.main-wrapper.theme-adm .tab.active:hover {
+  background-color: #1e40af;
+}
+
+.main-wrapper.theme-adm .tab:not(.active):hover {
+  background: rgb(30, 64, 175);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.main-wrapper.theme-adm .login-box h2,
+.main-wrapper.theme-adm .redefinir_Password {
+  color: #1e40af;
+}
+
+.main-wrapper.theme-adm .login-box button {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  box-shadow: 0px 4px 0px #1e40af;
+}
+
+.main-wrapper.theme-adm .login-box button:hover {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  box-shadow: 0px 2px 0px #1e40af;
+}
+
+.main-wrapper.theme-adm .icon_input input:focus {
+  border: 2px solid #1e40af !important;
+}
+
+.main-wrapper.theme-adm .checkbox-container input:checked + .checkmark {
+  background: #1e40af !important;
+  border-color: #1e40af !important;
+}
+
+/* ============================================================
+   LAYOUT DO CARD E ANIMAÇÕES DE TROCA
+   ============================================================ */
+
+.card-wrapper {
+  display: flex;
+  position: relative;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efeito de pulso (escala) ao alternar abas no modo desktop */
+.card-wrapper.anim-pop {
+  animation: popEffect 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes popEffect {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.9); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Alinhamento das abas seguindo a caixa colorida quando em modo 'reverse' */
+.main-wrapper.reverse .tabs-container {
+  transform: translateX(calc(850px - 100%));
+}
+
+/* Animação que inverte a posição da decoração e do login (usada em Clínica e ADM) */
+.card-wrapper.reverse .decoration-box {
+  transform: translateX(500px); 
+  border-radius: 0 0 10px 0; /* "Solda" na esquerda e topo-direito para as abas */
+}
+
+.card-wrapper.reverse .login-box {
+  transform: translateX(-350px); 
+  border-radius: 10px 0 0 10px; /* Inverte arredondamento para a esquerda */
+}
+
+/* ============================================================
+   CAIXA DE DECORAÇÃO (LADO COLORIDO)
+   ============================================================ */
+
+.decoration-box{ 
   padding: 5px 10px 0px 20px;
   margin: 0px;
   width: 350px;
   height: 400px;
   background-color: #53a587;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  /* Bordas: soldado na direita e no topo-esquerdo para as abas */
+  border-radius: 0 0 0 10px; 
   display: flex;
   flex-direction: column;
   gap: 10px;
   font-family: "Nunito", sans-serif;
   border: 1px solid rgba(255,255,255,0.2);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.356);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color 0.6s ease,
+              border-radius 0.6s ease;
+  z-index: 2;
 }
-.box-emprise{ /* caixa para o logo e nome da clínica */
+
+.decoration-box.theme-adm {
+  background-color: #1e40af;
+}
+
+.box-emprise{ 
   display: flex;
   align-items: center;
   gap: 3px;
   margin-bottom: 15px;
 }
-.box-emprise p{ /* estilo para o nome da clínica */
-  padding: 19px 0px 0px 0px;
-}
-.decoration-box h2{ /* estilo para o título da caixa de decoração, que mostra os beneficios */
+
+.box-emprise p{ padding: 19px 0px 0px 0px; }
+
+.decoration-box h2{ 
   margin-bottom: 0px;
   color: #ffffff;
   font-size: 23px;
   font-weight: 900;
 }
-#benefits{ /* estilo para os benefícios, só para zerar o margin-bottom */
-  margin-bottom: 0px;
-}
-.decoration-box p{ /* estilo para os parágrafos da caixa de decoração, que mostram os beneficios do sistema */
+
+.decoration-box p{ 
   color: #ffffff;
   font-size: 14px;
   font-weight: 400;
   margin-bottom: 20px;
 }
-.decoration-box img{ /* estilo para a imagem da caixa de decoração */
-  width: 25px;
-  height: 25px;
+
+.decoration-box img{ width: 25px; height: 25px; }
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
-/*======== LOGIN ========= */
-.login-box { /* caixa principal do login, onde o usuário irá inserir suas credenciais para acessar o sistema */
+.benefit-item i { font-size: 16px; }
+
+/* ============================================================
+   CAIXA DE LOGIN (FORMULÁRIO)
+   ============================================================ */
+
+.login-box { 
   background: rgba(255, 255, 255, 0.507);
   padding: 30px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-radius: 0 10px 10px 0; /* Soldado na esquerda por padrão (Pais) */
   width: 500px;
   height: 400px;
   text-align: center;
   border: 1px solid rgba(255,255,255,0.2);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px); /* Efeito Glassmorphism */
   box-shadow: 10px 15px 40px rgba(0, 0, 0, 0.356);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), border-radius 0.6s ease;
+  z-index: 1;
 }
-.login-box h2{ /* estilo para o título da caixa de login */
+
+.login-box h2{ 
   font-weight: 600;
   color: #53a587;
   font-family: 'Poppins', sans-serif;
+  transition: color 0.3s ease;
 }
-.login-box h5{ /* estilo para o subtítulo da caixa de login */
+
+.login-box h5{ 
   font-weight: 400;
   color: #5f5f5f;
   font-family: 'Poppins', sans-serif;
   margin-bottom: 40px;
 }
-/*======== INPUTS =========*/
-.login-box input { /* estilo para os campos de input da caixa de login */
+
+/* ============================================================
+   ESTILIZAÇÃO DE INPUTS E ÍCONES
+   ============================================================ */
+
+.login-box input { 
   width: 100%;
   margin: 0px 0px 10px 0px;
   padding: 10px;
-  border: none;
+  border: 2px solid transparent; 
   border-radius: 30px;
   background-color: #dfdfdf;
+  transition: all 0.3s ease;
 }
+
 .icon_input {
   position: relative;
-  margin: 2px 0; /*distanciamento dentro do input(entre o icone e o label) | coloca uma margem entre eles*/
+  margin: 2px 0;
 }
 
 .icon_input input {
-  width: 70%; /*tamanho do input + icone*/
-  padding: 10px 10px 10px 35px; /*espaço ao redor do ícone*/
-}
-.icon_input input:focus {
-  outline: none; /*remove a borda azul padrão do input quando ele é focado*/
+  width: 70%; 
+  padding: 10px 10px 10px 35px; /* Espaço para o ícone à esquerda */
 }
 
-.icon_input .icon { /*Configurações do icone em si*/
+.icon_input input:focus {
+  outline: none; 
+  border: 2px solid #53a587;
+  background-color: #ffffff;
+}
+
+.icon_input .icon {
   position: absolute;
-  left: 77px; /*10 pixels mais longe da borda esquerda*/
-  top: 33%; /*33% afastado do topo, isso faz com que o icone fique mais baixo, masss não centralizado*/
-  transform: translateY(-50%);/*centralizo o icone corrigindo o posicionamento depois do top 50%*/
+  left: 77px; 
+  top: 38%; 
+  transform: translateY(-50%);
   color: #5f5f5f;
 }
 
-/*============ Box do checkbox e do "esqueceu sua senha?" ============*/
-.add-plus-box{ /* caixa para o checkbox de "lembrar senha" e o link de "esqueci minha senha" ficarem lado a lado */
+/* ============================================================
+   RODAPÉ DO FORMULÁRIO (CHECKBOX E ESQUECI SENHA)
+   ============================================================ */
+
+.add-plus-box{ 
   display: flex;
   justify-content: space-between;
   padding: 0px 70px 0px 70px;
   margin-bottom: 10px;
 }
-/* CONTAINER DA CHECKBOX */
-.checkbox-container { /* container para o checkbox personalizado de "lembrar senha", com estilo para o texto e o layout */
+
+.checkbox-container { 
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -133,13 +316,10 @@ body {
   margin-bottom: 10px;
 }
 
-/* ESCONDE CHECKBOX PADRÃO */
-.checkbox-container input { /* esconde o checkbox padrão, para usar o estilo personalizado */
-  display: none;
-}
+.checkbox-container input { display: none; } /* Esconde checkbox original */
 
-/* CAIXA */
-.checkmark { /* estilo para a caixa personalizada do checkbox, que será preenchida quando marcado */
+.checkmark { 
+  /* Estilização customizada do checkbox */
   width: 18px;
   height: 18px;
   border-radius: 6px;
@@ -149,13 +329,9 @@ body {
   transition: all 0.2s ease;
 }
 
-.checkbox-container:hover .checkmark {/* estilo para a caixa personalizada do checkbox quando o mouse passa por cima, para dar um feedback visual ao usuário */
-  border-color: rgb(51, 50, 50); 
-}
-
-/* CHECK */
-.checkmark::after { /* estilo para o "check" que aparece dentro da caixa personalizada do checkbox quando marcado */
-  content: ""; /* necessário para criar o elemento pseudo */
+.checkmark::after { 
+  /* Símbolo de "V" (check) */
+  content: ""; 
   position: absolute;
   width: 5px;
   height: 10px;
@@ -167,376 +343,188 @@ body {
   transition: 0.2s ease;
 }
 
-/* QUANDO MARCADO */
-.checkbox-container input:checked + .checkmark { /* estilo para a caixa personalizada do checkbox quando marcado, preenchendo a caixa e mudando a cor da borda */
+.checkbox-container input:checked + .checkmark { 
   background: #53a587;
   border-color: #53a587;
 }
 
-.checkbox-container input:checked + .checkmark::after { /* estilo para o "check" que aparece dentro da caixa personalizada do checkbox quando marcado, fazendo ele aparecer com uma animação de escala */
+.checkbox-container input:checked + .checkmark::after { 
   transform: rotate(45deg) scale(1);
 }
-.redefinir_Password{ /* estilo para o link de "esqueci minha senha", com cor e estilo de texto */
+
+.redefinir_Password{ 
   color: #53a587;
   text-decoration: none;
   font-size: 14px;
 }
-.redefinir_Password:hover{ /* quando o mouse passa por cima, para dar um feedback visual ao usuário */
-  text-decoration: underline;
-}
 
-/*========= BUTTON =========*/
-.login-box button { /* estilo para o botão de login, com cor, tamanho e efeitos de hover e active */
+.redefinir_Password:hover{ text-decoration: underline; }
+
+/* ============================================================
+   BOTÃO DE LOGIN
+   ============================================================ */
+
+.login-box button { 
   width: 70%;
   padding: 10px;
   background: linear-gradient(135deg, #53a587, #44a380);
   color: white;
   border-radius: 30px;
   border: none;
-  box-shadow: 0px 4px 0px #53a587; /*sombra do botão, da a impressão de que ele é clicável*/
+  box-shadow: 0px 4px 0px #53a587; /* Sombra sólida 3D */
   transition: all 0.5s ease;
 }
-button:hover{
-  background: linear-gradient(135deg, #44a380, #37a37c); /*cor do botão quando o mouse passa por cima*/
-  box-shadow: 0px 2px 0px #44a380; /*sombra do botão quando o mouse passa por cima, da a impressão de que ele é clicado*/
-}
-button:active {
-  transform: scale(0.95); /*efeito de clique, faz o botão diminuir um pouco quando clicado*/
+
+.login-box button:hover{
+  background: linear-gradient(135deg, #44a380, #37a37c);
+  box-shadow: 0px 2px 0px #44a380; 
 }
 
+button:active { transform: scale(0.95); }
 
+/* ============================================================
+   RESPONSIVIDADE MANUAL - TELAS GRANDES
+   ============================================================ */
 
+/* FULL HD (1600px+) */
+@media (min-width: 1600px) {
+  .main-wrapper { width: 1200px; }
+  .decoration-box { width: 500px; height: 600px; padding: 40px; border-radius: 0 0 0 20px; }
+  .login-box { width: 700px; height: 600px; padding: 60px; border-radius: 0 20px 20px 0; }
+  
+  .card-wrapper.reverse .decoration-box { transform: translateX(700px); border-radius: 0 0 20px 0; }
+  .card-wrapper.reverse .login-box { transform: translateX(-500px); border-radius: 20px 0 0 20px; }
+  .main-wrapper.reverse .tabs-container { transform: translateX(calc(1200px - 100%)); }
 
-/*==========================RESPONSIVIDADE PARA TELAS GRANDES==========================*/
+  .tab { padding: 15px 35px; font-size: 20px; border-top-left-radius: 20px; border-top-right-radius: 20px; }
+  
+  .decoration-box h2 { font-size: 32px; margin-bottom: 10px; }
+  .decoration-box p { font-size: 18px; margin-bottom: 30px; }
+  .benefit-item { font-size: 18px; margin-bottom: 15px; }
+  .benefit-item i { font-size: 20px; }
 
-@media (min-width: 1600px) { /*============FULL HD============*/
-  .decoration-box {
-    width: 450px;
-    height: 520px;
-    padding: 30px;
-    gap: 15px;
-    border-radius: 20px 0 0 20px;
-  }
-  .login-box {
-    width: 650px;
-    height: 520px;
-    padding: 50px;
-    border-radius: 0 20px 20px 0;
-  }
-  .box-emprise {
-    gap: 8px;
-    margin-bottom: 0px;
-  }
-  .box-emprise img {
-    width: 35px;
-    height: 35px;
-  }
-  .box-emprise p {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  .decoration-box h2 {
-    font-size: 32px;
-  }
-  .decoration-box p {
-    font-size: 18px;
-  }
-  .login-box h2 {
-    font-size: 32px;
-  }
-  .login-box h5 {
-    font-size: 18px;
-    margin-bottom: 50px;
-  }
-  .icon_input input {
-    padding: 15px 15px 15px 50px;
-    font-size: 18px;
-  }
+  .login-box h2 { font-size: 36px; margin-bottom: 10px; }
+  .login-box h5 { font-size: 20px; margin-bottom: 50px; }
+
+  .icon_input input { padding: 18px 18px 18px 60px; font-size: 20px; border-radius: 40px; }
+  .icon_input .icon { left: 110px; font-size: 22px; top: 43%; } 
+  .login-box button { padding: 18px; font-size: 20px; border-radius: 40px; }
+  .checkbox-container { font-size: 18px; }
+  .checkmark { width: 22px; height: 22px; }
+  .redefinir_Password { font-size: 18px; }
+  .box-emprise img{width: 40px; height: 40px;}
+  .box-emprise p{ padding-top: 30px;}
+  .add-plus-box{padding: 0px 85px 0px 85px;}
+}
+
+/* 2K (2200px+) */
+@media (min-width: 2200px) {
+  .main-wrapper { width: 1600px; }
+  .decoration-box { width: 650px; height: 800px; padding: 60px; border-radius: 0 0 0 30px; }
+  .login-box { width: 950px; height: 800px; padding: 80px; border-radius: 0 30px 30px 0; }
+
+  .card-wrapper.reverse .decoration-box { transform: translateX(950px); border-radius: 0 0 30px 0; }
+  .card-wrapper.reverse .login-box { transform: translateX(-650px); border-radius: 30px 0 0 30px; }
+  .main-wrapper.reverse .tabs-container { transform: translateX(calc(1600px - 100%)); }
+
+  .tab { padding: 20px 50px; font-size: 28px; border-top-left-radius: 30px; border-top-right-radius: 30px; }
+
+  .decoration-box h2 { font-size: 42px; margin-bottom: 20px; }
+  .decoration-box p { font-size: 24px; margin-bottom: 40px; }
+  .benefit-item { font-size: 24px; margin-bottom: 20px; }
+  .benefit-item i { font-size: 28px; }
+
+  .login-box h2 { font-size: 48px; margin-bottom: 15px; }
+  .login-box h5 { font-size: 26px; margin-bottom: 70px; }
+
+  .icon_input input { padding: 25px 25px 25px 80px; font-size: 28px; border-radius: 50px; margin-bottom: 20px; }
+  .icon_input .icon { left: 135px; font-size: 30px; top: 43%; }
+  .login-box button { padding: 25px; font-size: 28px; border-radius: 50px; }
+  .checkbox-container { font-size: 24px; }
+  .checkmark { width: 28px; height: 28px; }
+  .redefinir_Password { font-size: 24px; }
+  .box-emprise{margin-bottom: 40px;}
+  .box-emprise img{width: 60px; height: 60px;}
+  .box-emprise p{ padding-top: 0px; margin-bottom: 0px;}
+  .add-plus-box{padding: 0px 120px 0px 120px;}
+}
+
+/* 4K (3200px+) */
+@media (min-width: 3200px) {
+  .main-wrapper { width: 2400px; }
+  .decoration-box { width: 1000px; height: 1100px; padding: 90px; border-radius: 0 0 0 50px; }
+  .login-box { width: 1400px; height: 1100px; padding: 120px; border-radius: 0 50px 50px 0; }
+
+  .card-wrapper.reverse .decoration-box { transform: translateX(1400px); border-radius: 0 0 50px 0; }
+  .card-wrapper.reverse .login-box { transform: translateX(-1000px); border-radius: 50px 0 0 50px; }
+  .main-wrapper.reverse .tabs-container { transform: translateX(calc(2400px - 100%)); }
+
+  .tab { padding: 30px 80px; font-size: 40px; border-top-left-radius: 50px; border-top-right-radius: 50px; }
+
+  .decoration-box h2 { font-size: 64px; margin-bottom: 30px; }
+  .decoration-box p { font-size: 36px; margin-bottom: 60px; }
+  .benefit-item { font-size: 36px; margin-bottom: 30px; }
+  .benefit-item i { font-size: 42px; }
+
+  .login-box h2 { font-size: 72px; margin-bottom: 20px; }
+  .login-box h5 { font-size: 38px; margin-bottom: 100px; }
+
+  .icon_input input { padding: 40px 40px 40px 120px; font-size: 42px; border-radius: 70px; margin-bottom: 40px; }
+  .icon_input .icon { left: 210px; font-size: 45px; top: 39%; }
+  .login-box button { padding: 40px; font-size: 42px; border-radius: 70px; }
+  .checkbox-container { font-size: 36px; margin-bottom: 40px; }
+  .checkmark { width: 40px; height: 40px; }
+  .redefinir_Password { font-size: 36px; }
+  .box-emprise{margin-bottom: 60px;}
+  .box-emprise img{width: 90px; height: 90px;}
+  .box-emprise p{ padding-top: 0px; margin-bottom: 0px;}
+  .add-plus-box{padding: 0px 175px 0px 175px;}
+}
+
+/* ============================================================
+   RESPONSIVIDADE - MOBILE E TABLET
+   ============================================================ */
+
+/* TABLETS (< 870px) */
+@media (max-width: 870px) {
+  body { padding: 20px; }
+  .main-wrapper { width: 100%; align-items: center; }
+  .decoration-box { display: none; } /* Esconde painel lateral em telas menores */
+  .tabs-container { width: 100%; justify-content: center; transform: none !important; }
+  .tab { flex: 1; text-align: center; padding: 12px 10px; }
+  .login-box { width: 100%; height: auto; border-radius: 10px !important; transform: none !important; }
+  .card-wrapper.reverse .login-box { transform: none !important; }
+}
+
+/* SMARTPHONES (< 480px) - AJUSTES ESPECÍFICOS */
+@media (max-width: 480px) {
+  .login-box { padding: 30px 20px; }
+  .card-wrapper { width: 100%; }
+
+  .login-box h5 { margin-bottom: 25px; }
+
+  /* Inputs mais largos para celulares */
+  .icon_input input, 
+  .login-box button { width: 90%; }
+
+  /* Alinhamento dos ícones para a borda esquerda do input */
   .icon_input .icon {
-    left: 100px;
-    top: 40%;
-    font-size: 20px;
+    left: 5%; 
+    margin-left: 12px;
   }
+
+  .icon_input input { padding-left: 45px; }
+
+  .checkbox-container { display: none; } /* Remove 'Lembrar senha' no celular */
+
   .add-plus-box {
-    padding: 0 100px;
-    margin-bottom: 20px;
-  }
-  .checkbox-container, .redefinir_Password {
-    font-size: 16px;
-  }
-  .checkmark {
-    width: 22px;
-    height: 22px;
-  }
-  .login-box button {
-    padding: 15px;
-    font-size: 18px;
-    border-radius: 40px;
-  }
-}
-
-@media (min-width: 2200px) { /*========2K===========*/
-  .decoration-box {
-    width: 600px;
-    height: 700px;
-    padding: 40px;
-    gap: 20px;
-    border-radius: 30px 0 0 30px;
-  }
-  .login-box {
-    width: 850px;
-    height: 700px;
-    padding: 70px;
-    border-radius: 0 30px 30px 0;
-  }
-  .box-emprise {
-    gap: 12px;
-    margin-bottom: 0px;
-  }
-  .box-emprise img {
-    width: 50px;
-    height: 50px;
-  }
-  .box-emprise p {
-    font-size: 28px;
-    margin-bottom: 0px;
-  }
-  .decoration-box h2 {
-    font-size: 45px;
-  }
-  .decoration-box p {
-    font-size: 26px;
-  }
-  .login-box h2 {
-    font-size: 45px;
-  }
-  .login-box h5 {
-    font-size: 26px;
-  }
-  .icon_input input {
-    margin-top: 5px;
-    padding: 18px 22px 22px 70px;
-    font-size: 26px;
-    border-radius: 50px;
-  }
-  .icon_input .icon {
-    left: 135px;
-    top: 43%;
-    font-size: 28px;
-  }
-  .add-plus-box {
-    padding: 0 120px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-  }
-  .checkbox-container, .redefinir_Password {
-    font-size: 24px;
-  }
-  .checkmark {
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
-  }
-  .checkmark::after {
-    width: 12px;
-    height: 12px;
-    border-width: 0 5px 5px 0;
-    top: 2px;
-    left: 5px;
-  }
-  .login-box button {
-    padding: 22px;
-    font-size: 26px;
-    border-radius: 50px;
-    box-shadow: 0px 6px 0px #53a587;
-  }
-}
-
-@media (min-width: 3000px) { /*============4K============*/
-  .decoration-box {
-    width: 850px;
-    height: 950px;
-    padding: 70px;
-    gap: 30px;
-    border-radius: 50px 0 0 50px;
-  }
-  .login-box {
-    width: 1200px;
-    height: 950px;
-    padding: 100px;
-    border-radius: 0 50px 50px 0;
-  }
-  .box-emprise {
-    gap: 20px;
-    margin-bottom: 0px;
-  }
-  .box-emprise img {
-    width: 70px;
-    height: 70px;
-  }
-  .box-emprise p {
-    font-size: 42px;
-    padding-top: 25px;
-  }
-  .decoration-box h2 {
-    font-size: 65px;
-    margin-bottom: 0px;
-  }
-  .decoration-box p {
-    font-size: 38px;
-    margin-bottom: 20px;
-  }
-  .login-box h2 {
-    font-size: 65px;
-  }
-  .login-box h5 {
-    font-size: 38px;
-    margin-bottom: 100px;
-  }
-  .icon_input input {
-    padding: 35px 35px 25px 110px;
-    margin-bottom: 30px;
-    font-size: 38px;
-    border-radius: 70px;
-  }
-  .icon_input .icon {
-    left: 190px;
-    top: 43%;
-    font-size: 42px;
-  }
-  .add-plus-box {
-    margin-top: 20px;
-    padding: 0 150px;
-    margin-bottom: 45px;
-    width: 100%;
-  }
-  .checkbox-container, .redefinir_Password {
-    font-size: 34px;
-    width: 100%;
-  }
-  .checkmark {
-    width: 45px;
-    height: 45px;
-    border-radius: 12px;
-  }
-  .checkmark::after {
-    width: 12px;
-    height: 22px;
-    border-width: 0 5px 5px 0;
-    top: 4px;
-    left: 12px;
-  }
-  .login-box button {
-    padding: 35px;
-    font-size: 38px;
-    border-radius: 70px;
-    box-shadow: 0px 10px 0px #53a587;
-  }
-}
-
-/*==============TABLETS============*/
-@media (max-width: 870px){ /*quando a largura da tela for menor que 870px, o layout muda para se adaptar melhor a telas menores, como tablets*/
-  body{ /*garante que o corpo da página tenha uma altura mínima de 100% da viewport, para evitar problemas de layout em telas menores */
-    min-height: 100dvh;
-  }
-  .decoration-box { /*tira a caixa de decoração do lado esquerdo da página, para dar mais espaço para a caixa de login em telas menores */
-    display: none;
-  }
-  /* titulo e subtitulo */
-  .login-box h2{
-    font-size: 25px;
-  }
-  .login-box h5{
-    font-size: 16px;
-  }
-  /*tamanho dos inputs*/
-  .icon_input input {
-    width: 80%;
-    font-size: 15px; 
-  }
-  /* icone */
-  .icon_input .icon {
-    left: 55px; 
-  }
-  .add-plus-box{ /*Box do checkbox e do "esqueceu sua senha?" */
-    padding-right: 40px;
-    padding-left: 50px;
-  }
-  .checkbox-container { /* mudnao somente o tamanho da fonte da checkbox, para se adaptar melhor a telas menores */
-    font-size: 15px;
-  }
-  .redefinir_Password{ /*tamanho da fonte para o "esqueci minha senha" */
-    font-size: 15px;
-  }
-}
-
-
-
-/*=======Celular=======*/
-@media (max-width: 430px) { /*quando a largura da tela for menor que 430px, o layout muda para se adaptar melhor a telas menores, como celulares*/
-  body{ /*garante que o corpo da página tenha uma altura mínima de 100% da viewport, para evitar problemas de layout em telas menores */
-    min-height: 100dvh;
-  }
-  .decoration-box { /*tira a caixa de decoração do lado esquerdo da página, para dar mais espaço para a caixa de login em telas menores */
-    display: none;
-  }
- /*Box principal*/
-  .login-box {
-    width: 100%;
-    border-radius: 10px; /* remove o efeito de "lado direito" */
-  }
-  /* titulo e subtitulo */
-  .login-box h2{
-    font-size: 20px;
-  }
-  .login-box h5{
-    margin-bottom: 25px;
-  }
-  /*tamanho dos inputs*/
-  .icon_input input {
-    width: 90%; 
-  }
-  /* icone */
-  .icon_input .icon {
-    left: 23px; 
-    top: 31%;
-    transform: translateY(-50%);
-  }
-  /*Box do checkbox e do "esqueceu sua senha?" */
-  .add-plus-box{
-    font-size: 10px;
-    padding: 0px 10px 0px 5px;
-    margin-bottom: 10px;
-    width: 100%;
-    max-width: 315px;
-  }
-  /* CONTAINER SOMENTE DA CHECKBOX */
-  .checkbox-container {
-    gap: 5px;
-  }
-  /*botao*/
-  .login-box button {
-    width: 90%;
-  }
-
-  .center {
-    padding: 20px;
-  }
-}
-@media (max-width: 390px){ /*Jeitinho brasileiro pro media de celular ainda*/
-  .add-plus-box{ /*Box do checkbox e do "esqueceu sua senha?" */
+    padding: 0 5%;
     justify-content: flex-start;
-    padding-left: 20px;
-    margin-bottom: 20px;
-  }
-  .checkbox-container { /* CONTAINER SOMENTE DA CHECKBOX */
-    display: none;
-  }
-  .redefinir_Password{ /* tamaanho da fonte para o "esqueci minha senha" */
-    font-size: 13px;
-  }
-  .login-box input { /* estilo para os campos de input da caixa de login, com uma margem menor para se adaptar melhor a telas menores */
-    margin: 0px 0px 20px 0px;
+    margin-top: 5px;
   }
 
+  .redefinir_Password {
+    font-size: 13px;
+    text-align: left;
+  }
 }

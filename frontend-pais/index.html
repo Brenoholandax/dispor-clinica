@@ -12,47 +12,91 @@
 </head>
 <body class="center">
 
-  <div class="decoration-box">
-
-    <div class="box-emprise">
-      <img src="Assets/Logo-Do-Login.png" alt="logo da clínica TEA"> <!-- aqui vai o logo da clinica TEA -->
-      <p>TEA</p> <!-- aqui vai o nome da clinica TEA -->
+  <div class="main-wrapper">
+    <div class="tabs-container">
+      <button id="tab-pais" class="tab active" onclick="switchTab('pais')">Pais</button>
+      <button id="tab-clinica" class="tab" onclick="switchTab('clinica')">Clínica</button>
+      <button id="tab-adm" class="tab" onclick="switchTab('adm')">ADM</button>
     </div>
 
-    <h2>Cuidado, escuta e evolução para cada criança.</h2> 
+    <div class="card-wrapper" id="card-wrapper">
+      <div class="decoration-box" id="decoration-box">
 
-    <p>Acompanhe sessões, relatórios clínicos, pagamentos e suporte da família em um só lugar.</p>
-    <p id="benefits"><i class="fa-solid fa-circle-check" style="color: rgb(255, 255, 255);"></i> Relatórios clínicos detalhados</p> <!-- cada benefício tem um ícone de check para destacar as vantagens do sistema -->
-    <p id="benefits"><i class="fa-solid fa-circle-check" style="color: rgb(255, 255, 255);"></i> Acompanhamento por filho</p>
-    <p id="benefits"><i class="fa-solid fa-circle-check" style="color: rgb(255, 255, 255);"></i> Histórico financeiro transparente</p>
-    
-  </div>
+        <div class="box-emprise">
+          <img src="Assets/Logo-Do-Login.png" alt="logo da clínica TEA"> <!-- aqui vai o logo da clinica TEA -->
+          <p>TEA</p> <!-- aqui vai o nome da clinica TEA -->
+        </div>
 
-  <div class="login-box"> <!-- caixa de login, onde o usuário irá inserir suas credenciais para acessar o sistema -->
-    <h2>Bem-vindo de volta </h2>
-    <h5>Faça login para acessar o painel da família</h5>
-    
-      <div class="icon_input"> <!-- cada campo de input tem um ícone para facilitar a identificação do que deve ser inserido -->
-          <span class="icon"><i class="fa-solid fa-user"></i></span>
-          <input type="email" placeholder="E-mail">
+        <h2 id="decoration-title">Cuidado, escuta e evolução para cada criança.</h2> 
+
+        <p id="decoration-description">Acompanhe sessões, relatórios clínicos, pagamentos e suporte da família em um só lugar.</p>
+        <div id="benefits-container">
+          <p class="benefit-item"><i class="fa-solid fa-circle-check" style="color: rgb(255, 255, 255);"></i> Relatórios clínicos detalhados</p> 
+          <p class="benefit-item"><i class="fa-solid fa-circle-check" style="color: rgb(255, 255, 255);"></i> Acompanhamento por filho</p>
+          <p class="benefit-item"><i class="fa-solid fa-circle-check" style="color: rgb(255, 255, 255);"></i> Histórico financeiro transparente</p>
+        </div>
+        
       </div>
 
-      <div class="icon_input"> <!-- cada campo de input tem um ícone para facilitar a identificação do que deve ser inserido -->
-          <span class="icon"><i class="fa-solid fa-lock"></i></span>
-          <input type="password" placeholder="Senha">
-      </div>
+      <div class="login-box"> <!-- caixa de login, onde o usuário irá inserir suas credenciais para acessar o sistema -->
+        <div id="login-pais" class="login-form">
+          <h2>Bem-vindo de volta</h2>
+          <h5>Faça login para acessar o painel da família</h5>
+          
+          <div class="icon_input">
+              <span class="icon"><i class="fa-solid fa-address-card"></i></span>
+              <input type="text" placeholder="CPF ou Nº da Carteira">
+          </div>
 
-      <div class="add-plus-box"> <!-- caixa para o checkbox de "lembrar senha" e o link de "esqueci minha senha", organizados lado a lado -->
-        <label class="checkbox-container">
-          <input type="checkbox">
-          <span class="checkmark"></span>
-          Lembrar senha
-        </label>
-        <a href="recuperar-senha.html" class="redefinir_Password">Esqueceu sua senha?</a>
-      </div>
+          <div class="icon_input">
+              <span class="icon"><i class="fa-solid fa-lock"></i></span>
+              <input type="password" placeholder="Senha">
+          </div>
+        </div>
 
-    
-    <button onclick="login()">Entrar</button>  <!-- botão de login, que chama a função "login()" definida no script.js para redirecionar o usuário para a dashboard após o login -->
+        <div id="login-clinica" class="login-form" style="display: none;">
+          <h2>Portal da Clínica</h2>
+          <h5>Acesse o gerenciamento de disciplinas</h5>
+          
+          <div class="icon_input">
+              <span class="icon"><i class="fa-solid fa-hospital"></i></span>
+              <input type="email" placeholder="E-mail da Clínica">
+          </div>
+
+          <div class="icon_input">
+              <span class="icon"><i class="fa-solid fa-lock"></i></span>
+              <input type="password" placeholder="Senha">
+          </div>
+        </div>
+
+        <div id="login-adm" class="login-form" style="display: none;">
+          <h2>Administração</h2>
+          <h5>Acesso Restrito ao Gerenciamento</h5>
+          
+          <div class="icon_input">
+              <span class="icon"><i class="fa-solid fa-user-shield"></i></span>
+              <input type="email" placeholder="E-mail Administrativo">
+          </div>
+
+          <div class="icon_input">
+              <span class="icon"><i class="fa-solid fa-lock"></i></span>
+              <input type="password" placeholder="Senha">
+          </div>
+        </div>
+
+        <div class="add-plus-box"> <!-- caixa para o checkbox de "lembrar senha" e o link de "esqueci minha senha", organizados lado a lado -->
+          <label class="checkbox-container">
+            <input type="checkbox">
+            <span class="checkmark"></span>
+            Lembrar senha
+          </label>
+          <a href="recuperar-senha.html" class="redefinir_Password">Esqueceu sua senha?</a>
+        </div>
+
+        
+        <button onclick="login()">Entrar</button>  <!-- botão de login -->
+      </div>
+    </div>
   </div>
 
   <script src="js/script.js"></script>
