@@ -119,3 +119,51 @@ th { background-color: #fcfdfc; color: var(--text-light); font-weight: 700; }
 .slider::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; background: var(--primary-color); border-radius: 50%; cursor: pointer; border: 4px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 
 .form-hint { font-size: 12px; color: var(--text-light); margin-top: 8px; font-style: italic; }
+
+/* --- MATRÍCULAS --- */
+.matriculas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+.matricula-card { background: white; border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; border: 1px solid #edf2f7; }
+.matricula-card-header { padding: 20px 20px 12px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid #f1f5f9; }
+.matricula-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; flex-shrink: 0; }
+.matricula-alunos { padding: 16px 20px 20px; }
+.alunos-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; min-height: 32px; }
+.aluno-tag { display: inline-flex; align-items: center; gap: 6px; background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.aluno-tag button { background: none; border: none; color: #dc2626; cursor: pointer; font-size: 11px; padding: 0; line-height: 1; transition: 0.2s; }
+.aluno-tag button:hover { color: #991b1b; }
+.btn-adicionar-aluno { background: none; border: 2px dashed #d1d5db; border-radius: 12px; padding: 10px; width: 100%; color: #6b7280; cursor: pointer; font-weight: 600; transition: 0.2s; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.btn-adicionar-aluno:hover { border-color: #53a587; color: #53a587; background: #f0fdf4; }
+
+/* --- STATUS BADGES FINANCEIRO E PACIENTES --- */
+.status-badge { padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; }
+.badge-em-dia   { background: #d1fae5; color: #065f46; }
+.badge-pendente { background: #fef3c7; color: #92400e; }
+.badge-atrasado { background: #fee2e2; color: #991b1b; }
+.badge-plano { background: #ede9fe; color: #5b21b6; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; }
+.td-valor { font-weight: 700; color: var(--text-dark); }
+
+/* --- PACIENTES --- */
+.pac-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #53a587, #44a380); display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; flex-shrink: 0; }
+.pac-avatar-lg { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #53a587, #44a380); display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; flex-shrink: 0; }
+.badge-disciplina-tag { background: #ede9fe; color: #5b21b6; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; display: inline-block; }
+.btn-360 { background: linear-gradient(135deg, #7c3aed, #6d28d9); color: white; border: none; padding: 8px 14px; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.btn-360:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(124,58,237,0.3); }
+.metricas-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
+.metrica-mini { background: #f8faf9; border-radius: 14px; padding: 14px; text-align: center; border: 1px solid #edf2f7; }
+.metrica-mini i { font-size: 18px; color: var(--primary-color); display: block; margin-bottom: 6px; }
+.metrica-mini strong { font-size: 20px; font-weight: 800; color: var(--text-dark); display: block; }
+.metrica-mini span { font-size: 11px; color: var(--text-light); font-weight: 600; text-transform: uppercase; }
+
+/* --- PROFISSIONAIS AVATAR E STATS --- */
+.prof-avatar { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, #53a587, #44a380); display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; margin: 0 auto 14px; }
+.prof-stats { display: flex; gap: 16px; justify-content: center; margin: 12px 0 16px; }
+.prof-stat { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-light); font-weight: 600; }
+.prof-stat i { color: var(--primary-color); }
+
+/* --- FORMULÁRIO EVOLUÇÃO — HUMOR E SLIDER --- */
+.mood-selector { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.mood-btn { background: #f8faf9; border: 2px solid #edf2f7; border-radius: 14px; padding: 12px 16px; cursor: pointer; font-size: 24px; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 70px; }
+.mood-btn span { font-size: 11px; font-weight: 700; color: var(--text-light); }
+.mood-btn.active, .mood-btn:hover { border-color: var(--primary-color); background: #f0fdf4; transform: scale(1.08); }
+.slider-container { background: #f8faf9; border-radius: 14px; padding: 16px; border: 1px solid #edf2f7; }
+.slider-value-row { display: flex; justify-content: center; margin-top: 8px; font-size: 13px; color: var(--text-light); }
+.slider-value-row strong { color: var(--primary-color); font-size: 16px; }

@@ -22,6 +22,7 @@
             <li onclick="navigate('home', event)" class="active"><i class="fa-solid fa-house"></i>Dashboard</li>
             <li onclick="navigate('agenda', event)"><i class="fa-solid fa-calendar-days"></i>Cronograma Geral</li>
             <li onclick="navigate('pacientes', event)"><i class="fa-solid fa-users"></i>Pacientes</li>
+            <li onclick="navigate('matriculas', event)"><i class="fa-solid fa-clipboard-list"></i>Matrículas</li>
             <li onclick="navigate('profissionais', event)"><i class="fa-solid fa-user-doctor"></i>Profissionais</li>
             <li onclick="navigate('financeiro', event)"><i class="fa-solid fa-dollar-sign"></i>Financeiro</li>
             <li onclick="navigate('evolucao', event)"><i class="fa-solid fa-file-medical"></i>Registrar Evolução</li>
@@ -77,6 +78,14 @@
             </div>
         </section>
 
+        <!-- MATRÍCULAS -->
+        <section id="matriculas" class="page">
+            <div class="section-header">
+                <h1>Gestão de Matrículas</h1>
+            </div>
+            <div class="matriculas-grid" id="gridMatriculas"></div>
+        </section>
+
         <!-- PROFISSIONAIS -->
         <section id="profissionais" class="page">
             <div class="section-header">
@@ -114,6 +123,7 @@
                 <button class="btn-filter active" onclick="filtrarFinanceiro('todos', event)">Todos</button>
                 <button class="btn-filter" onclick="filtrarFinanceiro('ativo', event)">Ativo</button>
                 <button class="btn-filter" onclick="filtrarFinanceiro('pendente', event)">Pendente</button>
+                <button class="btn-filter" onclick="filtrarFinanceiro('atrasado', event)">Atrasado</button>
             </div>
             <div class="table-container">
                 <table id="tabelaFinanceiro">
@@ -164,28 +174,96 @@
                 </div>
                 <form id="formEvolucaoTecnica" class="admin-form-modern">
                     <div class="form-grid-top">
-                        <div class="form-group"><label>Paciente:</label><select id="evolucaoPaciente" required></select></div>
-                        <div class="form-group"><label>Data/Hora:</label><input type="datetime-local" id="evolucaoData"></div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-user"></i> Paciente</label>
+                            <select id="evolucaoPaciente" required></select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-regular fa-calendar"></i> Data e Hora da Sessão</label>
+                            <input type="datetime-local" id="evolucaoData">
+                        </div>
                     </div>
+
+                    <div class="form-section">
+                        <h3><i class="fa-solid fa-face-smile"></i> Humor na Chegada</h3>
+                        <div class="mood-selector" id="moodSelector">
+                            <button type="button" class="mood-btn" data-mood="😢" onclick="selecionarHumor(this)">😢<span>Triste</span></button>
+                            <button type="button" class="mood-btn" data-mood="😟" onclick="selecionarHumor(this)">😟<span>Agitado</span></button>
+                            <button type="button" class="mood-btn" data-mood="😐" onclick="selecionarHumor(this)">😐<span>Neutro</span></button>
+                            <button type="button" class="mood-btn" data-mood="🙂" onclick="selecionarHumor(this)">🙂<span>Bem</span></button>
+                            <button type="button" class="mood-btn" data-mood="😄" onclick="selecionarHumor(this)">😄<span>Ótimo</span></button>
+                        </div>
+                    </div>
+
                     <div class="form-section">
                         <h3><i class="fa-solid fa-brain"></i> Registro Comportamental</h3>
                         <div class="form-group">
-                            <label>Nível de Engajamento:</label>
-                            <div class="range-labels-top"><span>Baixo</span><span>Excelente</span></div>
-                            <input type="range" min="1" max="5" class="slider" id="teaEngajamento">
+                            <label><i class="fa-solid fa-chart-bar"></i> Nível de Engajamento</label>
+                            <div class="slider-container">
+                                <div class="range-labels-top"><span>Baixo</span><span>Médio</span><span>Excelente</span></div>
+                                <input type="range" min="1" max="5" value="3" class="slider" id="teaEngajamento" oninput="document.getElementById('engajamentoVal').textContent = this.value">
+                                <div class="slider-value-row">
+                                    <span>Nível: <strong id="engajamentoVal">3</strong> / 5</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group"><label>Antecedentes:</label><textarea id="teaAntecedentes" placeholder="Descreva os comportamentos..."></textarea></div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-clipboard"></i> Observações Comportamentais</label>
+                            <textarea id="teaAntecedentes" rows="3" placeholder="Descreva os comportamentos observados durante a sessão..."></textarea>
+                        </div>
                     </div>
+
                     <div class="form-section">
                         <h3><i class="fa-solid fa-list-check"></i> Objetivos e Metas</h3>
-                        <div class="form-group"><label>Nível de Ajuda:</label><select id="teaNivelAjuda"><option>Independente</option><option>Ajuda Verbal</option><option>Ajuda Física</option></select></div>
-                        <div class="form-group"><label>Atividades:</label><textarea id="teaAtividades" rows="4"></textarea></div>
+                        <div class="form-grid-top">
+                            <div class="form-group">
+                                <label><i class="fa-solid fa-hand-holding"></i> Nível de Ajuda</label>
+                                <select id="teaNivelAjuda">
+                                    <option>Independente</option>
+                                    <option>Ajuda Gestual</option>
+                                    <option>Ajuda Verbal</option>
+                                    <option>Ajuda Física Parcial</option>
+                                    <option>Ajuda Física Total</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fa-solid fa-star"></i> Meta Atingida?</label>
+                                <select id="teaMetaAtingida">
+                                    <option value="sim">✅ Sim — Meta atingida</option>
+                                    <option value="parcial">⚡ Parcialmente</option>
+                                    <option value="nao">❌ Não atingida</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-pen-to-square"></i> Atividades Realizadas</label>
+                            <textarea id="teaAtividades" rows="4" placeholder="Descreva as atividades realizadas, materiais utilizados e estratégias aplicadas..."></textarea>
+                        </div>
                     </div>
-                    <button type="submit" class="btn-finalizar-sessao">Finalizar Registro</button>
+
+                    <div class="form-section">
+                        <h3><i class="fa-solid fa-forward"></i> Próximos Passos</h3>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-lightbulb"></i> Recomendações para a Família</label>
+                            <textarea id="teaRecomendacoes" rows="3" placeholder="Oriente a família sobre atividades de reforço em casa..."></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-finalizar-sessao">
+                        <i class="fa-solid fa-floppy-disk"></i> Salvar Registro da Sessão
+                    </button>
                 </form>
             </div>
         </section>
     </main>
+</div>
+
+<!-- MODAL MATRÍCULA -->
+<div id="modalMatricula" class="modal">
+    <div class="modal-content" style="max-width: 600px;">
+        <span class="close-modal" onclick="fecharModalMatricula()">&times;</span>
+        <div id="conteudoModalMatricula"></div>
+    </div>
 </div>
 
 <!-- MODAL PACIENTE 360º -->
