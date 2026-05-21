@@ -16,27 +16,63 @@
         <!-- Cabeçalho com Botão de Voltar e Título Dinâmico -->
         <header class="header-gerenciamento">
             <button class="btn-back" onclick="window.location.href='clinicas-list.html'"> <!-- Botão para voltar à lista de clínicas -->
-                <i class="fa-solid fa-arrow-left"></i> Voltar
+                <i class="fa-solid fa-arrow-left"></i> Listas de Clinicas
             </button>
             <h1 id="tituloClinica">Gerenciamento: Clínica...</h1> <!-- Título que será atualizado com o nome da clínica selecionada -->
         </header>
 
-        <main id="content"> <!-- Conteúdo principal da página, onde serão exibidos os dados e ações relacionados à clínica selecionada -->
+        <main id="content" class="is-loading"> <!-- Adicionamos a classe is-loading por padrão -->
+            
+            <!-- Barra de Filtros Temporais -->
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <label for="periodoSelect"><i class="fa-solid fa-filter"></i> Período:</label>
+                    <select id="periodoSelect" onchange="handlePeriodoChange(this.value)">
+                        <option value="este-mes">Este Mês</option>
+                        <option value="ultimos-3">Últimos 3 Meses</option>
+                        <option value="personalizado">Personalizado</option>
+                    </select>
+                </div>
+
+                <div id="customDateRange" class="filter-group">
+                    <input type="date" id="dataInicio" title="Data Início">
+                    <span>até</span>
+                    <input type="date" id="dataFim" title="Data Fim">
+                    <button class="btn-view" onclick="aplicarFiltroPersonalizado()" style="padding: 5px 10px;">OK</button>
+                </div>
+            </div>
+
             <!-- Cards de Estatísticas -->
             <div class="stats-grid">
-                <div class="card-stat"> <!-- Card para exibir o número de acessos à clínica -->
-                    <div class="card-icon"><i class="fa-solid fa-users-viewfinder"></i></div> <!-- Ícone representando acessos -->
-                    <div class="card-info"> <!-- Informações do card -->
-                        <h3>Acessos</h3> <!-- Título do card -->
-                        <p id="numAcessos">0</p> <!-- Parágrafo para exibir o número de acessos, atualizado via JavaScript -->
+                <div class="card-stat">
+                    <!-- Placeholder de Carregamento -->
+                    <div class="loading-placeholder skeleton-circle skeleton"></div>
+                    <div class="loading-placeholder card-info" style="flex: 1;">
+                        <div class="skeleton skeleton-text" style="width: 40%;"></div>
+                        <div class="skeleton skeleton-title"></div>
+                    </div>
+
+                    <!-- Conteúdo Real -->
+                    <div class="card-icon hide-on-loading"><i class="fa-solid fa-users-viewfinder"></i></div>
+                    <div class="card-info hide-on-loading">
+                        <h3>Acessos</h3>
+                        <p id="numAcessos">0</p>
                     </div>
                 </div>
 
-                <div class="card-stat"> <!-- Card para exibir o número de alunos vinculados à clínica -->
-                    <div class="card-icon"><i class="fa-solid fa-user-graduate"></i></div>
-                    <div class="card-info">
-                        <h3>Alunos</h3> <!-- Título do card -->
-                        <p id="numAlunos">0</p> <!-- Parágrafo para exibir o número de alunos, atualizado via JavaScript -->
+                <div class="card-stat">
+                    <!-- Placeholder de Carregamento -->
+                    <div class="loading-placeholder skeleton-circle skeleton"></div>
+                    <div class="loading-placeholder card-info" style="flex: 1;">
+                        <div class="skeleton skeleton-text" style="width: 40%;"></div>
+                        <div class="skeleton skeleton-title"></div>
+                    </div>
+
+                    <!-- Conteúdo Real -->
+                    <div class="card-icon hide-on-loading"><i class="fa-solid fa-user-graduate"></i></div>
+                    <div class="card-info hide-on-loading">
+                        <h3>Alunos</h3>
+                        <p id="numAlunos">0</p>
                     </div>
                 </div>
             </div>
@@ -46,21 +82,21 @@
                 <div class="banner-content">
                     <i class="fa-solid fa-calendar-check"></i>
                     <div>
-                        <h3>Próxima Cobrança</h3> <!-- Título da seção de cobrança -->
-                        <p>Seu sistema será renovado em: <strong>10/06/2026</strong></p> <!-- Informação sobre a próxima cobrança, com data destacada -->
+                        <h3>Próxima Cobrança</h3>
+                        <p>Seu sistema será renovado em: <strong>10/06/2026</strong></p>
                     </div>
                 </div>
             </div>
 
             <!-- Seção de Boletos -->
             <div class="boletos-container">
-                <h2 class="titulo-secao-boletos"><i class="fa-solid fa-file-invoice-dollar"></i> Boletos e Faturas</h2> <!-- Título da seção de boletos, com ícone representando faturas -->
+                <h2 class="titulo-secao-boletos"><i class="fa-solid fa-file-invoice-dollar"></i> Boletos e Faturas</h2>
 
-                <section id="sectionBoletos" class="section-boletos"> <!-- Seção onde serão listados os boletos relacionados à clínica -->
+                <section id="sectionBoletos" class="section-boletos">
                     <div class="table-container">
                         <table>
                             <thead>
-                                <tr> <!-- Cabeçalho da tabela de boletos, com colunas para mês referência, vencimento, valor, status e ações -->
+                                <tr>
                                     <th>Mês Referência</th>
                                     <th>Vencimento</th>
                                     <th>Valor</th>
@@ -68,10 +104,17 @@
                                     <th>Ações</th>
                                 </tr>
                             </thead>
-                            <tbody id="boletosTableBody"> <!-- Corpo da tabela de boletos, preenchido dinamicamente via JavaScript -->
+                            <tbody id="boletosTableBody">
                                 <!-- Preenchido via JS -->
                             </tbody>
                         </table>
+
+                        <!-- Placeholder de Carregamento da Tabela -->
+                        <div class="loading-placeholder">
+                            <div class="skeleton skeleton-row"></div>
+                            <div class="skeleton skeleton-row"></div>
+                            <div class="skeleton skeleton-row"></div>
+                        </div>
                     </div>
                 </section>
             </div>
