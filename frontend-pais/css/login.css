@@ -60,7 +60,7 @@ body.theme-adm {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 14px;
-  background: transparent; 
+  background: #6464642c; 
   color: #ffffff;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -442,6 +442,7 @@ button:active { transform: scale(0.95); }
   .login-box button { padding: 25px; font-size: 28px; border-radius: 50px; }
   .checkbox-container { font-size: 24px; }
   .checkmark { width: 28px; height: 28px; }
+  .checkmark::after { top: 3px; left: 6px; width: 7px; height: 15px;}
   .redefinir_Password { font-size: 24px; }
   .box-emprise{margin-bottom: 40px;}
   .box-emprise img{width: 60px; height: 60px;}
@@ -474,6 +475,7 @@ button:active { transform: scale(0.95); }
   .login-box button { padding: 40px; font-size: 42px; border-radius: 70px; }
   .checkbox-container { font-size: 36px; margin-bottom: 40px; }
   .checkmark { width: 40px; height: 40px; }
+  .checkmark::after { top: 6px; left: 6px; width: 13px; height: 18px;   border-width: 0 4px 4px 0;}
   .redefinir_Password { font-size: 36px; }
   .box-emprise{margin-bottom: 60px;}
   .box-emprise img{width: 90px; height: 90px;}
