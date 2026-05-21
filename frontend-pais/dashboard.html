@@ -41,11 +41,28 @@
     <section id="dashboard" class="page active"> <!-- seção do dashboard, que é a seção ativa por padrão -->
       <h1>Dashboard</h1> <!-- título -->
 
-      <div class="cards"> <!-- cards para mostrar informações importantes de forma rápida, como o número total de sessões, a data da última sessão e o progresso do tratamento -->
-        <div class="card">Sessões: <span id="totalSessao"></span></div>
-        <div class="card">Última Sessão: <span id="ultimaSessao"></span></div>
-        <div class="card">Progresso: <span id="progresso"></span></div>
-      </div> 
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="card-label">Sessões Realizadas</div>
+          <span id="totalSessao"></span>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fa-regular fa-clock"></i></div>
+          <div class="card-label">Última Sessão</div>
+          <span id="ultimaSessao"></span>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <div class="card-label">Progresso</div>
+          <span id="progresso"></span>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-calendar-plus"></i></div>
+          <div class="card-label">Próxima Sessão</div>
+          <span id="proximaSessao">22/05 · 14h</span>
+        </div>
+      </div>
       <div class="graficos"><!-- gráficos para mostrar o progresso do tratamento ao longo do tempo, com um gráfico de linha e outro de orsquinha -->
         <canvas id="graficoLinha"></canvas> <!--linha-->
         <canvas id="graficoPizza"></canvas> <!--rosquinha visualmente, aqui no código é de pizza mas visualmente fica uma rosquinha-->
@@ -53,34 +70,80 @@
     </section>
 
     <!-- RELATÓRIOS -->
-    <section id="relatorios" class="page"> <!-- seção de relatórios, onde o usuário pode filtrar os relatórios por filho e por data, e ver os resultados dos relatórios filtrados em uma div abaixo dos filtros -->
+    <section id="relatorios" class="page">
       <h1>Relatórios</h1>
-
-      <select id="filhoSelect"></select> <!-- dropdown para selecionar o filho -->
-      <input type="date" id="dataFiltro">
-
-      <button onclick="filtrarRelatorios()">Filtrar</button>
-
-      <div id="relatorioResultado"></div><!-- div para mostrar os resultados dos relatórios filtrados -->
+      <div class="filtro-bar">
+        <div class="filtro-grupo">
+          <label><i class="fa-solid fa-child"></i> Filho</label>
+          <select id="filhoSelect"></select>
+        </div>
+        <div class="filtro-grupo">
+          <label><i class="fa-regular fa-calendar"></i> Data</label>
+          <input type="date" id="dataFiltro">
+        </div>
+        <button class="btn-filtrar" onclick="filtrarRelatorios()">
+          <i class="fa-solid fa-magnifying-glass"></i> Filtrar
+        </button>
+      </div>
+      <div id="relatorioResultado"></div>
     </section>
 
     <!-- PAGAMENTOS -->
-    <section id="pagamentos" class="page"> <!-- seção de pagamentos, onde o usuário pode visualizar os pagamentos realizados e seus detalhes -->
+    <section id="pagamentos" class="page">
       <h1>Pagamentos</h1>
-      <div id="listaPagamentos"></div> <!-- div para mostrar a lista de pagamentos realizados, com data valor e status -->
+      <div class="pagamentos-resumo" id="pagamentosResumo"></div>
+      <div id="listaPagamentos"></div>
     </section>
 
     <!-- SUPORTE -->
-    <section id="suporte" class="page"> <!-- seção de suporte, onde o usuário pode enviar dúvidas ou problemas para a equipe de suporte-->
+    <section id="suporte" class="page">
       <h1>Suporte</h1>
-        <select id="suport_options"> <!-- dropdown para selecionar o tipo de mensagem que o usuário quer enviar, como dúvida ou problema -->
-          <option>Dúvida</option>
-          <option>Problema</option>
-        </select>
 
-        <textarea placeholder="Digite sua mensagem"></textarea> <!-- campo de texto para o usuário digitar sua mensagem para a equipe de suporte -->
+      <div class="suporte-header">
+        <div class="suporte-header-icon"><i class="fa-solid fa-headset"></i></div>
+        <div>
+          <h2>Como podemos ajudar?</h2>
+          <p>Nossa equipe responde em até <strong>24 horas</strong> nos dias úteis.</p>
+        </div>
+      </div>
 
-        <button onclick="enviarSuporte()">Enviar</button> <!-- botão para enviar a mensagem para a equipe de suporte, que chama a função "enviarSuporte()" que ta no script.js -->
+      <div class="suporte-canais">
+        <div class="canal-card">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>WhatsApp</span>
+          <small>Atendimento rápido</small>
+        </div>
+        <div class="canal-card">
+          <i class="fa-solid fa-envelope"></i>
+          <span>E-mail</span>
+          <small>suporte@clinicatea.com</small>
+        </div>
+        <div class="canal-card">
+          <i class="fa-solid fa-circle-question"></i>
+          <span>FAQ</span>
+          <small>Perguntas frequentes</small>
+        </div>
+      </div>
+
+      <div class="suporte-form">
+        <h3>Enviar mensagem</h3>
+        <div class="form-grupo">
+          <label for="suport_options"><i class="fa-solid fa-tag"></i> Tipo de solicitação</label>
+          <select id="suport_options">
+            <option value="duvida">Dúvida</option>
+            <option value="problema">Problema técnico</option>
+            <option value="sugestao">Sugestão</option>
+            <option value="financeiro">Financeiro</option>
+          </select>
+        </div>
+        <div class="form-grupo">
+          <label for="suporte_mensagem"><i class="fa-solid fa-pen"></i> Mensagem</label>
+          <textarea id="suporte_mensagem" placeholder="Descreva sua dúvida ou problema em detalhes..."></textarea>
+        </div>
+        <button onclick="enviarSuporte()">
+          <i class="fa-solid fa-paper-plane"></i> Enviar mensagem
+        </button>
+      </div>
     </section>
 
     <!-- INSCRIÇÃO EM DISCIPLINAS -->

@@ -1,9 +1,89 @@
 /* ========== SUPORTE ========== */
-#suporte h1 { /* estilo do título da página de suporte */
+#suporte h1 {
   font-size: 32px;
   color: #53a587;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-family: "Poppins", sans-serif;
+}
+
+/* Header */
+.suporte-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(135deg, #53a587, #44a380);
+  color: white;
+  border-radius: 18px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+}
+.suporte-header-icon {
+  font-size: 40px;
+  opacity: 0.9;
+  flex-shrink: 0;
+}
+.suporte-header h2 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.suporte-header p  { font-size: 14px; opacity: 0.9; }
+.suporte-header strong { font-weight: 700; }
+
+/* Canais */
+.suporte-canais {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.canal-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px 16px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1.5px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.canal-card:hover {
+  border-color: #53a587;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(83,165,135,0.15);
+}
+.canal-card i    { font-size: 28px; color: #53a587; }
+.canal-card span { font-size: 14px; font-weight: 700; color: #1f2937; }
+.canal-card small{ font-size: 12px; color: #6b7280; }
+
+/* Formulário */
+.suporte-form {
+  background: white;
+  border-radius: 18px;
+  padding: 24px 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.suporte-form h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+.form-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+.form-grupo label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 #suporte select,
@@ -32,17 +112,19 @@
   min-height: 150px;
 }
 
-#suporte button { /* estilo para o botão de envio da página de suporte */
-  width: 100%;
-  padding: 16px;
+#suporte button {
+  padding: 14px 32px;
   background: linear-gradient(135deg, #53a587, #44a380);
   color: white;
   border: none;
   border-radius: 12px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 #suporte button:hover { /* efeito de hover */

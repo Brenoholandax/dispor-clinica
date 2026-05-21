@@ -26,6 +26,9 @@ body { font-family: 'Nunito', sans-serif; background: radial-gradient(circle at 
 .card-label { color: var(--text-light); font-size: 14px; font-weight: 600; text-transform: uppercase; }
 .card-value { font-size: 32px; font-weight: 800; display: block; }
 
+/* Financeiro Stats */
+.financeiro-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 25px; }
+
 /* Tables */
 .table-container { background: var(--white); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; margin-top: 20px; }
 table { width: 100%; border-collapse: collapse; }
@@ -50,6 +53,12 @@ th { background-color: #fcfdfc; color: var(--text-light); font-weight: 700; }
 .info-card h3 { font-size: 16px; margin-bottom: 15px; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
 .mini-table { width: 100%; font-size: 13px; }
 .chart-box { height: 200px; }
+.historico-lista { display: flex; flex-direction: column; gap: 12px; }
+.historico-item { background: #f8faf9; border-radius: 12px; padding: 14px 16px; border-left: 3px solid var(--primary-color); }
+.historico-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.historico-tipo { font-size: 13px; font-weight: 700; color: var(--primary-color); }
+.historico-data { font-size: 12px; color: var(--text-light); }
+.historico-obs  { font-size: 13px; color: var(--text-dark); line-height: 1.5; }
 
 /* --- PROFESSIONALS GRID & BUTTONS --- */
 .profissionais-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-top: 20px; }

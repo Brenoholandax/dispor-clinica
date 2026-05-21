@@ -23,4 +23,4 @@ function irParaFormulario() { // função para rolar a página até o formulári
     document.getElementById('inscricaoForm').scrollIntoView({ behavior: 'smooth' }); // rola a página suavemente até a seção do formulário de inscrição
 }
 
-window.onload = carregarDetalhes; // chama a função carregarDetalhes para preencher os detalhes 
+document.addEventListener('DOMContentLoaded', carregarDetalhes);

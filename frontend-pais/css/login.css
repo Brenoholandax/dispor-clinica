@@ -11,7 +11,7 @@
 
 body {
   /* Imagem de fundo padrão (Pais/Clínica) */
-  background: url('/dispor-clinica/frontend-pais/Assets/Background-login.png') no-repeat center;
+  background: url('../Assets/Background-login.png') no-repeat center;
   background-size: cover;
   font-family: "Plus Jakarta Sans", sans-serif;
   transition: background 0.5s ease; /* Transição suave ao mudar de fundo */
@@ -19,7 +19,7 @@ body {
 
 /* Estilo aplicado quando o tema Administrativo está ativo */
 body.theme-adm {
-  background: url('/dispor-clinica/frontend-pais/Assets/Background-login-adm.webp') no-repeat center;
+  background: url('../Assets/Background-login-adm.webp') no-repeat center;
   background-size: cover;
 }
 

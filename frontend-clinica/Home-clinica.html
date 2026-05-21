@@ -97,8 +97,18 @@
         <section id="financeiro" class="page">
             <h1>Gestão Financeira</h1>
             <div class="financeiro-stats">
-                <div class="card mini">Total Matriculados: <strong>42</strong></div>
-                <div class="card mini">Aderência de Pagamento: <strong>92%</strong></div>
+                <div class="card">
+                    <div class="card-label"><i class="fa-solid fa-users"></i> Total Matriculados</div>
+                    <span class="card-value">42</span>
+                </div>
+                <div class="card">
+                    <div class="card-label"><i class="fa-solid fa-circle-check"></i> Aderência de Pagamento</div>
+                    <span class="card-value">92%</span>
+                </div>
+                <div class="card">
+                    <div class="card-label"><i class="fa-solid fa-triangle-exclamation"></i> Pagamentos Pendentes</div>
+                    <span class="card-value" style="color: #e53e3e;">1</span>
+                </div>
             </div>
             <div class="filter-bar">
                 <button class="btn-filter active" onclick="filtrarFinanceiro('todos', event)">Todos</button>

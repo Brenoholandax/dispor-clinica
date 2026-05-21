@@ -8,8 +8,10 @@
   position: sticky;
   top: 0;
   height: 100dvh;
-  overflow-y: auto; /* permite rolagem vertical se o conteúdo da sidebar ultrapassar a altura da tela */
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* transição suave para a abertura e fechamento da sidebar */
+  overflow-y: auto;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
 }
 .sidebar-closed{ /* estilo para a sidebar quando ela estiver fechada, com uma largura menor e escondendo o texto dos itens do menu */
   width: 70px;
@@ -79,14 +81,16 @@
 
 .sidebar ul { /* removendo marcações da lista sidebar*/
   list-style: none;
+  flex: 1;
 }
 .sidebar p{ /* estilo para o nome do usuário na sidebar */
   display: flex;
   align-items: center;
   gap: 6px;
-  bottom: 30px;
-  position: absolute;
   font-size: clamp(18px, 1.2vw, 40px);
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin-top: auto;
 }
 .sidebar i{ /* tamanho da fonte dos icones da sidebar */
   font-size: 20px;

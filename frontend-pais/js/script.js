@@ -154,6 +154,8 @@ function logout() {
 function navigate(page) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(page).classList.add("active");
+
+  if (page === 'relatorios') filtrarRelatorios();
 }
 
 
@@ -282,13 +284,18 @@ function enviarSuporte() {
 const filhos = ["João", "Maria"];
 
 const relatorios = [
-  { filho: "João", data: "2026-04-20", objetivo: "Coordenação motora", instrumento: "Brinquedos sensoriais", obs: "Boa evolução" },
-  { filho: "Maria", data: "2026-04-18", objetivo: "Fala", instrumento: "Jogos de imitação", obs: "Precisa de mais estímulos" }
+  { filho: "João", data: "2026-04-20", objetivo: "Coordenação motora fina", instrumento: "Brinquedos sensoriais e encaixes", obs: "Boa evolução. João demonstrou maior concentração e completou todas as atividades propostas." },
+  { filho: "João", data: "2026-04-13", objetivo: "Regulação emocional", instrumento: "Cartões de emoções", obs: "Progresso moderado. Identificou corretamente 4 das 6 emoções apresentadas." },
+  { filho: "Maria", data: "2026-04-18", objetivo: "Desenvolvimento da fala", instrumento: "Jogos de imitação vocal", obs: "Precisa de mais estímulos. Recomenda-se praticar em casa com os exercícios enviados." },
+  { filho: "Maria", data: "2026-04-11", objetivo: "Interação social", instrumento: "Atividades em grupo", obs: "Excelente sessão. Maria iniciou contato com colega espontaneamente pela primeira vez." }
 ];
 
 const pagamentos = [
-  { data: "10/04", valor: "R$ 200", status: "Pago" },
-  { data: "20/04", valor: "R$ 200", status: "Pendente" }
+  { mes: "Janeiro/2026", data: "10/01/2026", valor: "R$ 200,00", status: "Pago" },
+  { mes: "Fevereiro/2026", data: "10/02/2026", valor: "R$ 200,00", status: "Pago" },
+  { mes: "Março/2026", data: "10/03/2026", valor: "R$ 200,00", status: "Pago" },
+  { mes: "Abril/2026", data: "10/04/2026", valor: "R$ 200,00", status: "Pago" },
+  { mes: "Maio/2026", data: "10/05/2026", valor: "R$ 200,00", status: "Pendente" }
 ];
 
 /**
@@ -313,17 +320,40 @@ function filtrarRelatorios() {
   const resultado = relatorios.filter(r => r.filho === filho && (!data || r.data === data));
 
   const div = document.getElementById("relatorioResultado");
-  div.innerHTML = resultado.length === 0 ? "Não há dados" : "";
 
-  resultado.forEach(r => {
-    div.innerHTML += `
-      <div class="card">
-        <p><b>Objetivo:</b> ${r.objetivo}</p>
-        <p><b>Instrumento:</b> ${r.instrumento}</p>
-        <p><b>Obs:</b> ${r.obs}</p>
-      </div>
-    `;
-  });
+  if (resultado.length === 0) {
+    div.innerHTML = `
+      <div class="relatorio-vazio">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <p>Nenhum relatório encontrado para os filtros selecionados.</p>
+      </div>`;
+    return;
+  }
+
+  div.innerHTML = resultado.map(r => {
+    const dataFormatada = new Date(r.data + 'T12:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+    return `
+      <div class="relatorio-card">
+        <div class="relatorio-header">
+          <span class="relatorio-filho"><i class="fa-solid fa-child"></i> ${r.filho}</span>
+          <span class="relatorio-data"><i class="fa-regular fa-calendar"></i> ${dataFormatada}</span>
+        </div>
+        <div class="relatorio-body">
+          <div class="relatorio-item">
+            <span class="relatorio-label">Objetivo</span>
+            <span class="relatorio-valor">${r.objetivo}</span>
+          </div>
+          <div class="relatorio-item">
+            <span class="relatorio-label">Instrumento</span>
+            <span class="relatorio-valor">${r.instrumento}</span>
+          </div>
+          <div class="relatorio-item relatorio-obs">
+            <span class="relatorio-label">Observação da sessão</span>
+            <span class="relatorio-valor">${r.obs}</span>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
 }
 
 /**
@@ -331,11 +361,50 @@ function filtrarRelatorios() {
  */
 function carregarPagamentos() {
   const div = document.getElementById("listaPagamentos");
+  const resumoDiv = document.getElementById("pagamentosResumo");
   if (!div) return;
+
+  const totalPago = pagamentos.filter(p => p.status === "Pago").length;
+  const totalPendente = pagamentos.filter(p => p.status === "Pendente").length;
+  const valorPago = pagamentos.filter(p => p.status === "Pago").reduce((acc, p) => acc + parseFloat(p.valor.replace('R$ ', '').replace(',', '.')), 0);
+  const valorPendente = pagamentos.filter(p => p.status === "Pendente").reduce((acc, p) => acc + parseFloat(p.valor.replace('R$ ', '').replace(',', '.')), 0);
+
+  if (resumoDiv) {
+    resumoDiv.innerHTML = `
+      <div class="resumo-card resumo-pago">
+        <div class="resumo-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="resumo-info">
+          <span>Total Pago</span>
+          <strong>R$ ${valorPago.toFixed(2).replace('.', ',')}</strong>
+          <small>${totalPago} pagamento${totalPago !== 1 ? 's' : ''}</small>
+        </div>
+      </div>
+      <div class="resumo-card resumo-pendente">
+        <div class="resumo-icon"><i class="fa-solid fa-clock"></i></div>
+        <div class="resumo-info">
+          <span>Pendente</span>
+          <strong>R$ ${valorPendente.toFixed(2).replace('.', ',')}</strong>
+          <small>${totalPendente} pagamento${totalPendente !== 1 ? 's' : ''}</small>
+        </div>
+      </div>`;
+  }
+
+  div.innerHTML = '';
   pagamentos.forEach(p => {
+    const isPago = p.status === "Pago";
     div.innerHTML += `
       <div class="pagamento">
-        ${p.data} - ${p.valor} - ${p.status}
+        <div class="pagamento-icon ${isPago ? 'icon-pago' : 'icon-pendente'}">
+          <i class="fa-solid ${isPago ? 'fa-circle-check' : 'fa-clock'}"></i>
+        </div>
+        <div class="pagamento-info">
+          <strong class="pagamento-mes">${p.mes}</strong>
+          <span class="pagamento-data"><i class="fa-regular fa-calendar"></i> Vencimento: ${p.data}</span>
+        </div>
+        <div class="pagamento-direita">
+          <strong class="pagamento-valor">${p.valor}</strong>
+          <span class="status-badge ${isPago ? 'badge-pago' : 'badge-pendente'}">${p.status}</span>
+        </div>
       </div>
     `;
   });

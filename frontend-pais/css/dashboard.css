@@ -89,7 +89,20 @@ main { /* main content, que ocupa o espaço restante ao lado da sidebar */
   font-weight: 800;
   color: #53a587;
   display: block;
-  margin-top: 8px;
+  margin-top: 4px;
+}
+.card-icon {
+  font-size: 32px;
+  color: #53a587;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+.card-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #6b7280;
 }
 .graficos { /* container para os gráficos do dashboard, com display flex para organizar os gráficos lado a lado e com gap entre eles */
   display: flex;
