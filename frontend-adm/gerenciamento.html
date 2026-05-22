@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- CSS Exclusivo -->
     <link rel="stylesheet" href="css/gerenciamento.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -77,6 +78,19 @@
                 </div>
             </div>
 
+            <!-- Gráfico de Evolução -->
+            <div class="chart-card">
+                <div class="loading-placeholder" style="height:200px;">
+                    <div class="skeleton" style="height:100%;width:100%;border-radius:12px;display:block;"></div>
+                </div>
+                <div class="hide-on-loading">
+                    <h2 class="titulo-secao-boletos" style="font-size:20px;margin-bottom:16px;">
+                        <i class="fa-solid fa-chart-line"></i> Evolução dos Últimos 6 Meses
+                    </h2>
+                    <canvas id="graficoEvolucao" style="max-height:220px;"></canvas>
+                </div>
+            </div>
+
             <!-- Informação de Próxima Cobrança -->
             <div class="billing-info-banner">
                 <div class="banner-content">
@@ -119,6 +133,23 @@
                 </section>
             </div>
         </main>
+    </div>
+
+    <!-- Modal de Boleto -->
+    <div id="modalBoleto" class="modal-overlay" onclick="fecharModalBoleto(event)">
+        <div class="modal-boleto">
+            <div class="modal-boleto-header">
+                <h2><i class="fa-solid fa-file-invoice-dollar"></i> Boleto / Fatura</h2>
+                <button class="btn-fechar-modal" onclick="fecharModalBoleto()">&times;</button>
+            </div>
+            <div id="modalBoletoBody" class="modal-boleto-body"></div>
+            <div class="modal-boleto-footer">
+                <button class="btn-cancelar" onclick="fecharModalBoleto()">Fechar</button>
+                <button class="btn-view" onclick="copiarCodigoBoleto()">
+                    <i class="fa-solid fa-copy"></i> Copiar código
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- JS Exclusivo -->

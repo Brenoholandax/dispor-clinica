@@ -89,8 +89,15 @@ th { background-color: #fcfdfc; color: var(--text-light); font-weight: 700; }
 
 /* --- EVOLUTION PORTAL --- */
 .disciplinas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
-.card-disciplina { background: white; padding: 35px 25px; border-radius: 25px; box-shadow: var(--shadow); text-align: center; cursor: pointer; position: relative; overflow: hidden; }
+.card-disciplina { background: white; padding: 35px 25px; border-radius: 25px; box-shadow: var(--shadow); text-align: center; cursor: pointer; position: relative; overflow: hidden; transition: 0.3s; }
 .card-disciplina::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #53a587, #44a380); }
+.card-disciplina:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(83, 165, 135, 0.15); }
+.card-disciplina h2 { font-size: 18px; font-weight: 800; color: var(--text-dark); margin: 12px 0 8px; }
+.card-disciplina p { font-size: 13px; color: var(--text-light); margin-bottom: 20px; }
+.card-icon { width: 64px; height: 64px; border-radius: 18px; background: linear-gradient(135deg, #53a587, #44a380); display: flex; align-items: center; justify-content: center; margin: 0 auto 4px; }
+.card-icon i { font-size: 28px; color: white; }
+.btn-detalhes { background: linear-gradient(90deg, #53a587, #44a380); color: white; border: none; padding: 10px 22px; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.2s; }
+.btn-detalhes:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(83, 165, 135, 0.3); }
 .form-tea-container { background: white; padding: 40px; border-radius: 30px; box-shadow: var(--shadow); }
 .btn-finalizar-sessao { background: linear-gradient(90deg, #53a587, #44a380); color: white; border: none; padding: 15px; border-radius: 12px; width: 100%; font-weight: 800; cursor: pointer; }
 

@@ -19,8 +19,42 @@ function carregarDetalhes() {
     }
 }
 
-function irParaFormulario() { // função para rolar a página até o formulário de inscrição
-    document.getElementById('inscricaoForm').scrollIntoView({ behavior: 'smooth' }); // rola a página suavemente até a seção do formulário de inscrição
+function irParaFormulario() {
+    document.getElementById('inscricaoForm').scrollIntoView({ behavior: 'smooth' });
+}
+
+function enviarInscricao(event) {
+    event.preventDefault();
+    let valido = true;
+    const campos = [
+        { id: 'nomeResponsavel', erroId: 'erroNomeResponsavel', msg: 'Informe o nome do responsável.' },
+        { id: 'nomeCrianca',     erroId: 'erroNomeCrianca',     msg: 'Informe o nome da criança.' },
+        { id: 'telefone',        erroId: 'erroTelefone',        msg: 'Informe o telefone de contato.' },
+        { id: 'turno',           erroId: 'erroTurno',           msg: 'Selecione o turno de preferência.' },
+    ];
+    campos.forEach(c => {
+        const input = document.getElementById(c.id);
+        const erro = document.getElementById(c.erroId);
+        if (!input.value.trim()) {
+            erro.textContent = c.msg;
+            input.classList.add('campo-invalido');
+            valido = false;
+        } else {
+            erro.textContent = '';
+            input.classList.remove('campo-invalido');
+        }
+    });
+    if (!valido) return;
+
+    const btn = document.querySelector('.btn-enviar-form');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+    setTimeout(() => {
+        document.getElementById('disciplinaConfirmada').textContent = document.getElementById('nomeDisciplina').innerText;
+        document.getElementById('formContainer').style.display = 'none';
+        document.getElementById('sucessoInscricao').style.display = 'block';
+        document.getElementById('inscricaoForm').scrollIntoView({ behavior: 'smooth' });
+    }, 1200);
 }
 
 document.addEventListener('DOMContentLoaded', carregarDetalhes);

@@ -530,3 +530,149 @@ td { /* Estiliza as células comuns da tabela */
         font-size: 28px;
     }
 }
+
+/* ========== GRÁFICO DE EVOLUÇÃO ========== */
+.chart-card {
+    background: white;
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+    animation: fadeInUp 0.65s ease;
+}
+
+/* ========== MODAL DE BOLETO ========== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-boleto {
+    background: white;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.3s ease;
+    overflow: hidden;
+}
+
+.modal-boleto-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-boleto-header h2 {
+    font-size: 18px;
+    color: #1e40af;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+}
+
+.btn-fechar-modal {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #94a3b8;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 4px;
+    transition: color 0.2s;
+}
+
+.btn-fechar-modal:hover { color: #1e293b; }
+
+.modal-boleto-body {
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.boleto-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.boleto-label {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.boleto-valor {
+    font-size: 15px;
+    color: #1e293b;
+    font-weight: 500;
+}
+
+.boleto-codigo {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.boleto-codigo-valor {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #1e40af;
+    word-break: break-all;
+    line-height: 1.7;
+    font-weight: 600;
+}
+
+.boleto-aviso {
+    background: #fff8e1;
+    color: #f57c00;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.modal-boleto-footer {
+    display: flex;
+    gap: 10px;
+    padding: 16px 24px;
+    border-top: 1px solid #e2e8f0;
+    justify-content: flex-end;
+}
+
+.btn-cancelar {
+    background: #f1f5f9;
+    color: #64748b;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.btn-cancelar:hover { background: #e2e8f0; }

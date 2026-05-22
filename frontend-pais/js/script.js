@@ -274,7 +274,18 @@ window.onload = () => {
 const ctxPizza = document.getElementById('graficoPizza');
 
 function enviarSuporte() {
-  mostrarToast('Mensagem enviada com sucesso!');
+  const textarea = document.getElementById('suporte_mensagem');
+  const mensagem = textarea.value.trim();
+  if (!mensagem) {
+    textarea.style.borderColor = '#ef4444';
+    textarea.focus();
+    mostrarToast('Por favor, escreva sua mensagem antes de enviar.');
+    return;
+  }
+  textarea.style.borderColor = '';
+  textarea.value = '';
+  document.getElementById('suport_options').selectedIndex = 0;
+  mostrarToast('Mensagem enviada! Nossa equipe responderá em até 24h.');
 }
 
 // ============================================================

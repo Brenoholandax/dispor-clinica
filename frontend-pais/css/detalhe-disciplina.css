@@ -83,20 +83,123 @@ header h1 {  /* estilo do titulo da pag*/
     transform: scale(0.95);
 }
 
-/* IFRAME SECTION */
-.form-section { /* a seção que encobre o forms do google */
+/* FORM DE INSCRIÇÃO */
+.form-section {
     margin-top: 60px;
-    padding: 20px;
+    padding: 36px;
     background: white;
     border-radius: 20px;
-    overflow: hidden;
-    text-align: center;
+    box-shadow: 0 10px 30px rgba(83, 165, 135, 0.1);
 }
 
-.form-section iframe { /* estilo para o forms do google */
-    width: 100%;
-    max-width: 640px;
+.form-titulo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #53a587;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-subtitulo {
+    font-size: 15px;
+    color: #6b7280;
+    margin-bottom: 28px;
+}
+
+.campo-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.campo-grupo label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.campo-grupo input,
+.campo-grupo select,
+.campo-grupo textarea {
+    padding: 12px 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    color: #1e293b;
+    transition: border-color 0.2s;
+    outline: none;
+    background: white;
+}
+
+.campo-grupo input:focus,
+.campo-grupo select:focus,
+.campo-grupo textarea:focus {
+    border-color: #53a587;
+}
+
+.campo-invalido {
+    border-color: #ef4444 !important;
+}
+
+.campo-erro {
+    font-size: 12px;
+    color: #ef4444;
+    font-weight: 500;
+    min-height: 16px;
+}
+
+.btn-enviar-form {
+    background: #53a587;
+    color: white;
     border: none;
+    padding: 14px 40px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(83, 165, 135, 0.3);
+    transition: transform 0.2s, opacity 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.btn-enviar-form:hover { transform: translateY(-2px); }
+
+.btn-enviar-form:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.sucesso-card {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.sucesso-icone {
+    font-size: 60px;
+    color: #53a587;
+    margin-bottom: 20px;
+}
+
+.sucesso-card h2 {
+    font-size: 26px;
+    color: #1e293b;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.sucesso-card p {
+    color: #6b7280;
+    font-size: 16px;
+    margin-bottom: 8px;
+    line-height: 1.6;
 }
 
 .btn-voltar { /* estilo para o botão de voltar posicionando ele sempre no canto superior direito */
@@ -148,9 +251,16 @@ header h1 {  /* estilo do titulo da pag*/
         border-radius: 30px;
     }
 
-    .form-section iframe {
-        zoom: 1.5; /*SOLUÇÃO TEMPORARIA!!!! O FORMS PARA DE FUNCIONAR QUANDO EU DOU ZOOM COM O "zoom" OU O SCALE!!*/
-    }
+    .form-titulo { font-size: 30px; }
+    .form-subtitulo { font-size: 20px; }
+    .campo-grupo label { font-size: 20px; }
+    .campo-grupo input,
+    .campo-grupo select,
+    .campo-grupo textarea { font-size: 20px; padding: 16px 18px; }
+    .btn-enviar-form { font-size: 22px; padding: 18px 60px; }
+    .sucesso-card h2 { font-size: 40px; }
+    .sucesso-card p { font-size: 22px; }
+    .sucesso-icone { font-size: 90px; }
 }
 
 @media (min-width: 3000px) { /* 4K */
@@ -184,7 +294,14 @@ header h1 {  /* estilo do titulo da pag*/
         border-radius: 60px;
     }
 
-    .form-section iframe {
-        zoom: 2.0; /*SOLUÇÃO TEMPORARIA!!!! O FORMS PARA DE FUNCIONAR QUANDO EU DOU ZOOM COM O "zoom" OU O SCALE!!*/
-    }
+    .form-titulo { font-size: 45px; }
+    .form-subtitulo { font-size: 28px; }
+    .campo-grupo label { font-size: 28px; }
+    .campo-grupo input,
+    .campo-grupo select,
+    .campo-grupo textarea { font-size: 28px; padding: 20px 24px; border-radius: 18px; }
+    .btn-enviar-form { font-size: 30px; padding: 24px 80px; }
+    .sucesso-card h2 { font-size: 55px; }
+    .sucesso-card p { font-size: 30px; }
+    .sucesso-icone { font-size: 120px; }
 }

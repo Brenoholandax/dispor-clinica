@@ -443,7 +443,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('formEvolucaoTecnica').addEventListener('submit', e => {
         e.preventDefault();
-        mostrarToast('Sessão registrada com sucesso!');
-        voltarParaGrid();
+        const paciente = document.getElementById('evolucaoPaciente').value;
+        const humorAtivo = document.querySelector('.mood-btn.active');
+        if (!paciente) {
+            mostrarToast('Selecione um paciente antes de continuar.');
+            return;
+        }
+        if (!humorAtivo) {
+            mostrarToast('Selecione o humor do paciente na chegada.');
+            return;
+        }
+        const btn = e.target.querySelector('.btn-finalizar-sessao');
+        if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Salvando...'; }
+        setTimeout(() => {
+            if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Salvar Registro da Sessão'; }
+            mostrarToast('Sessão registrada com sucesso!');
+            voltarParaGrid();
+            e.target.reset();
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+        }, 800);
     });
 });

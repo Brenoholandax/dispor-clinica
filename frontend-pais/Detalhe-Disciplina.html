@@ -35,9 +35,57 @@
             <button class="btn-inscrever" onclick="irParaFormulario()">Inscrever-se</button> <!-- botão para se inscrever na disciplina, que quando clicado vai para o formulario embaixo da tela -->
         </section>
 
-        <section class="form-section" id="inscricaoForm"> <!-- seção do forms -->
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeK7eN-p8hc4qPoCoL8WUZNJbLJgPhiGNEgF2Epj5PQGToHEg/viewform?embedded=true" width="640" height="1000" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
-        </section> <!-- o forms ai em cima ó -->
+        <section class="form-section" id="inscricaoForm">
+            <div id="formContainer">
+                <h2 class="form-titulo"><i class="fa-solid fa-pen-to-square"></i> Formulário de Inscrição</h2>
+                <p class="form-subtitulo">Preencha os dados abaixo para solicitar a inscrição na disciplina.</p>
+                <form id="inscricaoFormNativo" onsubmit="enviarInscricao(event)" novalidate>
+                    <div class="campo-grupo">
+                        <label for="nomeResponsavel">Nome do Responsável *</label>
+                        <input type="text" id="nomeResponsavel" placeholder="Seu nome completo">
+                        <span class="campo-erro" id="erroNomeResponsavel"></span>
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="nomeCrianca">Nome da Criança *</label>
+                        <input type="text" id="nomeCrianca" placeholder="Nome completo da criança">
+                        <span class="campo-erro" id="erroNomeCrianca"></span>
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="telefone">Telefone / WhatsApp *</label>
+                        <input type="tel" id="telefone" placeholder="(00) 00000-0000">
+                        <span class="campo-erro" id="erroTelefone"></span>
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="turno">Turno de Preferência *</label>
+                        <select id="turno">
+                            <option value="">Selecione...</option>
+                            <option value="manha">Manhã</option>
+                            <option value="tarde">Tarde</option>
+                            <option value="ambos">Ambos</option>
+                        </select>
+                        <span class="campo-erro" id="erroTurno"></span>
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="observacoes">Observações (opcional)</label>
+                        <textarea id="observacoes" rows="3" placeholder="Informações adicionais que deseja compartilhar..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-enviar-form">
+                        <i class="fa-solid fa-paper-plane"></i> Enviar Solicitação
+                    </button>
+                </form>
+            </div>
+            <div id="sucessoInscricao" style="display:none;">
+                <div class="sucesso-card">
+                    <div class="sucesso-icone"><i class="fa-solid fa-circle-check"></i></div>
+                    <h2>Solicitação Enviada!</h2>
+                    <p>Sua inscrição em <strong id="disciplinaConfirmada"></strong> foi registrada com sucesso.</p>
+                    <p>Nossa equipe entrará em contato em breve para confirmar os detalhes.</p>
+                    <a href="dashboard.html?section=inscricao" class="btn-inscrever" style="display:inline-block;text-decoration:none;margin-top:16px;">
+                        Voltar às Disciplinas
+                    </a>
+                </div>
+            </div>
+        </section>
     </div>
 
     <!-- Script de Dados e Lógica -->
