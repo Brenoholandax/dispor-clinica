@@ -11,8 +11,8 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Nunito', sans-serif; background: radial-gradient(circle at top left, rgba(210, 250, 230, 0.4) 0%, rgba(71, 163, 110, 0.1) 50%, #f8faf9 100%); color: var(--text-dark); line-height: 1.6; min-height: 100vh; }
-.container { display: flex; min-height: 100vh; }
-#content { flex: 1; padding: 40px; max-width: 1400px; margin: 0 auto; }
+.container { display: flex; height: 100vh; overflow: hidden; }
+#content { flex: 1; padding: 40px; max-width: 100%; margin: 0; overflow-y: auto; height: 100vh; box-sizing: border-box; }
 .page { display: none; animation: fadeIn 0.4s ease; }
 .page.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -83,6 +83,36 @@ th { background-color: #fcfdfc; color: var(--text-light); font-weight: 700; }
 .fc .fc-button-primary { background-color: var(--primary-color) !important; border-color: var(--primary-color) !important; font-weight: 700 !important; border-radius: 10px !important; }
 .fc .fc-button-group {
     gap: 10px;
+}
+
+/* Customização FullCalendar para Mobile */
+@media (max-width: 768px) {
+    .calendar-card {
+        padding: 15px;
+        border-radius: 20px;
+    }
+
+    .fc .fc-toolbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .fc .fc-toolbar-title {
+        font-size: 1.1rem !important;
+    }
+
+    .fc .fc-button {
+        padding: 6px 10px !important;
+        font-size: 13px !important;
+    }
+
+    .fc-timegrid-slot {
+        height: 50px !important; /* Aumenta altura do slot para facilitar toque */
+    }
+
+    .fc-event {
+        padding: 2px 4px !important;
+    }
 }
 /* --- FINANCE FILTERS --- */
 .filter-bar { display: flex; gap: 10px; margin-bottom: 20px; }
@@ -528,5 +558,128 @@ th { background-color: #fcfdfc; color: var(--text-light); font-weight: 700; }
       margin-top: 10px !important;
       padding-top: 10px !important;
       font-size: 18px !important;
+  }
+}
+
+/* ========== RESPONSIVIDADE MOBILE E TABLET ========== */
+
+/* Tablets e Telas Médias (até 1024px) */
+@media (max-width: 1024px) {
+  #content {
+    padding: 30px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    min-width: 800px; /* Garante que a tabela não esmague no tablet/mobile */
+  }
+
+  .profissionais-grid, .matriculas-grid, .disciplinas-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .modal-content {
+    width: 90%;
+    margin: 5% auto;
+    padding: 20px;
+  }
+}
+
+/* Smartphones (até 480px) */
+@media (max-width: 480px) {
+  #content {
+    padding: 20px 15px;
+  }
+
+  h1 { font-size: 24px; }
+  h2 { font-size: 20px; }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .card-value {
+    font-size: 26px;
+  }
+
+  /* Patient Panel 360 Mobile */
+  .panel-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .metricas-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .panel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Form de Evolução Mobile */
+  .form-tea-container {
+    padding: 25px 20px;
+  }
+
+  .form-grid-top {
+    grid-template-columns: 1fr;
+  }
+
+  .mood-selector {
+    gap: 8px;
+  }
+
+  .mood-btn {
+    padding: 10px;
+    min-width: 60px;
+    font-size: 20px;
+  }
+
+  .mood-btn span {
+    font-size: 10px;
+  }
+
+  .btn-finalizar-sessao {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  /* Ajustes de Matrículas Mobile */
+  .matricula-card-header {
+    padding: 15px;
+  }
+
+  .matricula-alunos {
+    padding: 15px;
+  }
+  
+  /* Ajuste de Botões que podem quebrar */
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .search-box input {
+    width: 100%;
+  }
+
+  .modern-select {
+    width: 100%;
   }
 }

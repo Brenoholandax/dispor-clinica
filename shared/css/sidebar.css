@@ -1,6 +1,7 @@
 /* ========== SIDEBAR ========== */
 .sidebar { /* estilo para a barra lateral do dashboard a side bar */
   width: clamp(220px, 16vw, 624px);
+  flex-shrink: 0;
   background: linear-gradient(180deg, #53a587 0%, #44a380 100%);
   color: white;
   padding: 30px 20px;
@@ -21,13 +22,14 @@
     padding: 8px;
   }
 }
-.sidebar.sidebar-closed p{ /* Escondendo o texto quando a side bar estiver fechada */
+.sidebar.sidebar-closed p,
+.sidebar.sidebar-closed .user-info span,
+.sidebar.sidebar-closed li span { /* Escondendo o texto quando a side bar estiver fechada */
   font-size: 0; /* Esconde o texto */
   display: none;
 }
 .sidebar.sidebar-closed li{/* Escondendo o texto quando a side bar estiver fechada */
   font-size: 0; /* Esconde o texto */
-  display: none;
 }
 .sidebar.sidebar-closed h3{/* Escondendo o texto quando a side bar estiver fechada */
   font-size: 0; /* Esconde o texto */
@@ -35,6 +37,7 @@
 }
 .sidebar.sidebar-closed li,
 .sidebar.sidebar-closed p,
+.sidebar.sidebar-closed .user-info,
 .sidebar.sidebar-closed .menu-title { /* Estilo para quando a side bar estiver fechada, centralizando os itens do menu e removendo o gap entre eles */
   display: flex ;
   align-items: center ;
@@ -83,7 +86,7 @@
   list-style: none;
   flex: 1;
 }
-.sidebar p{ /* estilo para o nome do usuário na sidebar */
+.sidebar p, .sidebar .user-info { /* estilo para o nome do usuário na sidebar */
   display: flex;
   align-items: center;
   gap: 6px;
@@ -125,6 +128,43 @@
   font-weight: 700;
 }
 /* ========== RESPONSIVIDADE ========== */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 180px;
+    padding: 20px 10px;
+  }
+  .sidebar-closed {
+    width: 60px;
+    padding: 20px 5px;
+  }
+  .sidebar h3 {
+    font-size: 16px;
+  }
+  .sidebar li {
+    margin: 10px 0;
+    padding: 10px 15px;
+    font-size: 14px;
+    gap: 8px;
+  }
+  .sidebar li i {
+    font-size: 16px;
+  }
+  .sidebar p, .sidebar .user-info {
+    font-size: 14px;
+    padding-top: 10px;
+  }
+  .sidebar p i, .sidebar .user-info i {
+    font-size: 16px;
+  }
+  .menu-title {
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+  #bars {
+    font-size: 20px;
+  }
+}
+
 @media (min-width: 1600px) {
   #bars {
     font-size: 30px;

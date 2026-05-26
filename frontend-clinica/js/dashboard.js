@@ -69,6 +69,9 @@ function navigate(page, event) {
 
 function toggleSidebar() {
     document.querySelector('.sidebar').classList.toggle('sidebar-closed');
+    if (calGeral) {
+        setTimeout(() => calGeral.updateSize(), 300);
+    }
 }
 
 function logout() {
@@ -317,17 +320,48 @@ function inicializarCalendario() {
     const calEl = document.getElementById('calendar-geral');
     if (!calEl || typeof FullCalendar === 'undefined') return;
     const hoje = new Date().toISOString().split('T')[0];
+
+    const isMobile = window.innerWidth <= 768;
+
     calGeral = new FullCalendar.Calendar(calEl, {
-        initialView: 'timeGridWeek',
+        initialView: isMobile ? 'timeGridDay' : 'timeGridWeek',
         locale: 'pt-br',
-        height: 600,
-        scrollTime: '08:00:00',
-        headerToolbar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth,timeGridWeek,timeGridDay' },
+        height: isMobile ? 'auto' : 650,
+        slotMinTime: '07:00:00',
+        slotMaxTime: '20:00:00',
+        allDaySlot: false,
+        expandRows: true,
+        headerToolbar: isMobile ? {
+            left: 'prev,next',
+            center: 'title',
+            right: 'timeGridDay,listWeek'
+        } : {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        buttonText: {
+            today: 'Hoje',
+            month: 'Mês',
+            week: 'Semana',
+            day: 'Dia',
+            list: 'Lista'
+        },
         events: [
-            { title: 'ABA — João', start: `${hoje}T09:00:00`, end: `${hoje}T10:00:00`, color: '#53a587' },
-            { title: 'Fono — Ana', start: `${hoje}T11:00:00`, end: `${hoje}T12:00:00`, color: '#1e40af' },
-            { title: 'T.O — Pedro', start: `${hoje}T14:00:00`, end: `${hoje}T15:00:00`, color: '#ffa726' },
-        ]
+            { title: 'ABA — João Silva', start: `${hoje}T08:00:00`, end: `${hoje}T10:00:00`, color: '#53a587' },
+            { title: 'Fono — Ana Costa', start: `${hoje}T10:30:00`, end: `${hoje}T11:30:00`, color: '#1e40af' },
+            { title: 'T.O — Pedro Santos', start: `${hoje}T14:00:00`, end: `${hoje}T15:30:00`, color: '#f59e0b' },
+            { title: 'ABA — Beatriz Lima', start: `${hoje}T16:00:00`, end: `${hoje}T18:00:00`, color: '#53a587' },
+        ],
+        windowResize: function(arg) {
+            const mobile = window.innerWidth <= 768;
+            calGeral.setOption('height', mobile ? 'auto' : 650);
+            if (mobile && calGeral.view.type === 'timeGridWeek') {
+                calGeral.changeView('timeGridDay');
+            } else if (!mobile && calGeral.view.type === 'timeGridDay') {
+                calGeral.changeView('timeGridWeek');
+            }
+        }
     });
     calGeral.render();
 }
@@ -434,6 +468,24 @@ function selecionarHumor(btn) {
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
+    // Ajuste inicial para mobile
+    if (window.innerWidth <= 768) {
+        document.querySelector('.sidebar').classList.add('sidebar-closed');
+    }
+
+    // Monitoramento de redimensionamento
+    window.addEventListener('resize', () => {
+        const sidebar = document.querySelector('.sidebar');
+        if (window.innerWidth <= 768) {
+            sidebar.classList.add('sidebar-closed');
+        } else {
+            // No desktop (acima de 768px), podemos remover a classe se quisermos que inicie aberta
+            // mas geralmente é melhor deixar como o usuário deixou. 
+            // Seguindo o dashboard dos pais:
+            sidebar.classList.remove('sidebar-closed');
+        }
+    });
+
     carregarDashboard();
     carregarPacientes();
     carregarProfissionais();
