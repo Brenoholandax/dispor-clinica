@@ -173,47 +173,50 @@
 
 /* ========== RESPONSIVIDADE ========== */
 @media (min-width: 1600px) {
-  #relatorios h1 { font-size: 38px; }
+  #relatorios h1 { font-size: 28px; }
   .filtro-bar { padding: 22px 28px; gap: 18px; border-radius: 20px; }
   .filtro-grupo label { font-size: 14px; }
   .filtro-grupo select,
-  .filtro-grupo input[type="date"] { padding: 13px 20px; font-size: 18px; border-radius: 12px; }
-  .btn-filtrar { padding: 13px 28px; font-size: 18px; border-radius: 12px; }
+  .filtro-grupo input[type="date"] { padding: 13px 20px; font-size: 20px; border-radius: 12px; }
+  .btn-filtrar { padding: 13px 28px; font-size: 20px; border-radius: 12px; }
   .relatorio-card { border-radius: 20px; }
   .relatorio-header { padding: 18px 28px; }
-  .relatorio-filho { font-size: 18px; }
+  .relatorio-filho { font-size: 20px; }
   .relatorio-data { font-size: 16px; }
   .relatorio-body { padding: 22px 28px; gap: 16px; }
   .relatorio-label { font-size: 13px; }
-  .relatorio-valor { font-size: 17px; }
+  .relatorio-valor { font-size: 20px; }
+  .relatorio-obs .relatorio-valor { font-size: 18px; }
 }
 
 @media (min-width: 2200px) {
-  #relatorios h1 { font-size: 51px; }
+  #relatorios h1 { font-size: 38px; }
   .filtro-bar { padding: 28px 36px; gap: 24px; border-radius: 26px; }
   .filtro-grupo label { font-size: 18px; }
   .filtro-grupo select,
-  .filtro-grupo input[type="date"] { padding: 17px 26px; font-size: 24px; border-radius: 14px; }
-  .btn-filtrar { padding: 17px 36px; font-size: 24px; border-radius: 14px; }
+  .filtro-grupo input[type="date"] { padding: 17px 26px; font-size: 28px; border-radius: 14px; }
+  .btn-filtrar { padding: 17px 36px; font-size: 28px; border-radius: 14px; }
   .relatorio-header { padding: 22px 36px; }
-  .relatorio-filho { font-size: 24px; }
+  .relatorio-filho { font-size: 28px; }
   .relatorio-data { font-size: 20px; }
   .relatorio-body { padding: 28px 36px; gap: 20px; }
   .relatorio-label { font-size: 17px; }
-  .relatorio-valor { font-size: 22px; }
+  .relatorio-valor { font-size: 28px; }
+  .relatorio-obs .relatorio-valor { font-size: 24px; }
 }
 
 @media (min-width: 3000px) {
-  #relatorios h1 { font-size: 77px; }
+  #relatorios h1 { font-size: 57px; }
   .filtro-bar { padding: 42px 54px; gap: 36px; border-radius: 38px; }
-  .filtro-grupo label { font-size: 28px; }
+  .filtro-grupo label { font-size: 26px; }
   .filtro-grupo select,
-  .filtro-grupo input[type="date"] { padding: 26px 40px; font-size: 36px; border-radius: 20px; }
-  .btn-filtrar { padding: 26px 54px; font-size: 36px; border-radius: 20px; }
+  .filtro-grupo input[type="date"] { padding: 26px 40px; font-size: 40px; border-radius: 20px; }
+  .btn-filtrar { padding: 26px 54px; font-size: 40px; border-radius: 20px; }
   .relatorio-header { padding: 34px 54px; }
-  .relatorio-filho { font-size: 36px; }
+  .relatorio-filho { font-size: 40px; }
   .relatorio-data { font-size: 30px; }
   .relatorio-body { padding: 42px 54px; gap: 30px; }
-  .relatorio-label { font-size: 26px; }
-  .relatorio-valor { font-size: 34px; }
+  .relatorio-label { font-size: 24px; }
+  .relatorio-valor { font-size: 40px; }
+  .relatorio-obs .relatorio-valor { font-size: 36px; }
 }

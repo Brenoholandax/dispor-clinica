@@ -93,24 +93,24 @@
         box-shadow: 0 20px 40px rgba(83, 165, 135, 0.2);
     }
     #inscricao h1 { /* aumentar o titulo */
-        font-size: 60px;
+        font-size: 28px;
         margin-bottom: 20px;
     }
     #inscricao p{ /* aumentar o subtitulo */
         text-align: left;
-        font-size: 23px;
+        font-size: 20px;
         margin-bottom: 20px;
     }
     .card-disciplina h2 { /* aumentar o titulo do card */
-        font-size: 40px;
-        margin-bottom: 25px;
+        font-size: 24px;
+        margin-bottom: 20px;
     }
     .card-disciplina p { /* aumentar a descrição do card */
-        font-size: 26px;
+        font-size: 18px;
     }
     .btn-detalhes { /* aumentar o botão do card */
-        font-size: 25px;
-        padding: 15px 35px;
+        font-size: 18px;
+        padding: 12px 30px;
     }
 }
 
@@ -119,57 +119,58 @@
         gap: 45px;
     }
     #inscricao h1 { /* aumentar o titulo */
-        font-size: 75px;
+        font-size: 38px;
         margin-bottom: 30px;
     }
     #inscricao p{ /* aumentar o subtitulo */
-        font-size: 33px;
+        font-size: 28px;
         margin-bottom: 30px;
     }
     .card-disciplina h2 { /* aumentar o titulo do card */
-        font-size: 50px;
-        margin-bottom: 40px;
+        font-size: 34px;
+        margin-bottom: 30px;
     }
     .card-disciplina p { /* aumentar a descrição do card */
-        font-size: 32px;
+        font-size: 26px;
     }
     .card-disciplina::before { /* é aquele bagui verde atras do card basicamnte */
         height: 10px;
     }
     .btn-detalhes { /* aumentar o botão do card */
-        font-size: 30px;
-        padding: 20px 45px;
+        font-size: 26px;
+        padding: 16px 40px;
     }
 }
 
 @media (min-width: 3000px) { /* 4k (alinhado com dashboard.css) */
     #inscricao h1 { /* aumentar o titulo */
-        font-size: 90px;
+        font-size: 57px;
         margin-bottom: 50px;
     }
     #inscricao p{ /* aumentar o subtitulo */
-        font-size: 45px;
+        font-size: 40px;
         margin-bottom: 30px;
     }
     .disciplinas-grid { /* aumentar o espaçamento entre os cards */
         gap: 60px;
     }
     .card-disciplina { /* aumentar o padding do card e o border radius*/
-        padding: 60px;
+        padding: 50px;
         border-radius: 40px;
     }
     .card-disciplina h2 { /* aumentar o titulo do card */
-        font-size: 55px;
+        font-size: 50px;
         margin-bottom: 40px;
     }
     .card-disciplina p { /* aumentar a descrição do card */
-        font-size: 40px;
+        font-size: 34px;
     }
     .card-disciplina::before { /* é aquele bagui verde atras do card basicamnte */
-        height: 20px;
+        height: 15px;
     }
     .btn-detalhes { /* aumentar o botão do card */
-        font-size: 35px;
-        border-radius: 20px;
+        font-size: 34px;
+        border-radius: 18px;
+        padding: 22px 50px;
     }
 }

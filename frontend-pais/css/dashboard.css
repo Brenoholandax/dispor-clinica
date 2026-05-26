@@ -152,6 +152,10 @@ main { /* main content, que ocupa o espaço restante ao lado da sidebar */
   .container {
     max-width: 2100px;
   }
+  #dashboard h1, #relatorios h1, #pagamentos h1, #suporte h1, #inscricao h1 {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
   .page {
     padding: 40px;
   }
@@ -162,6 +166,14 @@ main { /* main content, que ocupa o espaço restante ao lado da sidebar */
   .card{
     font-size: 29px;
     border-radius: 24px;
+  }
+  .card-label {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .card-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
   }
   .card span{
     font-size: 34px;
@@ -184,6 +196,10 @@ main { /* main content, que ocupa o espaço restante ao lado da sidebar */
   .container {
     max-width: 2600px;
   }
+  #dashboard h1, #relatorios h1, #pagamentos h1, #suporte h1, #inscricao h1 {
+    font-size: 38px;
+    margin-bottom: 45px;
+  }
   .page {
     padding: 45px;
   }
@@ -194,6 +210,14 @@ main { /* main content, que ocupa o espaço restante ao lado da sidebar */
   .card{
     font-size: 38px;
     border-radius: 28px;
+  }
+  .card-label {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  .card-icon {
+    font-size: 55px;
+    margin-bottom: 20px;
   }
   .card span{
     font-size: 45px;
@@ -217,6 +241,10 @@ main { /* main content, que ocupa o espaço restante ao lado da sidebar */
   .container {
     max-width: 3900px;
   }
+  #dashboard h1, #relatorios h1, #pagamentos h1, #suporte h1, #inscricao h1 {
+    font-size: 57px;
+    margin-bottom: 60px;
+  }
   .page{
     padding: 60px;
   }
@@ -227,6 +255,14 @@ main { /* main content, que ocupa o espaço restante ao lado da sidebar */
   .card{
     border-radius: 40px;
     font-size: 58px;
+  }
+  .card-label {
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+  .card-icon {
+    font-size: 80px;
+    margin-bottom: 30px;
   }
   .card span{
     font-size: 67px;
