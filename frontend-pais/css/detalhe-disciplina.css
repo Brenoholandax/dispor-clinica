@@ -11,6 +11,10 @@ body { /* define algumas regrasd para tudo dentro do body */
     min-height: 100dvh;
     color: #333;
     line-height: 1.6;
+    /* INICIO ALTERAÇÃO GEMINI - LAYOUT FLEX */
+    display: flex;
+    flex-direction: column;
+    /* FIM ALTERAÇÃO GEMINI - LAYOUT FLEX */
 }
 
 .container { /* conteiner geral da pagina */

@@ -9,6 +9,10 @@ body { /* algumas configurações básicas para o body, como fonte, cor de fundo
   font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100dvh;
   color: #333;
+  /* INICIO ALTERAÇÃO GEMINI - LAYOUT FLEX */
+  display: flex;
+  flex-direction: column;
+  /* FIM ALTERAÇÃO GEMINI - LAYOUT FLEX */
 }
 
 /* LAYOUT PRINCIPAL */
@@ -17,6 +21,10 @@ body { /* algumas configurações básicas para o body, como fonte, cor de fundo
   min-height: 100dvh;
   max-width: 1600px;
   margin: 0 auto;
+  /* INICIO ALTERAÇÃO GEMINI - CONTAINER FLEX */
+  flex: 1;
+  width: 100%;
+  /* FIM ALTERAÇÃO GEMINI - CONTAINER FLEX */
 }
 
 
