@@ -44,7 +44,7 @@ function login() {
   if (currentTab === 'pais') {
     window.location.href = "dashboard.html"; // Vai para a dashboard dos Pais
   } else if (currentTab === 'clinica') {
-    window.location.href = "../frontend-clinica/home-clinica.html"; // Vai para o portal Clínico
+    window.location.href = "../frontend-clinica/Home-clinica.html"; // Vai para o portal Clínico
   } else if (currentTab === 'adm') {
     window.location.href = "../frontend-adm/clinicas-list.html"; // Vai para o portal Administrativo
   }

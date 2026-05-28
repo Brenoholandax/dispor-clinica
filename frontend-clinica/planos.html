@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planos e Assinatura · Clínica TEA</title>
+  <link rel="stylesheet" href="css/planos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ============ TOPO ============ -->
+  <header class="topbar">
+    <a href="../frontend-pais/index.html" class="brand">
+      <i class="fa-solid fa-house-medical"></i>
+      <span>Clínica TEA</span>
+    </a>
+    <a href="../frontend-pais/index.html" class="topbar-back">
+      <i class="fa-solid fa-arrow-left-long"></i> Voltar ao login
+    </a>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <span class="hero-badge"><i class="fa-solid fa-sparkles"></i> Planos para clínicas TEA</span>
+    <h1>Escolha o plano ideal para a sua clínica</h1>
+    <p>Gestão completa de pacientes, profissionais e famílias em uma só plataforma. Comece hoje e transforme o cuidado da sua clínica.</p>
+
+    <!-- Toggle mensal / anual -->
+    <div class="billing-toggle">
+      <span class="billing-label" id="labelMensal">Mensal</span>
+      <button class="switch" id="switchPlano" onclick="alternarCobranca()" aria-label="Alternar entre cobrança mensal e anual">
+        <span class="switch-thumb"></span>
+      </button>
+      <span class="billing-label active" id="labelAnual">Anual</span>
+      <span class="economize-tag">Economize 25%</span>
+    </div>
+  </section>
+
+  <!-- ============ CARDS DE PLANOS ============ -->
+  <section class="planos-grid" id="planosGrid"></section>
+
+  <!-- ============ GARANTIAS ============ -->
+  <section class="trust-bar">
+    <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Dados protegidos (LGPD)</div>
+    <div class="trust-item"><i class="fa-solid fa-headset"></i> Suporte humano dedicado</div>
+    <div class="trust-item"><i class="fa-solid fa-rotate-left"></i> Cancele quando quiser</div>
+    <div class="trust-item"><i class="fa-solid fa-credit-card"></i> Sem taxa de adesão</div>
+  </section>
+
+  <footer class="planos-footer">
+    <p>&copy; 2026 Clínica TEA · Plataforma de gestão para clínicas de autismo.</p>
+  </footer>
+
+  <!-- ============ MODAL DE ADESÃO ============ -->
+  <div class="modal-overlay" id="modalOverlay" onclick="fecharModalFora(event)">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+      <button class="modal-close" onclick="fecharModal()" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+
+      <div class="modal-header">
+        <div class="modal-plano-badge" id="modalPlanoBadge">Plano Profissional</div>
+        <h2 id="modalTitulo">Vamos começar! 🎉</h2>
+        <p>Preencha os dados e em instantes você acessa o portal da sua clínica.</p>
+      </div>
+
+      <form id="formAdesao" onsubmit="confirmarAdesao(event)">
+        <div class="form-field">
+          <label for="clinicaNome"><i class="fa-solid fa-hospital"></i> Nome da clínica</label>
+          <input type="text" id="clinicaNome" placeholder="Ex.: Clínica Bem-Estar TEA" required>
+        </div>
+        <div class="form-field">
+          <label for="responsavel"><i class="fa-solid fa-user"></i> Responsável</label>
+          <input type="text" id="responsavel" placeholder="Nome do responsável" required>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="email"><i class="fa-solid fa-envelope"></i> E-mail</label>
+            <input type="email" id="email" placeholder="contato@clinica.com.br" required>
+          </div>
+          <div class="form-field">
+            <label for="telefone"><i class="fa-solid fa-phone"></i> Telefone</label>
+            <input type="tel" id="telefone" placeholder="(11) 90000-0000" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="qtdPacientes"><i class="fa-solid fa-users"></i> Quantidade de pacientes</label>
+          <input type="number" id="qtdPacientes" min="1" placeholder="Ex.: 45" required>
+        </div>
+
+        <button type="submit" class="btn-confirmar">
+          <i class="fa-solid fa-circle-check"></i> Confirmar e acessar portal
+        </button>
+        <p class="modal-disclaimer"><i class="fa-solid fa-lock"></i> Demonstração (MVP) — nenhum dado é enviado ou cobrado.</p>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/planos.js"></script>
+</body>
+</html>

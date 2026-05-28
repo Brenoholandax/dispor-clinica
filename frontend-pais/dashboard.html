@@ -13,6 +13,7 @@
   <!-- INICIO ALTERAÇÃO GEMINI - FOOTER CSS -->
   <link rel="stylesheet" href="css/footer.css">
   <!-- FIM ALTERAÇÃO GEMINI - FOOTER CSS -->
+  <link rel="stylesheet" href="css/assistente-ia.css"> <!-- Estilos do assistente de IA (card + chat) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Biblioteca Chart.js para os gráficos do dashboard -->
 </head>
@@ -43,6 +44,22 @@
     <!-- DASHBOARD -->
     <section id="dashboard" class="page active"> <!-- seção do dashboard, que é a seção ativa por padrão -->
       <h1>Dashboard</h1> <!-- título -->
+
+      <!-- CARD DE RESUMO INTELIGENTE (IA) -->
+      <div class="ia-overview">
+        <div class="ia-overview-header">
+          <div class="ia-spark"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h2>Resumo Inteligente</h2>
+          <span class="ia-tag">IA</span>
+        </div>
+        <div class="ia-overview-text" id="iaOverviewText">Gerando o resumo da semana do seu filho...</div>
+        <div class="ia-overview-footer">
+          <button class="btn-gerar-resumo" id="btnGerarResumo" onclick="iaGerarResumo()">
+            <i class="fa-solid fa-arrows-rotate"></i> Gerar novo resumo
+          </button>
+          <span class="ia-overview-hint"><i class="fa-solid fa-circle-info"></i> Resumo gerado por IA com base nas sessões</span>
+        </div>
+      </div>
 
       <div class="cards">
         <div class="card">
@@ -217,9 +234,36 @@
 </footer>
 <!-- FIM ALTERAÇÃO GEMINI - FOOTER HTML -->
 
+<!-- ============ ASSISTENTE DE IA (CHAT FLUTUANTE ESTILO WHATSAPP) ============ -->
+<button class="ia-fab" id="iaFab" onclick="iaToggleChat()" aria-label="Abrir assistente da clínica">
+  <i class="fa-brands fa-whatsapp"></i>
+  <span class="ia-fab-badge" id="iaFabBadge">1</span>
+</button>
+
+<div class="ia-chat" id="iaChat">
+  <div class="ia-chat-header">
+    <div class="ia-chat-avatar"><i class="fa-solid fa-robot"></i></div>
+    <div class="ia-chat-info">
+      <h3>Assistente Clínica TEA</h3>
+      <span><span class="online-dot"></span> online · responde na hora</span>
+    </div>
+    <button class="ia-chat-close" onclick="iaToggleChat()" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+
+  <div class="ia-chat-body" id="iaChatBody"></div>
+
+  <div class="ia-quick-replies" id="iaQuickReplies"></div>
+
+  <div class="ia-chat-footer">
+    <input type="text" id="iaInput" placeholder="Digite uma mensagem..." onkeydown="iaInputKeydown(event)" autocomplete="off">
+    <button onclick="iaEnviarMensagem()" aria-label="Enviar"><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+</div>
+
 <script src="../shared/js/config.js"></script>
 <script src="../shared/js/toast.js"></script>
 <script src="js/script.js"></script>
 <script src="js/insc-dados.js"></script>
+<script src="js/assistente-ia.js"></script>
 </body>
 </html>

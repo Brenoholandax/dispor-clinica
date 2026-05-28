@@ -360,6 +360,24 @@ body.theme-adm {
 
 .redefinir_Password:hover{ text-decoration: underline; }
 
+/* Link de adesão aos planos (abaixo do botão de login) */
+.planos-cta {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #5f5f5f !important;
+}
+
+.planos-cta a {
+  color: #53a587;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.planos-cta a:hover { text-decoration: underline; }
+
+/* No tema ADM, o link acompanha a cor azul */
+.main-wrapper.theme-adm .planos-cta a { color: #1e40af; }
+
 /* ============================================================
    BOTÃO DE LOGIN
    ============================================================ */
